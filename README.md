@@ -1,4 +1,4 @@
-# capstone-group-2
+# capstone-front-end
 
 Figma: https://www.figma.com/file/GK5fBkK3mnoc2jnhX07Fen/CAPSTONE-Team-2%2F-MISSION-PLANNING?node-id=0%3A1
 
