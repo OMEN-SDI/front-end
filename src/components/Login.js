@@ -8,24 +8,6 @@ import "bootstrap/dist/css/bootstrap.min.css";
 export const Login = () => {
   let email = "";
   return (
-    <Container>
-      <Form style={{ textAlign: "center", alignItems: "center" }}>
-        <Form.Control
-          //   style={{ width: "50%" }}
-          className="justify-content-center"
-        ></Form.Control>
-        <input type="text" style={{ width: "25%" }}></input>
-      </Form>
-
-      <form style={{ textAlign: "center" }}>
-        <input type="text" style={{ width: "25%" }}></input>
-      </form>
-
-      {/* <Form
-        style={{
-          backgroundColor: "#696777",
-          textAlign: "center",
-          alignItems:
     <Container style={{width: "35%"}} >
       <Form
         style={{
@@ -69,7 +51,7 @@ export const Login = () => {
         <Button variant="primary" type="submit">
           Sign Up
         </Button>
-      </Form> */}
+      </Form> 
     </Container>
   );
 };
