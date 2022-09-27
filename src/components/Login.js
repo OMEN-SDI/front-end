@@ -26,34 +26,38 @@ export const Login = () => {
           backgroundColor: "#696777",
           textAlign: "center",
           alignItems:
+    <Container style={{width: "35%"}} >
+      <Form
+        style={{
+          backgroundColor: "#696777",
+          textAlign: "center",
+          padding: "20px"
         }}
         onSubmit={(e) => {
           e.preventDefault();
           // Fetch user login info
           // **Truthy"" || **Falsy** userLogin ? 'success' : 'get out of here'
           // ?? Maybe cookie session or back-end
-          console.log(e.target.value);
         }}
       >
         <Form.Group
           className="mb-3"
           controlId="formBasicEmail"
-          style={{ alignItems: "center" }}
         >
           <Form.Label>Email address</Form.Label>
           <Form.Control
-            style={{ width: "25%", textAlign: "center" }}
-            type="email"
+            style={{ width: "50%", textAlign: "center", marginLeft: "27%" }}
+            className="align-center" type="email"
             onChange={(e) => console.log(e.target.value)}
             // Current default validation
             placeholder="Enter email"
           />
-          <Form.Text className="text-muted">Bo has a cool mustache</Form.Text>
+          
         </Form.Group>
         <Form.Group className="mb-3" controlId="formBasicPassword">
           <Form.Label>Password</Form.Label>
           <Form.Control
-            style={{ width: "25%", textAlign: "center" }}
+            style={{ width: "50%", textAlign: "center", marginLeft: "27%" }}
             type="password"
             onChange={(e) => console.log(e.target.value)}
             placeholder="Password"
