@@ -29,8 +29,8 @@ export function MissionModal(props) {
       </Modal.Header>
       <Modal.Body className="show-grid">
         <Container>
-          <InputStyleDiv>
-            <Row>
+          <Row>
+            <InputStyleDiv>
               <InputColDiv>
                 <Col>Mission ID</Col>
                 <InputBox type="text"></InputBox>
@@ -47,8 +47,8 @@ export function MissionModal(props) {
                 <Col>Mission Type</Col>
                 <InputBox type="text"></InputBox>
               </InputColDiv>
-            </Row>
-          </InputStyleDiv>
+            </InputStyleDiv>
+          </Row>
           <Row>
             <Col>Mission Info</Col>
             <Col>Mission Objectives</Col>
