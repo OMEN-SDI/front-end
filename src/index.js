@@ -1,13 +1,23 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import "./index.css";
+import App from "./App";
+import reportWebVitals from "./reportWebVitals";
+import map from "./map.jpg";
+import Styled from "styled-components";
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const BackgroundImage = Styled.div`
+  background: url(${map});
+  background-repeat: no-repeat;
+  background-size: stretch;
+`;
+
+const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <App />
+    <BackgroundImage>
+      <App />
+    </BackgroundImage>
   </React.StrictMode>
 );
 
