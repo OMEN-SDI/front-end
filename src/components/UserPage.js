@@ -1,5 +1,7 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useEffect, useState, useContext, Render } from "react";
 import Styled from "styled-components";
+import { MissionModal } from "./AddMissionModal";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 const MyMissions = Styled.div`
     height: 75vh;
@@ -17,7 +19,7 @@ const MyMissions = Styled.div`
 
 const IndividualMission = Styled.div`
     border: 1px solid white;
-    margin-top: 2vh;
+    margin-top: 3vh;
     width: 85%;
     background-color: #514f5a;
     cursor: pointer;
@@ -44,9 +46,22 @@ const CreateMissionDiv = Styled.div`
     opacity: 80%;
     font-size: 3vh;
     font-weight: 500;
+    cursor: pointer;
 `;
 
 export const UserPage = () => {
+  function ModalPop() {
+    const [modalShow, setModalShow] = useState(false);
+    return (
+      <>
+        <CreateMissionDiv variant="primary" onClick={() => setModalShow(true)}>
+          Create New Mission
+        </CreateMissionDiv>
+        <MissionModal show={modalShow} onHide={() => setModalShow(false)} />
+      </>
+    );
+  }
+
   return (
     <ContainerDiv>
       <MyMissions>
@@ -55,7 +70,8 @@ export const UserPage = () => {
         <IndividualMission>Operation Allies Refuge</IndividualMission>
         <IndividualMission>Operation Freedom's Sentinel</IndividualMission>
       </MyMissions>
-      <CreateMissionDiv>Create New Mission</CreateMissionDiv>
+
+      <ModalPop />
     </ContainerDiv>
   );
 };
