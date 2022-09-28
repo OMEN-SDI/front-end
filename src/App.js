@@ -7,8 +7,8 @@ import { UserPage } from "./components/UserPage";
 import { SearchResults } from "./components/SearchResults";
 import { AppContext } from "./components/AppContext";
 import { MissionDetails } from "./components/MissionDetails";
-import {AboutPage} from "./components/AboutPage";
-import {HelpPage} from "./components/HelpPage";
+import { AboutPage } from "./components/AboutPage";
+import { HelpPage } from "./components/HelpPage";
 
 function App() {
   const [individualMissionDetails, setIndividualMissionDetails] = useState({});
@@ -131,7 +131,7 @@ function App() {
         <MissionNavBar />
         <Routes>
           <Route path="/" element={<Login />}></Route>
-          <Route path="/user" element={<UserPage />}></Route>
+          <Route path="/userpage" element={<UserPage />}></Route>
           <Route path="/help" element={<HelpPage />}></Route>
           <Route path="/about" element={<AboutPage />}></Route>
           {/* This is a temp path */}
