@@ -10,7 +10,7 @@ import Table from "react-bootstrap/Table";
 const CardStyle = Styled.div`
     width: "auto";
     height: "auto";
-    backgroundColor: "#696777"
+    background-color: "#696777";
 `;
 
 const TableStyle = Styled.div`
@@ -35,36 +35,19 @@ justify-content: center;
 align-items: center;
 `;
 
+const MissionDetailsHeader = Styled.h1`
+  text-align: center;
+  color: white;
+`;
+
 export const MissionDetails = () => {
   const { individualMissionDetails } = useContext(AppContext);
-  //   const dummyMissions = [
-  //     { title: "mission-one", msn_lat: "40", msn_lon: "100" },
-  //     { title: "mission-two", msn_lat: "60", msn_lon: "99" },
-  //     {
-  //       title: "mission-three",
-  //       msn_lat: "29.473676814427698",
-  //       msn_lon: "-98.35372924804688",
-  //     },
-  //     {
-  //       title: "mission-three",
-  //       msn_lat: "29.473676814427698",
-  //       msn_lon: "-98.35372924804688",
-  //     },
-  //     {
-  //       title: "mission-three",
-  //       msn_lat: "29.473676814427698",
-  //       msn_lon: "-98.35372924804688",
-  //     },
-  //     {
-  //       title: "mission-three",
-  //       msn_lat: "29.473676814427698",
-  //       msn_lon: "-98.35372924804688",
-  //     },
-  //   ];
-
   return (
     <>
-      <h1>{individualMissionDetails.title}</h1>
+      <MissionDetailsHeader>
+        {individualMissionDetails.title.toUpperCase()}
+      </MissionDetailsHeader>
+      <br />
       <MissionDetailsDiv>
         <TableStyle>
           <Table striped bordered hover variant="dark">
@@ -160,60 +143,3 @@ export const MissionDetails = () => {
     </>
   );
 };
-
-// export function MissionModal(props) {
-//   return (
-//     <Modal size="xl" {...props} aria-labelledby="contained-modal-title-vcenter">
-//       <Modal.Header closeButton>
-//         <Modal.Title id="contained-modal-title-vcenter">
-//           Add Mission
-//         </Modal.Title>
-//       </Modal.Header>
-//       <Modal.Body className="show-grid">
-//         <Container>
-//           <Row>
-//             <InputStyleDiv>
-//               <InputColDiv>
-//                 <Col>Mission ID</Col>
-//                 <InputBox type="text"></InputBox>
-//               </InputColDiv>
-//               <InputColDiv>
-//                 <Col>Mission Title</Col>
-//                 <InputBox type="text"></InputBox>
-//               </InputColDiv>
-//               <InputColDiv>
-//                 <Col>Mission Date</Col>
-//                 <InputBox type="text"></InputBox>
-//               </InputColDiv>
-//               <InputColDiv>
-//                 <Col>Mission Type</Col>
-//                 <InputBox type="text"></InputBox>
-//               </InputColDiv>
-//             </InputStyleDiv>
-//           </Row>
-//           <Row>
-//             <Col>Mission Info</Col>
-//             <Col>Mission Objectives</Col>
-//             <Col>Supporting Players</Col>
-//             <Col>Situation</Col>
-//           </Row>
-//           <Row>
-//             <Col>Key Grids</Col>
-//             <Col>Fires</Col>
-//             <Col>Assets</Col>
-//             <Col>Intel</Col>
-//           </Row>
-//           <Row>
-//             <Col>Comms</Col>
-//             <Col>Map</Col>
-//             <Col>User ID</Col>
-//             <Col>Location</Col>
-//           </Row>
-//         </Container>
-//       </Modal.Body>
-//       <Modal.Footer>
-//         <Button onClick={props.onHide}>Close</Button>
-//       </Modal.Footer>
-//     </Modal>
-//   );
-// }

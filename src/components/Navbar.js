@@ -90,7 +90,7 @@ export const MissionNavBar = () => {
               </Offcanvas.Header>
               <Offcanvas.Body>
                 <Nav className="justify-content-end flex-grow-1 pe-3">
-                  <Nav.Link href="#action1">Home</Nav.Link>
+                  <Nav.Link href="/userpage">Home</Nav.Link>
                   <Nav.Link href="#action2">Help</Nav.Link>
                   <Nav.Link href="#action2">About</Nav.Link>
                   <Nav.Link href="#action2">Log Out</Nav.Link>

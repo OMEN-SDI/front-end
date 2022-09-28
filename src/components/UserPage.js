@@ -50,6 +50,20 @@ const CreateMissionDiv = Styled.div`
 `;
 
 export const UserPage = () => {
+  // useEffect(() => {
+  //   const script = document.createElement("script");
+
+  //   script.src =
+  //     "//rf.revolvermaps.com/0/0/8.js?i=5oquq0cv2th&amp;m=0&amp;c=ff0000&amp;cr1=ffffff&amp;f=arial&amp;l=33";
+  //   script.async = true;
+
+  //   document.body.appendChild(script);
+
+  //   return () => {
+  //     document.body.removeChild(script);
+  //   };
+  // }, []);
+
   function ModalPop() {
     const [modalShow, setModalShow] = useState(false);
     return (
@@ -70,7 +84,6 @@ export const UserPage = () => {
         <IndividualMission>Operation Allies Refuge</IndividualMission>
         <IndividualMission>Operation Freedom's Sentinel</IndividualMission>
       </MyMissions>
-
       <ModalPop />
     </ContainerDiv>
   );

@@ -8,7 +8,6 @@ import Container from "react-bootstrap/Container";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 const ContainerDiv = Styled.div`
-    height: 100vh;
     display: flex;
     flex-direction: column;
     row-gap: 5vh;
@@ -18,7 +17,7 @@ const ContainerDiv = Styled.div`
 const CardStyle = Styled.div`
     width: "auto";
     height: "auto";
-    backgroundColor: "#696777"
+    background-color: "#696777";
 `;
 
 const InputStyleDiv = Styled.div`
