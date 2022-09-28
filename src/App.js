@@ -24,9 +24,9 @@ function App() {
         <MissionNavBar />
         <Routes>
           <Route path="/" element={<Login />}></Route>
-          <Route path="/userPage" element={<UserPage />}></Route>
-          <Route path="/helpPage" element={<HelpPage />}></Route>
-          <Route path="/aboutPage" element={<AboutPage />}></Route>
+          <Route path="/user" element={<UserPage />}></Route>
+          <Route path="/help" element={<HelpPage />}></Route>
+          <Route path="/about" element={<AboutPage />}></Route>
           {/* This is a temp path */}
           <Route path="/dummypath" element={<SearchResults />}></Route>
           <Route
