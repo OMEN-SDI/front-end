@@ -8,15 +8,20 @@ import Styled from "styled-components";
 
 const BackgroundImage = Styled.div`
   background: url(${map});
-  background-repeat: no-repeat;
-  background-size: stretch;
+  background-repeat: repeat-y;
+  background-size: cover;
 `;
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <BackgroundImage>
+
+    {/* <div class="bg-image" 
+     style={{backgroundImage: `url(${map})`,
+     height: '100vh'}}> */}
       <App />
+{/* </div> */}
     </BackgroundImage>
   </React.StrictMode>
 );
