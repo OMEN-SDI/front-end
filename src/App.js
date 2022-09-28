@@ -7,6 +7,7 @@ import { UserPage } from "./components/UserPage";
 import { SearchResults } from "./components/SearchResults";
 
 function App() {
+
   return (
     <Router>
       <MissionNavBar />

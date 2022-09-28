@@ -63,7 +63,7 @@ export const SearchResults = () => {
                                         With supporting text below as a natural lead-in to additional content.
                                     </Card.Text>
                                     <Card.Text>
-                                        Bo has a cool mustache.
+                                        Test text
                                     </Card.Text>
                                 </InputColDiv>                                   
                                 </InputStyleDiv>
