@@ -21,7 +21,7 @@ const IndividualMission = Styled.div`
     border: 1px solid white;
     margin-top: 3vh;
     width: 85%;
-    background-color: #514f5a;
+    background-color: black;
     cursor: pointer;
     border-radius: 20px;
 `;

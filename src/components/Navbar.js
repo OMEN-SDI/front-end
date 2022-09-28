@@ -40,11 +40,39 @@ export const MissionNavBar = () => {
       {[false].map((expand) => (
         <Navbar
           key={expand}
-          style={{ backgroundColor: "#514F5A" }}
+          style={{
+            backgroundColor: "#514F5A",
+            display: "flex",
+            flexDirection: "row",
+          }}
           expand={expand}
           className="mb-3"
         >
           <Container fluid>
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "row",
+              }}
+            >
+              <Form.Control
+                style={{ width: "22vw" }}
+                type="search"
+                placeholder="Search for an existing mission"
+                className="me-2"
+                aria-label="Search"
+              />
+              <Button
+                variant="outline-success"
+                style={{
+                  backgroundColor: "#519bff",
+                  color: "black",
+                  borderColor: "#519bff",
+                }}
+              >
+                Search
+              </Button>
+            </div>
             <Navbar.Brand href="#"></Navbar.Brand>
             <Navbar.Toggle
               style={{ backgroundColor: "#519BFF" }}
@@ -67,15 +95,7 @@ export const MissionNavBar = () => {
                   <Nav.Link href="#action2">About</Nav.Link>
                   <Nav.Link href="#action2">Log Out</Nav.Link>
                 </Nav>
-                <Form className="d-flex">
-                  <Form.Control
-                    type="search"
-                    placeholder="Search"
-                    className="me-2"
-                    aria-label="Search"
-                  />
-                  <Button variant="outline-success">Search</Button>
-                </Form>
+                <Form className="d-flex"></Form>
               </Offcanvas.Body>
             </Navbar.Offcanvas>
           </Container>

@@ -8,8 +8,8 @@ import Styled from "styled-components";
 
 const BackgroundImage = Styled.div`
   background: url(${map});
-  background-repeat: no-repeat;
-  background-size: stretch;
+  background-repeat: repeat;
+  background-size: cover;
 `;
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
