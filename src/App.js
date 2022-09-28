@@ -10,10 +10,117 @@ import { MissionDetails } from "./components/MissionDetails";
 
 function App() {
   const [individualMissionDetails, setIndividualMissionDetails] = useState({});
-
+  const [missionsArray, setMissionsArray] = useState([
+    { id: 1, title: "mission-one", msn_lat: "40", msn_lon: "100" },
+    { id: 2, title: "mission-two", msn_lat: "60", msn_lon: "99" },
+    {
+      id: 3,
+      title: "mission-three",
+      msn_lat: "29.473676814427698",
+      msn_lon: "-98.35372924804688",
+    },
+    {
+      id: 4,
+      title: "mission-three",
+      msn_lat: "29.473676814427698",
+      msn_lon: "-98.35372924804688",
+    },
+    {
+      id: 5,
+      title: "mission-three",
+      msn_lat: "29.473676814427698",
+      msn_lon: "-98.35372924804688",
+    },
+    {
+      id: 6,
+      title: "mission-three",
+      msn_lat: "29.473676814427698",
+      msn_lon: "-98.35372924804688",
+    },
+    { id: 1, title: "mission-one", msn_lat: "40", msn_lon: "100" },
+    { id: 2, title: "mission-two", msn_lat: "60", msn_lon: "99" },
+    {
+      id: 3,
+      title: "mission-three",
+      msn_lat: "29.473676814427698",
+      msn_lon: "-98.35372924804688",
+    },
+    {
+      id: 4,
+      title: "mission-three",
+      msn_lat: "29.473676814427698",
+      msn_lon: "-98.35372924804688",
+    },
+    {
+      id: 5,
+      title: "mission-three",
+      msn_lat: "29.473676814427698",
+      msn_lon: "-98.35372924804688",
+    },
+    {
+      id: 6,
+      title: "mission-three",
+      msn_lat: "29.473676814427698",
+      msn_lon: "-98.35372924804688",
+    },
+    { id: 1, title: "mission-one", msn_lat: "40", msn_lon: "100" },
+    { id: 2, title: "mission-two", msn_lat: "60", msn_lon: "99" },
+    {
+      id: 3,
+      title: "mission-three",
+      msn_lat: "29.473676814427698",
+      msn_lon: "-98.35372924804688",
+    },
+    {
+      id: 4,
+      title: "mission-three",
+      msn_lat: "29.473676814427698",
+      msn_lon: "-98.35372924804688",
+    },
+    {
+      id: 5,
+      title: "mission-three",
+      msn_lat: "29.473676814427698",
+      msn_lon: "-98.35372924804688",
+    },
+    {
+      id: 6,
+      title: "mission-three",
+      msn_lat: "29.473676814427698",
+      msn_lon: "-98.35372924804688",
+    },
+    { id: 1, title: "mission-one", msn_lat: "40", msn_lon: "100" },
+    { id: 2, title: "mission-two", msn_lat: "60", msn_lon: "99" },
+    {
+      id: 3,
+      title: "mission-three",
+      msn_lat: "29.473676814427698",
+      msn_lon: "-98.35372924804688",
+    },
+    {
+      id: 4,
+      title: "mission-three",
+      msn_lat: "29.473676814427698",
+      msn_lon: "-98.35372924804688",
+    },
+    {
+      id: 5,
+      title: "mission-three",
+      msn_lat: "29.473676814427698",
+      msn_lon: "-98.35372924804688",
+    },
+    {
+      id: 6,
+      title: "mission-three",
+      msn_lat: "29.473676814427698",
+      msn_lon: "-98.35372924804688",
+    },
+  ]);
   const passedContext = {
     individualMissionDetails,
     setIndividualMissionDetails,
+    missionsArray,
+    setMissionsArray,
   };
 
   return (

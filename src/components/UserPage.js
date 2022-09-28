@@ -2,6 +2,7 @@ import React, { useEffect, useState, useContext, Render } from "react";
 import Styled from "styled-components";
 import { MissionModal } from "./AddMissionModal";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { AppContext } from "./AppContext";
 
 const MyMissions = Styled.div`
     height: 75vh;
@@ -15,15 +16,17 @@ const MyMissions = Styled.div`
     flex-direction: column;
     align-items: center;
     opacity: 80%;
+    overflow: auto;
+    row-gap: 10px;
 `;
 
 const IndividualMission = Styled.div`
     border: 1px solid white;
-    margin-top: 3vh;
     width: 85%;
     background-color: black;
     cursor: pointer;
     border-radius: 20px;
+    line-height: 4vh;
 `;
 
 const ContainerDiv = Styled.div`
@@ -34,7 +37,7 @@ const ContainerDiv = Styled.div`
 `;
 
 const CreateMissionDiv = Styled.div`
-    width: 100vh;
+    width: 50%;
     height: 15vh;
     border: 4px solid;
     border-radius: 20px;
@@ -50,6 +53,7 @@ const CreateMissionDiv = Styled.div`
 `;
 
 export const UserPage = () => {
+  const { missionsArray } = useContext(AppContext);
   // useEffect(() => {
   //   const script = document.createElement("script");
 
@@ -80,9 +84,9 @@ export const UserPage = () => {
     <ContainerDiv>
       <MyMissions>
         My Missions
-        <IndividualMission>Operation Thor</IndividualMission>
-        <IndividualMission>Operation Allies Refuge</IndividualMission>
-        <IndividualMission>Operation Freedom's Sentinel</IndividualMission>
+        {missionsArray.map((mission) => {
+          return <IndividualMission>{mission.title}</IndividualMission>;
+        })}
       </MyMissions>
       <ModalPop />
     </ContainerDiv>
