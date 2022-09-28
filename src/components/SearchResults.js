@@ -1,8 +1,9 @@
 import React, { useEffect, useState, useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import Styled from "styled-components";
-
-import Button from 'react-bootstrap/Button';
-import Card from 'react-bootstrap/Card';
+import { AppContext } from "./AppContext";
+import Button from "react-bootstrap/Button";
+import Card from "react-bootstrap/Card";
 import Container from "react-bootstrap/Container";
 import "bootstrap/dist/css/bootstrap.min.css";
 
@@ -32,53 +33,84 @@ margin-left: -10%;
 `;
 
 export const SearchResults = () => {
-    const dummyMissions =
-        [
-            { title: "mission-one", msn_lat: "40", msn_lon: "100" },
-            { title: "mission-two", msn_lat: "60", msn_lon: "99" },
-            { title: "mission-three", msn_lat: "29.473676814427698", msn_lon: "-98.35372924804688" },
-            { title: "mission-three", msn_lat: "29.473676814427698", msn_lon: "-98.35372924804688" },
-            { title: "mission-three", msn_lat: "29.473676814427698", msn_lon: "-98.35372924804688" },
-            { title: "mission-three", msn_lat: "29.473676814427698", msn_lon: "-98.35372924804688" }
-        ]
+  const navigate = useNavigate();
 
-    return (
-        <ContainerDiv>
-            {dummyMissions.map((mission => {
-                return (                
-                    <Card className="bg-secondary text-white" style={{ width: "auto", height: "auto" }}>
-                        <Card.Header className="bg-dark text-white">{mission.title}</Card.Header>
-                        <Card.Body className="show-grid">
-                            <Container>
-                                <InputStyleDiv>
-                                    {/* <div> */}
-                                    {/* 280&w=325 */}
-                                    <iframe frameBorder="0" src={`https://www.bing.com/maps/embed?h=150&w=200&cp=${mission.msn_lat}~${mission.msn_lon}&lvl=11&typ=s&sty=h&src=SHELL&FORM=MBEDV8`} scrolling="no">
-                                    </iframe>
-                                    {/* <div style="white-space: nowrap; text-align: center; width: 325px; padding: 6px 0;"></div> */}
-                                    {/* </div> */}
-                                <InputColDiv>
-                                <Card.Title>Special title treatment</Card.Title>
-                                    <Card.Text>
-                                        With supporting text below as a natural lead-in to additional content.
-                                    </Card.Text>
-                                    <Card.Text>
-                                        Bo has a cool mustache.
-                                    </Card.Text>
-                                </InputColDiv>                                   
-                                </InputStyleDiv>
-                            </Container>
-                        </Card.Body>
-                    </Card>
-                )
-            }))}
-        </ContainerDiv>
-    );
+  const dummyMissions = [
+    { id: 1, title: "mission-one", msn_lat: "40", msn_lon: "100" },
+    { id: 2, title: "mission-two", msn_lat: "60", msn_lon: "99" },
+    {
+      id: 3,
+      title: "mission-three",
+      msn_lat: "29.473676814427698",
+      msn_lon: "-98.35372924804688",
+    },
+    {
+      id: 4,
+      title: "mission-three",
+      msn_lat: "29.473676814427698",
+      msn_lon: "-98.35372924804688",
+    },
+    {
+      id: 5,
+      title: "mission-three",
+      msn_lat: "29.473676814427698",
+      msn_lon: "-98.35372924804688",
+    },
+    {
+      id: 6,
+      title: "mission-three",
+      msn_lat: "29.473676814427698",
+      msn_lon: "-98.35372924804688",
+    },
+  ];
+
+  const { individualMissionDetails, setIndividualMissionDetails } =
+    useContext(AppContext);
+
+  return (
+    <ContainerDiv>
+      {dummyMissions.map((mission) => {
+        return (
+          <Card
+            className="bg-secondary text-white"
+            style={{ width: "auto", height: "auto", cursor: "pointer" }}
+            onClick={() => {
+              setIndividualMissionDetails(mission);
+              navigate(`/missiondetails/${mission.id}`);
+            }}
+          >
+            <Card.Header className="bg-dark text-white">
+              {mission.title}
+            </Card.Header>
+            <Card.Body className="show-grid">
+              <Container>
+                <InputStyleDiv>
+                  {/* <div> */}
+                  {/* 280&w=325 */}
+                  <iframe
+                    frameBorder="0"
+                    src={`https://www.bing.com/maps/embed?h=150&w=200&cp=${mission.msn_lat}~${mission.msn_lon}&lvl=11&typ=s&sty=h&src=SHELL&FORM=MBEDV8`}
+                    scrolling="no"
+                  ></iframe>
+                  {/* <div style="white-space: nowrap; text-align: center; width: 325px; padding: 6px 0;"></div> */}
+                  {/* </div> */}
+                  <InputColDiv>
+                    <Card.Title>Special title treatment</Card.Title>
+                    <Card.Text>
+                      With supporting text below as a natural lead-in to
+                      additional content.
+                    </Card.Text>
+                    <Card.Text>Bo has a cool mustache.</Card.Text>
+                  </InputColDiv>
+                </InputStyleDiv>
+              </Container>
+            </Card.Body>
+          </Card>
+        );
+      })}
+    </ContainerDiv>
+  );
 };
-
-
-
-
 
 // export function MissionModal(props) {
 //   return (
@@ -136,4 +168,3 @@ export const SearchResults = () => {
 //     </Modal>
 //   );
 // }
-

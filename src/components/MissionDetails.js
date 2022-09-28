@@ -1,18 +1,11 @@
 import React, { useEffect, useState, useContext } from "react";
 import Styled from "styled-components";
-
-import Button from 'react-bootstrap/Button';
-import Card from 'react-bootstrap/Card';
+import { AppContext } from "./AppContext";
+import Button from "react-bootstrap/Button";
+import Card from "react-bootstrap/Card";
 import Container from "react-bootstrap/Container";
 import "bootstrap/dist/css/bootstrap.min.css";
-
-const ContainerDiv = Styled.div`
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    row-gap: 5vh;
-    align-items: center;
-`;
+import Table from "react-bootstrap/Table";
 
 const CardStyle = Styled.div`
     width: "auto";
@@ -20,65 +13,153 @@ const CardStyle = Styled.div`
     backgroundColor: "#696777"
 `;
 
-const InputStyleDiv = Styled.div`
+const TableStyle = Styled.div`
+width: 50vw;
+`;
+
+const PropertyTd = Styled.td`
+width: 12vw;
+`;
+
+const MissionDetailsDiv = Styled.div`
 display: flex;
+height: 100vh;
 flex-direction: row;
+justify-content: center;
+column-gap: 20px;
 `;
 
-const InputColDiv = Styled.div`
-display: flex;
-flex-direction: column;
-margin-left: -10%;
+const MapDiv = Styled.div`
+diplay: flex;
+justify-content: center;
+align-items: center;
 `;
 
-export const SearchResults = () => {
-    const dummyMissions =
-        [
-            { title: "mission-one", msn_lat: "40", msn_lon: "100" },
-            { title: "mission-two", msn_lat: "60", msn_lon: "99" },
-            { title: "mission-three", msn_lat: "29.473676814427698", msn_lon: "-98.35372924804688" },
-            { title: "mission-three", msn_lat: "29.473676814427698", msn_lon: "-98.35372924804688" },
-            { title: "mission-three", msn_lat: "29.473676814427698", msn_lon: "-98.35372924804688" },
-            { title: "mission-three", msn_lat: "29.473676814427698", msn_lon: "-98.35372924804688" }
-        ]
+export const MissionDetails = () => {
+  const { individualMissionDetails } = useContext(AppContext);
+  //   const dummyMissions = [
+  //     { title: "mission-one", msn_lat: "40", msn_lon: "100" },
+  //     { title: "mission-two", msn_lat: "60", msn_lon: "99" },
+  //     {
+  //       title: "mission-three",
+  //       msn_lat: "29.473676814427698",
+  //       msn_lon: "-98.35372924804688",
+  //     },
+  //     {
+  //       title: "mission-three",
+  //       msn_lat: "29.473676814427698",
+  //       msn_lon: "-98.35372924804688",
+  //     },
+  //     {
+  //       title: "mission-three",
+  //       msn_lat: "29.473676814427698",
+  //       msn_lon: "-98.35372924804688",
+  //     },
+  //     {
+  //       title: "mission-three",
+  //       msn_lat: "29.473676814427698",
+  //       msn_lon: "-98.35372924804688",
+  //     },
+  //   ];
 
-    return (
-        <ContainerDiv>
-            {dummyMissions.map((mission => {
-                return (                
-                    <Card className="bg-secondary text-white" style={{ width: "auto", height: "auto" }}>
-                        <Card.Header className="bg-dark text-white">{mission.title}</Card.Header>
-                        <Card.Body className="show-grid">
-                            <Container>
-                                <InputStyleDiv>
-                                    {/* <div> */}
-                                    {/* 280&w=325 */}
-                                    <iframe frameBorder="0" src={`https://www.bing.com/maps/embed?h=150&w=200&cp=${mission.msn_lat}~${mission.msn_lon}&lvl=11&typ=s&sty=h&src=SHELL&FORM=MBEDV8`} scrolling="no">
-                                    </iframe>
-                                    {/* <div style="white-space: nowrap; text-align: center; width: 325px; padding: 6px 0;"></div> */}
-                                    {/* </div> */}
-                                <InputColDiv>
-                                <Card.Title>Special title treatment</Card.Title>
-                                    <Card.Text>
-                                        With supporting text below as a natural lead-in to additional content.
-                                    </Card.Text>
-                                    <Card.Text>
-                                        Test text
-                                    </Card.Text>
-                                </InputColDiv>                                   
-                                </InputStyleDiv>
-                            </Container>
-                        </Card.Body>
-                    </Card>
-                )
-            }))}
-        </ContainerDiv>
-    );
+  return (
+    <>
+      <h1>{individualMissionDetails.title}</h1>
+      <MissionDetailsDiv>
+        <TableStyle>
+          <Table striped bordered hover variant="dark">
+            <tbody>
+              <tr>
+                <PropertyTd>Mission Title:</PropertyTd>
+                <td>Mark</td>
+              </tr>
+              <tr>
+                <PropertyTd>Mission Date: </PropertyTd>
+                <td>Mark</td>
+              </tr>
+              <tr>
+                <PropertyTd>Mission Type: </PropertyTd>
+                <td>Mark</td>
+              </tr>
+              <tr>
+                <PropertyTd>Fires: </PropertyTd>
+                <td>Mark</td>
+              </tr>
+              <tr>
+                <PropertyTd>Mission Objectives: </PropertyTd>
+                <td>Mark</td>
+              </tr>
+              <tr>
+                <PropertyTd>Assets: </PropertyTd>
+                <td>Mark</td>
+              </tr>
+              <tr>
+                <PropertyTd>Intel: </PropertyTd>
+                <td>
+                  Lorem Ipsum is simply dummy text of the printing and
+                  typesetting industry. Lorem Ipsum has been the industrys
+                  standard dummy text ever since the 1500s, when an unknown
+                  printer took a galley of type and scrambled it to make a type
+                  specimen book. It has survived not only five centuries, but
+                  also the leap into electronic typesetting, remaining
+                  essentially unchanged. It was popularised in the 1960s with
+                  the release of Letraset sheets containing Lorem Ipsum
+                  passages, and more recently with desktop publishing software
+                  like Aldus PageMaker including versions of Lorem Ipsum.
+                </td>
+              </tr>
+              <tr>
+                <PropertyTd>Key Grids: </PropertyTd>
+                <td>Mark</td>
+              </tr>
+              <tr>
+                <PropertyTd>Mission Info: </PropertyTd>
+                <td>Mark</td>
+              </tr>
+              <tr>
+                <PropertyTd>Supporting Players: </PropertyTd>
+                <td>Mark</td>
+              </tr>
+              <tr>
+                <PropertyTd>Situation: </PropertyTd>
+                <td>Mark</td>
+              </tr>
+              <tr>
+                <PropertyTd>Comms: </PropertyTd>
+                <td>Mark</td>
+              </tr>
+              <tr>
+                <PropertyTd>Lat Long: </PropertyTd>
+                <td>
+                  {individualMissionDetails.msn_lat}
+                  {", "}
+                  {individualMissionDetails.msn_lon}
+                </td>
+              </tr>
+              <tr>
+                <PropertyTd>User ID: </PropertyTd>
+                <td>Mark</td>
+              </tr>
+              <tr>
+                <PropertyTd>Location: </PropertyTd>
+                <td>Mark</td>
+              </tr>
+            </tbody>
+          </Table>
+        </TableStyle>
+        <MapDiv>
+          <iframe
+            width="600"
+            height="500"
+            frameborder="0"
+            src={`https://www.bing.com/maps/embed?h=500&w=600&cp=${individualMissionDetails.msn_lat}~${individualMissionDetails.msn_lon}&lvl=11&typ=d&sty=h&src=SHELL&FORM=MBEDV8`}
+            scrolling="no"
+          ></iframe>
+        </MapDiv>
+      </MissionDetailsDiv>
+    </>
+  );
 };
-
-
-
-
 
 // export function MissionModal(props) {
 //   return (
@@ -136,4 +217,3 @@ export const SearchResults = () => {
 //     </Modal>
 //   );
 // }
-
