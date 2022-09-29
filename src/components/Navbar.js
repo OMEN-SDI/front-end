@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useContext } from "react";
+import { AppContext } from "./AppContext";
 import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
 import Form from "react-bootstrap/Form";
@@ -31,6 +32,19 @@ margin-left: auto;
 `;
 
 export const MissionNavBar = () => {
+  const {
+    individualMissionDetails,
+    setIndividualMissionDetails,
+    missionsArray,
+    setMissionsArray,
+    usersArray,
+    setUsersArray,
+    searchResultsArray,
+    setSearchResultsArray,
+    searchBarText,
+    setSearchBarText,
+  } = useContext(AppContext);
+
   return (
     <>
       <NavBarHeader>
@@ -55,23 +69,56 @@ export const MissionNavBar = () => {
                 flexDirection: "row",
               }}
             >
-              <Form.Control
-                style={{ width: "22vw" }}
-                type="search"
-                placeholder="Search for an existing mission"
-                className="me-2"
-                aria-label="Search"
-              />
-              <Button
-                variant="outline-success"
+              <Form
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  setSearchBarText(e.target.value);
+                  console.log(searchBarText);
+                  setSearchResultsArray(
+                    missionsArray.filter((mission) =>
+                      mission.msn_title.toLowerCase().includes(searchBarText)
+                    )
+                  );
+
+                  console.log(
+                    missionsArray.filter((mission) =>
+                      mission.msn_title.toLowerCase().includes(searchBarText)
+                    )
+                  );
+                }}
                 style={{
-                  backgroundColor: "#519bff",
-                  color: "black",
-                  borderColor: "#519bff",
+                  display: "flex",
+                  flexDirection: "row",
                 }}
               >
-                Search
-              </Button>
+                <Form.Control
+                  style={{ width: "22vw" }}
+                  value={searchBarText}
+                  onChange={(e) => {
+                    setSearchBarText(e.target.value);
+                    console.log(e.target.value);
+                  }}
+                  type="search"
+                  placeholder="Search for an existing mission"
+                  className="me-2"
+                  aria-label="Search"
+                  onSubmit={(e) => {
+                    e.preventDefault();
+                    console.log("form submitted");
+                  }}
+                />
+                <Button
+                  variant="outline-success"
+                  type="submit"
+                  style={{
+                    backgroundColor: "#519bff",
+                    color: "black",
+                    borderColor: "#519bff",
+                  }}
+                >
+                  Search
+                </Button>
+              </Form>
             </div>
             <Navbar.Brand href="#"></Navbar.Brand>
             <Navbar.Toggle
