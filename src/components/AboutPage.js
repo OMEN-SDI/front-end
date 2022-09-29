@@ -14,11 +14,13 @@ justify-content: space-around;
 height: 85vh;
 flex-direction: row;
 row-gap: 5vh;
+
 `;
 
 const InputStyleDiv = Styled.div`
 display: flex;
 flex-direction: row;
+
 `;
 
 const InputColDiv = Styled.div`

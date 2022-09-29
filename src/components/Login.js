@@ -11,6 +11,7 @@ height: 100vh;
 display: flex;
 justify-content: center;
 align-items: center;
+
 `;
 
 const LoginContainerDiv = Styled.div`
@@ -23,6 +24,7 @@ const LoginContainerDiv = Styled.div`
     padding: 20px;
     height: 40vh;
     margin-bottom: 10%;
+    
 `;
 
 export const Login = () => {
@@ -35,6 +37,8 @@ export const Login = () => {
             backgroundColor: "#696777",
             textAlign: "center",
             padding: "20px",
+            fontFamily: 'Roboto Condensed', 
+            fontSize: '20pt'
           }}
           onSubmit={(e) => {
             e.preventDefault();
@@ -48,9 +52,9 @@ export const Login = () => {
             className="mb-3"
             controlId="formBasicEmail"
           >
-            <Form.Label>Email address</Form.Label>
+            <Form.Label>Email Address</Form.Label>
             <Form.Control
-              style={{ width: "50%", textAlign: "center", marginLeft: "27%" }}
+              style={{ width: "50%", marginLeft: "27%" }}
               className="align-center"
               type="email"
               onChange={(e) => console.log(e.target.value)}
@@ -61,16 +65,16 @@ export const Login = () => {
           <Form.Group className="mb-3" controlId="formBasicPassword">
             <Form.Label>Password</Form.Label>
             <Form.Control
-              style={{ width: "50%", textAlign: "center", marginLeft: "27%" }}
+              style={{ width: "50%",marginLeft: "27%" }}
               type="password"
               onChange={(e) => console.log(e.target.value)}
               placeholder="Password"
             />
           </Form.Group>
-          <Button variant="primary" type="submit">
+          <Button variant="dark" type="submit">
             Submit
           </Button>{" "}
-          <Button variant="primary" type="submit">
+          <Button variant="dark" type="submit">
             Sign Up
           </Button>
         </Form>
