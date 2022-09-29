@@ -63,6 +63,7 @@ export const SearchResults = () => {
     },
   ];
 
+  
   const { individualMissionDetails, setIndividualMissionDetails } =
     useContext(AppContext);
 
