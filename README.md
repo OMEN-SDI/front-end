@@ -6,4 +6,4 @@ Trello Board: https://trello.com/b/tyHBZr5K/capstone-group-2
 
 Google Docs: https://docs.google.com/document/d/13Q4tbENfxAfCO9qVy6zerPJf-4Yj7Ka9myY-6CkfdLc/edit
 
-![image](https://user-images.githubusercontent.com/75449881/192376638-a08efb91-f867-4ed4-8dc1-2f1947460ba5.png)
+![schema](https://user-images.githubusercontent.com/75449881/193062041-02f696c3-491f-4892-ace3-27f7a1cff9ca.png)
