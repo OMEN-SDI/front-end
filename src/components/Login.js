@@ -5,88 +5,147 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Styled from "styled-components";
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import SignUpModal from "./SignUpModal";
-
+import Alert from "react-bootstrap/Alert";
+import FloatingLabel from "react-bootstrap/FloatingLabel";
+import { AppContext } from "./AppContext";
 const ContainerDiv = Styled.div`
 height: 100vh;
 display: flex;
-justify-content: center;
 align-items: center;
+justify-content: center;
+flex-direction: column;
+row-gap: 15vh;
+padding-bottom: 28vh;
 
 `;
 
 const LoginContainerDiv = Styled.div`
     display: flex;
+    flex-direction: column;
+    row-gap: 4vh;
+    border: 1px solid white;
+    padding: 5%;
+    border-radius: 1%;
+    background-color: rgb(0, 0, 0, 0.6);
+`;
+
+const LoginBoxes = Styled.div`
+width: 100%;
+`;
+
+const LoginButtonsDiv = Styled.div`
+    display: flex;
+    flex-direction: column;
+    row-gap: 1vh;
     justify-content: center;
+    width: auto;
     align-items: center;
-    width: 70vh;
-    background-color: rgb(105, 103, 119);
-    text-align: center;
-    padding: 20px;
-    height: 40vh;
-    margin-bottom: 10%;
-    
 `;
 
 export const Login = () => {
+  const navigate = useNavigate();
+  const { usersArray } = useContext(AppContext);
   const [lgShow, setLgShow] = useState(false);
+  const [showAlert, setShowAlert] = useState(false);
+  const { userCredentials, setUserCredentials } = useContext(AppContext);
+  const [alertSpecifications, setAlertSpecifications] = useState({
+    type: "",
+    alertMessage: "",
+  });
+
+  const credentialsCheck = () => {
+    usersArray.filter((user) => {
+      if (
+        user.username === userCredentials.username &&
+        user.password === userCredentials.password
+      ) {
+        setUserCredentials({
+          ...userCredentials,
+          isLoggedIn: true,
+        });
+        navigate("/userpage");
+      } else {
+        setAlertSpecifications({
+          type: "danger",
+          alertMessage: "Username and/or password invalid.",
+        });
+        setShowAlert(true);
+      }
+    });
+  };
 
   let email = "";
   return (
     <ContainerDiv>
-      <SignUpModal show={lgShow} onHide={() => setLgShow(false)} />
+      <SignUpModal
+        show={lgShow}
+        onHide={() => setLgShow(false)}
+        setLgShow={setLgShow}
+        setShowAlert={setShowAlert}
+        setAlertSpecifications={setAlertSpecifications}
+      />
       <LoginContainerDiv>
-        <Form
-          style={{
-            backgroundColor: "#696777",
-            textAlign: "center",
-            padding: "20px",
-            fontFamily: "Roboto Condensed",
-            fontSize: "20pt",
-          }}
-          onSubmit={(e) => {
-            e.preventDefault();
-            // Fetch user login info
-            // **Truthy"" || **Falsy** userLogin ? 'success' : 'get out of here'
-            // ?? Maybe cookie session or back-end
-          }}
+        <Alert
+          key={alertSpecifications.type}
+          variant={alertSpecifications.type}
+          show={showAlert}
+          onHide={() => setShowAlert(false)}
         >
-          <Form.Group
-            style={{ width: "60vh" }}
+          {alertSpecifications.alertMessage}
+        </Alert>
+        <LoginBoxes>
+          <FloatingLabel
+            controlId="floatingInput"
+            label="Username"
             className="mb-3"
-            controlId="formBasicEmail"
           >
-            <Form.Label>Email Address</Form.Label>
             <Form.Control
-              style={{ width: "50%", marginLeft: "27%" }}
-              className="align-center"
               type="email"
-              onChange={(e) => console.log(e.target.value)}
-              // Current default validation
-              placeholder="Enter email"
+              placeholder="name@example.com"
+              value={userCredentials.username}
+              onChange={(e) =>
+                setUserCredentials({
+                  ...userCredentials,
+                  username: e.target.value,
+                })
+              }
             />
-          </Form.Group>
-          <Form.Group className="mb-3" controlId="formBasicPassword">
-            <Form.Label>Password</Form.Label>
+          </FloatingLabel>
+          <FloatingLabel controlId="floatingPassword" label="Password">
             <Form.Control
-              style={{ width: "50%", marginLeft: "27%" }}
               type="password"
-              onChange={(e) => console.log(e.target.value)}
               placeholder="Password"
+              value={userCredentials.password}
+              onChange={(e) =>
+                setUserCredentials({
+                  ...userCredentials,
+                  password: e.target.value,
+                })
+              }
             />
-          </Form.Group>
-          <Button variant="dark" type="submit">
-            Submit
+          </FloatingLabel>
+        </LoginBoxes>
+        <LoginButtonsDiv>
+          <Button
+            variant="dark"
+            type="submit"
+            style={{ width: "20vw" }}
+            onClick={() => credentialsCheck()}
+          >
+            Log In
           </Button>{" "}
           <Button
             variant="primary"
             type="submit"
+            style={{ width: "20vw" }}
             onClick={() => setLgShow(true)}
           >
             Sign Up
           </Button>
-        </Form>
+        </LoginButtonsDiv>
       </LoginContainerDiv>
     </ContainerDiv>
   );

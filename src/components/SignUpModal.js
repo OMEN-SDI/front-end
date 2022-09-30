@@ -1,9 +1,37 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
 
 function SignUpModal(props) {
+  const [showPassword, setShowPassword] = useState("password");
+  const [showMessage, setShowMessage] = useState("");
+  const [validated, setValidated] = useState(false);
+
+  const handleSubmit = (event) => {
+    const form = event.currentTarget;
+    if (form.checkValidity() === false) {
+      event.preventDefault();
+      event.stopPropagation();
+    }
+
+    setValidated(true);
+  };
+
+  useEffect(() => {
+    if (showMessage === "User Created!") {
+      props.setLgShow(false);
+      props.setAlertSpecifications({
+        type: "success",
+        alertMessage: "User successfully created!",
+      });
+      props.setShowAlert(true);
+    } else {
+      props.setShowAlert(false);
+    }
+    // setShowMessage("");
+  }, [showMessage]);
+
   const [user, SetUser] = useState({
     first_name: "",
     last_name: "",
@@ -11,13 +39,11 @@ function SignUpModal(props) {
     username: "",
     password: "",
   });
-  const [showPassword, setShowPassword] = useState("password");
-  const [showMessage, setShowMessage] = useState("");
 
   const postNewUser = () => {
     const URL = "http://localhost:8080/users";
     fetch(URL, {
-      method: "POST", // or 'PUT'
+      method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
@@ -46,19 +72,27 @@ function SignUpModal(props) {
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <Form>
+          <Form
+            noValidate
+            validated={validated}
+            onChange={(e) => handleSubmit(e)}
+          >
             <Form.Group className="mb-3">
               <Form.Label>First Name</Form.Label>
               <Form.Control
+                required
                 type="text"
                 placeholder="Enter name"
                 value={user.first_name}
-                onChange={(e) => SetUser({ first_name: e.target.value })}
+                onChange={(e) =>
+                  SetUser({ ...user, first_name: e.target.value })
+                }
               />
             </Form.Group>
             <Form.Group className="mb-3">
               <Form.Label>Last Name</Form.Label>
               <Form.Control
+                required
                 type="text"
                 placeholder="Enter name"
                 value={user.last_name}
@@ -70,6 +104,7 @@ function SignUpModal(props) {
             <Form.Group className="mb-3" controlId="formBasicEmail">
               <Form.Label>Email address</Form.Label>
               <Form.Control
+                required
                 type="email"
                 placeholder="Enter email"
                 value={user.email}
@@ -82,6 +117,7 @@ function SignUpModal(props) {
             <Form.Group className="mb-3">
               <Form.Label>Username</Form.Label>
               <Form.Control
+                required
                 type="text"
                 placeholder="Enter username"
                 value={user.username}
@@ -91,6 +127,7 @@ function SignUpModal(props) {
             <Form.Group className="mb-3" controlId="formBasicPassword">
               <Form.Label>Password</Form.Label>
               <Form.Control
+                required
                 type={showPassword}
                 placeholder="Password"
                 value={user.password}
@@ -115,10 +152,9 @@ function SignUpModal(props) {
               variant="primary"
               // type="submit"
               onClick={() => {
-                postNewUser();
-                showMessage === "User Created!"
-                  ? (props.show = true)
-                  : props.onHide(false);
+                if (validated === true) {
+                  postNewUser();
+                }
               }}
             >
               Submit

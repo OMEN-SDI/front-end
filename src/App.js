@@ -1,6 +1,12 @@
 import "./App.css";
 import React, { useState, useEffect, useInsertionEffect } from "react";
-import { BrowserRouter as Router, Route, Routes, Link, useNavigate } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+  Link,
+  useNavigate,
+} from "react-router-dom";
 import { Login } from "./components/Login";
 import { MissionNavBar } from "./components/Navbar";
 import { UserPage } from "./components/UserPage";
@@ -17,6 +23,11 @@ function App() {
   const [searchResultsArray, setSearchResultsArray] = useState([]);
   const [usersArray, setUsersArray] = useState([]);
   const [searchBarText, setSearchBarText] = useState("");
+  const [userCredentials, setUserCredentials] = useState({
+    username: "",
+    password: "",
+    isLoggedIn: false,
+  });
 
   const getMissionData = async () => {
     const res = await fetch("http://localhost:8080/missions");
@@ -35,7 +46,6 @@ function App() {
     getUserData();
   }, []);
 
-
   const passedContext = {
     individualMissionDetails,
     setIndividualMissionDetails,
@@ -47,6 +57,8 @@ function App() {
     setSearchResultsArray,
     searchBarText,
     setSearchBarText,
+    userCredentials,
+    setUserCredentials,
   };
 
   return (
