@@ -12,9 +12,6 @@ const ContainerDiv = Styled.div`
     flex-direction: column;
     row-gap: 5vh;
     align-items: center;
-<<<<<<< HEAD
-    min-height: 100vh;
-=======
     min-height: 100vh
 `;
 
@@ -22,7 +19,6 @@ const CardStyle = Styled.div`
     width: "auto";
     height: "auto";
     //background-color: "#696777";
->>>>>>> b152c0ebf781e8aa4ff07bb18e408cd431e6f894
 `;
 
 const InputStyleDiv = Styled.div`

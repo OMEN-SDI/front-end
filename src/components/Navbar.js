@@ -32,6 +32,11 @@ display: block;
 margin-left: auto;
 `;
 
+const Sticky = Styled.div`
+ position: sticky; top:0px;
+
+`
+
 export const MissionNavBar = () => {
   const navigate = useNavigate();
   const {
@@ -53,7 +58,7 @@ export const MissionNavBar = () => {
   // },[searchResultsArray])
 
   return (
-    <>
+    <Sticky>
       <NavBarHeader>
         <BannerImage src="./images/banner-logo.png" alt="Whoops" />
         {/* <LogoImage src="./images/dragon.png" alt="Whoops" /> */}
