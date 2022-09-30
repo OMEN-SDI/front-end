@@ -12,13 +12,7 @@ const ContainerDiv = Styled.div`
     flex-direction: column;
     row-gap: 5vh;
     align-items: center;
-    min-height: 100vh
-`;
-
-const CardStyle = Styled.div`
-    width: "auto";
-    height: "auto";
-    background-color: "#696777";
+    min-height: 100vh;
 `;
 
 const InputStyleDiv = Styled.div`
@@ -35,46 +29,7 @@ margin-left: -10%;
 export const SearchResults = () => {
   const navigate = useNavigate();
 
-  const dummyMissions = [
-    { id: 1, title: "mission-one", msn_lat: "40", msn_lon: "100" },
-    { id: 2, title: "mission-two", msn_lat: "60", msn_lon: "99" },
-    {
-      id: 3,
-      title: "mission-three",
-      msn_lat: "29.473676814427698",
-      msn_lon: "-98.35372924804688",
-    },
-    {
-      id: 4,
-      title: "mission-three",
-      msn_lat: "29.473676814427698",
-      msn_lon: "-98.35372924804688",
-    },
-    {
-      id: 5,
-      title: "mission-three",
-      msn_lat: "29.473676814427698",
-      msn_lon: "-98.35372924804688",
-    },
-    {
-      id: 6,
-      title: "mission-three",
-      msn_lat: "29.473676814427698",
-      msn_lon: "-98.35372924804688",
-    },
-  ];
-
-  
-  const {     individualMissionDetails,
-    setIndividualMissionDetails,
-    missionsArray,
-    setMissionsArray,
-    usersArray,
-    setUsersArray,
-    searchResultsArray,
-    setSearchResultsArray,
-    searchBarText,
-    setSearchBarText, } =
+  const { setIndividualMissionDetails, searchResultsArray } =
     useContext(AppContext);
 
   return (
