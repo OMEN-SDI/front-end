@@ -35,7 +35,7 @@ margin-left: auto;
 const Sticky = Styled.div`
  position: sticky; top:0px;
 
-`
+`;
 
 export const MissionNavBar = () => {
   const navigate = useNavigate();
@@ -167,6 +167,6 @@ export const MissionNavBar = () => {
           </Navbar>
         ))
       )}
-    </>
+    </Sticky>
   );
 };
