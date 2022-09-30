@@ -12,6 +12,7 @@ const ContainerDiv = Styled.div`
     flex-direction: column;
     row-gap: 5vh;
     align-items: center;
+    min-height: 100vh
 `;
 
 const CardStyle = Styled.div`
@@ -64,12 +65,21 @@ export const SearchResults = () => {
   ];
 
   
-  const { individualMissionDetails, setIndividualMissionDetails } =
+  const {     individualMissionDetails,
+    setIndividualMissionDetails,
+    missionsArray,
+    setMissionsArray,
+    usersArray,
+    setUsersArray,
+    searchResultsArray,
+    setSearchResultsArray,
+    searchBarText,
+    setSearchBarText, } =
     useContext(AppContext);
 
   return (
     <ContainerDiv>
-      {dummyMissions.map((mission) => {
+      {searchResultsArray.map((mission) => {
         return (
           <Card
             className="bg-secondary text-white"
@@ -80,7 +90,7 @@ export const SearchResults = () => {
             }}
           >
             <Card.Header className="bg-dark text-white">
-              {mission.title}
+              {mission.msn_title}
             </Card.Header>
             <Card.Body className="show-grid">
               <Container>
@@ -89,18 +99,15 @@ export const SearchResults = () => {
                   {/* 280&w=325 */}
                   <iframe
                     frameBorder="0"
-                    src={`https://www.bing.com/maps/embed?h=150&w=200&cp=${mission.msn_lat}~${mission.msn_lon}&lvl=11&typ=s&sty=h&src=SHELL&FORM=MBEDV8`}
+                    src={`https://www.bing.com/maps/embed?h=150&w=200&cp=${mission.latitude}~${mission.longitude}&lvl=11&typ=s&sty=h&src=SHELL&FORM=MBEDV8`}
                     scrolling="no"
                   ></iframe>
                   {/* <div style="white-space: nowrap; text-align: center; width: 325px; padding: 6px 0;"></div> */}
                   {/* </div> */}
                   <InputColDiv>
-                    <Card.Title>Special title treatment</Card.Title>
-                    <Card.Text>
-                      With supporting text below as a natural lead-in to
-                      additional content.
-                    </Card.Text>
-                    <Card.Text>Bo has a cool mustache.</Card.Text>
+                    <Card.Title>Location: {mission.location}</Card.Title>
+                    <Card.Text>Situation: {mission.situation}</Card.Text>
+                    <Card.Text>Mission Objectives: {mission.msn_obj}</Card.Text>
                   </InputColDiv>
                 </InputStyleDiv>
               </Container>

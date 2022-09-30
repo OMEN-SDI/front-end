@@ -9,6 +9,7 @@ import NavDropdown from "react-bootstrap/NavDropdown";
 import Offcanvas from "react-bootstrap/Offcanvas";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Styled from "styled-components";
+import { useNavigate } from "react-router-dom";
 
 const NavBarHeader = Styled.div`
 display: flex;
@@ -32,6 +33,8 @@ margin-left: auto;
 `;
 
 export const MissionNavBar = () => {
+
+  const navigate = useNavigate();
   const {
     individualMissionDetails,
     setIndividualMissionDetails,
@@ -85,6 +88,7 @@ export const MissionNavBar = () => {
                       mission.msn_title.toLowerCase().includes(searchBarText)
                     )
                   );
+                  navigate('/dummypath');
                 }}
                 style={{
                   display: "flex",
