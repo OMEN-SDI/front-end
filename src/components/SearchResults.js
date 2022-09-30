@@ -18,7 +18,7 @@ const ContainerDiv = Styled.div`
 const CardStyle = Styled.div`
     width: "auto";
     height: "auto";
-    background-color: "#696777";
+    //background-color: "#696777";
 `;
 
 const InputStyleDiv = Styled.div`
@@ -29,41 +29,11 @@ flex-direction: row;
 const InputColDiv = Styled.div`
 display: flex;
 flex-direction: column;
-margin-left: -10%;
+font-size: Large;
 `;
 
 export const SearchResults = () => {
   const navigate = useNavigate();
-
-  const dummyMissions = [
-    { id: 1, title: "mission-one", msn_lat: "40", msn_lon: "100" },
-    { id: 2, title: "mission-two", msn_lat: "60", msn_lon: "99" },
-    {
-      id: 3,
-      title: "mission-three",
-      msn_lat: "29.473676814427698",
-      msn_lon: "-98.35372924804688",
-    },
-    {
-      id: 4,
-      title: "mission-three",
-      msn_lat: "29.473676814427698",
-      msn_lon: "-98.35372924804688",
-    },
-    {
-      id: 5,
-      title: "mission-three",
-      msn_lat: "29.473676814427698",
-      msn_lon: "-98.35372924804688",
-    },
-    {
-      id: 6,
-      title: "mission-three",
-      msn_lat: "29.473676814427698",
-      msn_lon: "-98.35372924804688",
-    },
-  ];
-
   
   const {     individualMissionDetails,
     setIndividualMissionDetails,
@@ -82,15 +52,15 @@ export const SearchResults = () => {
       {searchResultsArray.map((mission) => {
         return (
           <Card
-            className="bg-secondary text-white"
+            
             style={{ width: "auto", height: "auto", cursor: "pointer" }}
             onClick={() => {
               setIndividualMissionDetails(mission);
-              navigate(`/missiondetails/${mission.id}`);
+              navigate(`/missiondetails/${mission.msn_id}`);
             }}
           >
             <Card.Header className="bg-dark text-white">
-              {mission.msn_title}
+              <h2>{mission.msn_title}</h2>
             </Card.Header>
             <Card.Body className="show-grid">
               <Container>
@@ -98,6 +68,8 @@ export const SearchResults = () => {
                   {/* <div> */}
                   {/* 280&w=325 */}
                   <iframe
+                    width="225"
+                    height="150"
                     frameBorder="0"
                     src={`https://www.bing.com/maps/embed?h=150&w=200&cp=${mission.latitude}~${mission.longitude}&lvl=11&typ=s&sty=h&src=SHELL&FORM=MBEDV8`}
                     scrolling="no"
@@ -105,9 +77,9 @@ export const SearchResults = () => {
                   {/* <div style="white-space: nowrap; text-align: center; width: 325px; padding: 6px 0;"></div> */}
                   {/* </div> */}
                   <InputColDiv>
-                    <Card.Title>Location: {mission.location}</Card.Title>
-                    <Card.Text>Situation: {mission.situation}</Card.Text>
-                    <Card.Text>Mission Objectives: {mission.msn_obj}</Card.Text>
+                    <Card.Text><strong>Location:</strong> {mission.location}</Card.Text>
+                    <Card.Text><strong>Situation:</strong> {mission.situation}</Card.Text>
+                    <Card.Text><strong>Mission Objectives:</strong> {mission.msn_obj}</Card.Text>
                   </InputColDiv>
                 </InputStyleDiv>
               </Container>

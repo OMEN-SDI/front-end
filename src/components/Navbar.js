@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { AppContext } from "./AppContext";
 import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
@@ -48,6 +48,12 @@ export const MissionNavBar = () => {
     setSearchBarText,
   } = useContext(AppContext);
 
+
+
+  // useEffect(() => {
+  //   navigate('/');
+  // },[searchResultsArray])
+
   return (
     <>
       <NavBarHeader>
@@ -88,7 +94,9 @@ export const MissionNavBar = () => {
                       mission.msn_title.toLowerCase().includes(searchBarText)
                     )
                   );
+                  
                   navigate('/dummypath');
+                  setSearchBarText('');
                 }}
                 style={{
                   display: "flex",
