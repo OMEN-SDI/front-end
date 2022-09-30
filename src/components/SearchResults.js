@@ -12,7 +12,7 @@ const ContainerDiv = Styled.div`
     flex-direction: column;
     row-gap: 5vh;
     align-items: center;
-    min-height: 100vh
+    min-height: 100vh;
 `;
 
 const CardStyle = Styled.div`
@@ -50,7 +50,7 @@ export const SearchResults = () => {
             }}
           >
             <Card.Header className="bg-dark text-white">
-              <h2>{mission.msn_title}</h2>
+              <h2 style={{ fontSize: "larger" }}>{mission.msn_title}</h2>
             </Card.Header>
             <Card.Body className="show-grid">
               <Container>

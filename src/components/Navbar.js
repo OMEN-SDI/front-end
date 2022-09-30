@@ -58,7 +58,7 @@ export const MissionNavBar = () => {
   // },[searchResultsArray])
 
   return (
-    <Sticky>
+    <>
       <NavBarHeader>
         <BannerImage src="./images/banner-logo.png" alt="Whoops" />
         {/* <LogoImage src="./images/dragon.png" alt="Whoops" /> */}
@@ -167,6 +167,6 @@ export const MissionNavBar = () => {
           </Navbar>
         ))
       )}
-    </Sticky>
+    </>
   );
 };
