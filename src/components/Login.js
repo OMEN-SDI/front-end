@@ -5,8 +5,8 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Styled from "styled-components";
-import { SignUp } from "./SignUp.js";
 import React, { useState } from "react";
+import SignUpModal from "./SignUpModal";
 
 const ContainerDiv = Styled.div`
 height: 100vh;
@@ -30,26 +30,12 @@ const LoginContainerDiv = Styled.div`
 `;
 
 export const Login = () => {
-  function ModalPop() {
-    const [modalShow, setModalShow] = useState(false);
-    return (
-      <>
-        <Button
-          variant="primary"
-          type="submit"
-          onClick={() => setModalShow(true)}
-        >
-          Sign Up
-        </Button>
-
-        <SignUp show={modalShow} onHide={() => setModalShow(false)} />
-      </>
-    );
-  }
+  const [lgShow, setLgShow] = useState(false);
 
   let email = "";
   return (
     <ContainerDiv>
+      <SignUpModal show={lgShow} onHide={() => setLgShow(false)} />
       <LoginContainerDiv>
         <Form
           style={{
@@ -93,7 +79,13 @@ export const Login = () => {
           <Button variant="dark" type="submit">
             Submit
           </Button>{" "}
-          <ModalPop />
+          <Button
+            variant="primary"
+            type="submit"
+            onClick={() => setLgShow(true)}
+          >
+            Sign Up
+          </Button>
         </Form>
       </LoginContainerDiv>
     </ContainerDiv>
