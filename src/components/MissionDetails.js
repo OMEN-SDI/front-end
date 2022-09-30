@@ -6,6 +6,7 @@ import Card from "react-bootstrap/Card";
 import Container from "react-bootstrap/Container";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Table from "react-bootstrap/Table";
+import Pdf from "react-to-pdf";
 
 const CardStyle = Styled.div`
     width: "auto";
@@ -43,8 +44,7 @@ const MissionDetailsHeader = Styled.h1`
 export const MissionDetails = () => {
   const { individualMissionDetails } = useContext(AppContext);
   return (
-    <>
-    
+    <>    
       <br />
       <MissionDetailsDiv>
         <TableStyle>
@@ -128,3 +128,47 @@ export const MissionDetails = () => {
     </>
   );
 };
+
+
+// import React from "react";
+// import ReactDOM from "react-dom";
+// import Pdf from "react-to-pdf";
+
+// import "./styles.css";
+// const ref = React.createRef();
+
+// function App() {
+//   return (
+//     <div className="App">
+//       <Pdf targetRef={ref} filename="code-example.pdf">
+//         {({ toPdf }) => <button onClick={toPdf}>Generate Pdf</button>}
+//       </Pdf>
+//       <div ref={ref}>
+//         <h1>Hello CodeSandbox</h1>
+//         <h2>Start editing to see some magic happen!</h2>
+//         <table>
+//           <thead> Header of table</thead>
+//           <tbody>
+//             <td>line 1</td>
+//             <td>line 2</td>
+//             <td>line 3</td>
+//           </tbody>
+//           <div>
+//             <iframe
+//               title="title"
+//               width="200"
+//               height="100"
+//               frameborder="0"
+//               src={`https://www.bing.com/maps/embed?h=500&w=600&cp=40~100&lvl=11&typ=d&sty=h&src=SHELL&FORM=MBEDV8`}
+//               scrolling="no"
+//             ></iframe>
+//           </div>
+//         </table>
+//       </div>
+//     </div>
+//   );
+// }
+
+// const rootElement = document.getElementById("root");
+// ReactDOM.render(<App />, rootElement);
+
