@@ -167,6 +167,6 @@ export const MissionNavBar = () => {
           </Navbar>
         ))
       )}
-    </>
+    </Sticky>
   );
 };
