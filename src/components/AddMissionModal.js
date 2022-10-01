@@ -183,7 +183,36 @@ export function MissionModal(props) {
         </Container>
       </Modal.Body>
       <Modal.Footer>
-        <Button>Submit</Button>
+        <Button onClick={() => {
+          console.log('clicked!')
+          fetch('http://localhost:8080/missions', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              "assets": assets,
+              "comms": comms,
+              "fires": fires,
+              "intel": intel,
+              "key_grids": keyGrids,
+              "latitude": 40,
+              "location": location,
+              "longitude": 100,
+              // "msn_date": missionDate,
+              // "msn_id": 4,
+              "msn_obj": missionObjectives,
+              "msn_title": missionTitle,
+              "msn_type": missionType,
+              "situation": situation,
+              "supporting_players": supportingPlayers,
+              // "user_id":userId,
+
+            })
+          })
+            .then(res => res.json())
+            .then(data => console.log(data))
+        }}>Submit</Button>
       </Modal.Footer>
     </Modal>
   );
