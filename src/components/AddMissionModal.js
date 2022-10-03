@@ -199,19 +199,19 @@ export function MissionModal(props) {
               "latitude": 40,
               "location": location,
               "longitude": 100,
-              // "msn_date": missionDate,
-              // "msn_id": 4,
+              // // "msn_date": missionDate,
+              // // "msn_id": 4,
               "msn_obj": missionObjectives,
               "msn_title": missionTitle,
               "msn_type": missionType,
               "situation": situation,
               "supporting_players": supportingPlayers,
-              // "user_id":userId,
+              // // "user_id":userId,
 
             })
           })
             .then(res => res.json())
-            .then(data => console.log(data))
+            .then(data => console.log('data:', data))
         }}>Submit</Button>
       </Modal.Footer>
     </Modal>
