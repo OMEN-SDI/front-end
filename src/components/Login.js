@@ -1,8 +1,5 @@
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-import Container from "react-bootstrap/Container";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Styled from "styled-components";
 import React, { useState, useContext } from "react";
@@ -11,6 +8,7 @@ import SignUpModal from "./SignUpModal";
 import Alert from "react-bootstrap/Alert";
 import FloatingLabel from "react-bootstrap/FloatingLabel";
 import { AppContext } from "./AppContext";
+
 const ContainerDiv = Styled.div`
 height: 100vh;
 display: flex;
@@ -50,40 +48,16 @@ export const Login = () => {
   const { usersArray } = useContext(AppContext);
   const [lgShow, setLgShow] = useState(false);
   const [showAlert, setShowAlert] = useState(false);
-  const { userLoginInfo, setUserLoginInfo, userCredentials, setUserCredentials} = useContext(AppContext);
+  const {
+    userLoginInfo,
+    setUserLoginInfo,
+    userCredentials,
+    setUserCredentials,
+  } = useContext(AppContext);
   const [alertSpecifications, setAlertSpecifications] = useState({
     type: "",
     alertMessage: "",
   });
-
-  // const credentialsCheck = () => {
-  //   usersArray.filter((user) => {
-  //     if (
-  //       user.username === userCredentials.username ||
-  //       user.password === userCredentials.password
-  //     ) {
-  //       setUserCredentials({
-  //         ...user,
-  //         isLoggedIn: true,
-  //       });
-  //       navigate("/userpage");
-  //     } else {
-  //       setAlertSpecifications({
-  //         type: "danger",
-  //         alertMessage: "Username and/or password invalid.",
-  //       });
-  //       setShowAlert(true);
-  //     }
-  //   });
-  // };
-
-  // const [user] = useState({
-  //   // first_name: "",
-  //   // last_name: "",
-  //   // email: "",
-  //   username: "",
-  //   password: "",
-  // });
 
   const postUser = () => {
     const URL = "http://localhost:8080/login";
@@ -96,22 +70,17 @@ export const Login = () => {
     })
       .then((response) => response.json())
       .then((data) => {
-        if(data.success) {
-        //   username: "",
-        //   password: "",
-        //   first_name: "",
-        //   last_name: "",
-        //   email: "",
-        //   id: 0,
-        //   isLoggedIn: false,
-        // });
-         setUserCredentials({...data.user, isLoggedIn: true});
-          navigate("/userpage")
+        if (data.success) {
+          setUserCredentials({ ...data.user, isLoggedIn: true });
+          navigate("/userpage");
         } else {
-          navigate("/")
+          navigate("/");
+          setAlertSpecifications({
+            type: "danger",
+            alertMessage: "Username and/or password invalid.",
+          });
+          setShowAlert(true);
         }
-        console.log('post user data:', data)
-        // setShowMessage(data.message);
       })
       .catch((error) => {
         console.error("Error:", error);
@@ -174,7 +143,7 @@ export const Login = () => {
             type="submit"
             style={{ width: "20vw" }}
             // onClick={() => credentialsCheck()}
-            onClick = {() => postUser()}
+            onClick={() => postUser()}
           >
             Log In
           </Button>{" "}

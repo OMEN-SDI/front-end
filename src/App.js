@@ -23,6 +23,7 @@ function App() {
   const [searchResultsArray, setSearchResultsArray] = useState([]);
   const [usersArray, setUsersArray] = useState([]);
   const [searchBarText, setSearchBarText] = useState("");
+  const [favoriteMissions, setFavoriteMissions] = useState([]);
   const [userCredentials, setUserCredentials] = useState({
     username: "",
     password: "",
@@ -35,9 +36,9 @@ function App() {
   const [missionCreatedAlert, setMissionCreatedAlert] = useState(false);
 
   const [userLoginInfo, setUserLoginInfo] = useState({
-    username: '',
-    password: ''
-  })
+    username: "",
+    password: "",
+  });
 
   const getMissionData = async () => {
     const res = await fetch("http://localhost:8080/missions");
@@ -69,9 +70,10 @@ function App() {
     setSearchBarText,
     userCredentials,
     setUserCredentials,
-
-    // specifically for logging in and checking if user is valid
-    userLoginInfo, setUserLoginInfo,
+    favoriteMissions,
+    setFavoriteMissions,
+    userLoginInfo,
+    setUserLoginInfo,
     missionCreatedAlert,
     setMissionCreatedAlert,
   };

@@ -9,6 +9,7 @@ import Table from "react-bootstrap/Table";
 import jsPDF from "jspdf";
 import autoTable from "jspdf-autotable";
 import html2canvas from "html2canvas";
+import { json } from "react-router-dom";
 // import 'html2pdf.js';
 
 const CardStyle = Styled.div`
@@ -27,7 +28,7 @@ width: 12vw;
 
 const MissionDetailsDiv = Styled.div`
 display: flex;
-height: 100vh;
+min-height: 100vh;
 flex-direction: row;
 justify-content: center;
 column-gap: 20px;
@@ -61,7 +62,8 @@ const simulateNetworkRequest = () => {
 // }
 
 export const MissionDetails = () => {
-  const { individualMissionDetails } = useContext(AppContext);
+  const { individualMissionDetails, userCredentials, favoriteMissions } =
+    useContext(AppContext);
   const [isLoading, setLoading] = useState(false);
 
   useEffect(() => {
@@ -93,6 +95,21 @@ export const MissionDetails = () => {
     pdf.save("print.pdf");
   };
 
+  const handleFavorite = () => {
+    fetch("http://localhost:8080/favoritemissions", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        msn_id: individualMissionDetails.msn_id,
+        user_id: userCredentials.id,
+      }),
+    })
+      .then((res) => res.json())
+      .then((data) => console.log(data));
+  };
+
   return (
     <>
       <br />
@@ -113,8 +130,33 @@ export const MissionDetails = () => {
             <tbody>
               <tr>
                 <PropertyTd>Mission Title:</PropertyTd>
-                <td>
+                <td
+                  style={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    cursor: "pointer",
+                  }}
+                >
                   <h3>{individualMissionDetails.msn_title.toUpperCase()}</h3>
+                  {/* {favoriteMissions.map((favmission) => {
+                    if (favmission.msn_id === individualMissionDetails.msn_id) {
+                      return (
+                        <img
+                          style={{ width: "48px", height: "48px" }}
+                          src="/images/bookmark.png"
+                          onClick={() => handleFavorite()}
+                        ></img>
+                      );
+                    } else {
+                      return (
+                        <img
+                          style={{ width: "48px", height: "48px" }}
+                          src="/images/bookmarkempty.png"
+                          onClick={() => handleFavorite()}
+                        ></img>
+                      );
+                    }
+                  })} */}
                 </td>
               </tr>
               <tr>
@@ -189,7 +231,6 @@ export const MissionDetails = () => {
             scrolling="no"
           ></iframe>
         </MapDiv>
-        {/* <img src={`https://www.bing.com/maps/embed?h=500&w=600&cp=${individualMissionDetails.latitude}~${individualMissionDetails.longitude}&lvl=11&typ=d&sty=h&src=SHELL&FORM=MBEDV8`} alt='this didnt work'/> */}
       </MissionDetailsDiv>
     </>
   );

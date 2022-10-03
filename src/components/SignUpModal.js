@@ -58,8 +58,6 @@ function SignUpModal(props) {
       });
   };
 
-
-
   return (
     <>
       <Modal

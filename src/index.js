@@ -16,12 +16,7 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <BackgroundImage>
-
-    {/* <div class="bg-image" 
-     style={{backgroundImage: `url(${map})`,
-     height: '100vh'}}> */}
       <App />
-{/* </div> */}
     </BackgroundImage>
   </React.StrictMode>
 );
