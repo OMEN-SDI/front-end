@@ -41,7 +41,7 @@ function SignUpModal(props) {
   });
 
   const postNewUser = () => {
-    const URL = "http://localhost:8080/users";
+    const URL = "http://localhost:8080/register";
     fetch(URL, {
       method: "POST",
       headers: {
@@ -57,6 +57,8 @@ function SignUpModal(props) {
         console.error("Error:", error);
       });
   };
+
+
 
   return (
     <>

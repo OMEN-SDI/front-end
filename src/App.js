@@ -33,6 +33,11 @@ function App() {
     isLoggedIn: false,
   });
 
+  const [userLoginInfo, setUserLoginInfo] = useState({
+    username: '',
+    password: ''
+  })
+
   const getMissionData = async () => {
     const res = await fetch("http://localhost:8080/missions");
     const data = await res.json();
@@ -63,6 +68,9 @@ function App() {
     setSearchBarText,
     userCredentials,
     setUserCredentials,
+
+    // specifically for logging in and checking if user is valid
+    userLoginInfo, setUserLoginInfo
   };
 
   return (

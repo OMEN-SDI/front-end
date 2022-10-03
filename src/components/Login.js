@@ -50,31 +50,72 @@ export const Login = () => {
   const { usersArray } = useContext(AppContext);
   const [lgShow, setLgShow] = useState(false);
   const [showAlert, setShowAlert] = useState(false);
-  const { userCredentials, setUserCredentials } = useContext(AppContext);
+  const { userLoginInfo, setUserLoginInfo, userCredentials, setUserCredentials} = useContext(AppContext);
   const [alertSpecifications, setAlertSpecifications] = useState({
     type: "",
     alertMessage: "",
   });
 
-  const credentialsCheck = () => {
-    usersArray.filter((user) => {
-      if (
-        user.username === userCredentials.username &&
-        user.password === userCredentials.password
-      ) {
-        setUserCredentials({
-          ...user,
-          isLoggedIn: true,
-        });
-        navigate("/userpage");
-      } else {
-        setAlertSpecifications({
-          type: "danger",
-          alertMessage: "Username and/or password invalid.",
-        });
-        setShowAlert(true);
-      }
-    });
+  // const credentialsCheck = () => {
+  //   usersArray.filter((user) => {
+  //     if (
+  //       user.username === userCredentials.username ||
+  //       user.password === userCredentials.password
+  //     ) {
+  //       setUserCredentials({
+  //         ...user,
+  //         isLoggedIn: true,
+  //       });
+  //       navigate("/userpage");
+  //     } else {
+  //       setAlertSpecifications({
+  //         type: "danger",
+  //         alertMessage: "Username and/or password invalid.",
+  //       });
+  //       setShowAlert(true);
+  //     }
+  //   });
+  // };
+
+  // const [user] = useState({
+  //   // first_name: "",
+  //   // last_name: "",
+  //   // email: "",
+  //   username: "",
+  //   password: "",
+  // });
+
+  const postUser = () => {
+    const URL = "http://localhost:8080/login";
+    fetch(URL, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(userLoginInfo),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        if(data.success) {
+        //   username: "",
+        //   password: "",
+        //   first_name: "",
+        //   last_name: "",
+        //   email: "",
+        //   id: 0,
+        //   isLoggedIn: false,
+        // });
+         setUserCredentials({...data.user, isLoggedIn: true});
+          navigate("/userpage")
+        } else {
+          navigate("/")
+        }
+        console.log('post user data:', data)
+        // setShowMessage(data.message);
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
   };
 
   return (
@@ -104,10 +145,10 @@ export const Login = () => {
             <Form.Control
               type="email"
               placeholder="name@example.com"
-              value={userCredentials.username}
+              value={userLoginInfo.username}
               onChange={(e) =>
-                setUserCredentials({
-                  ...userCredentials,
+                setUserLoginInfo({
+                  ...userLoginInfo,
                   username: e.target.value,
                 })
               }
@@ -117,10 +158,10 @@ export const Login = () => {
             <Form.Control
               type="password"
               placeholder="Password"
-              value={userCredentials.password}
+              value={userLoginInfo.password}
               onChange={(e) =>
-                setUserCredentials({
-                  ...userCredentials,
+                setUserLoginInfo({
+                  ...userLoginInfo,
                   password: e.target.value,
                 })
               }
@@ -132,7 +173,8 @@ export const Login = () => {
             variant="dark"
             type="submit"
             style={{ width: "20vw" }}
-            onClick={() => credentialsCheck()}
+            // onClick={() => credentialsCheck()}
+            onClick = {() => postUser()}
           >
             Log In
           </Button>{" "}
