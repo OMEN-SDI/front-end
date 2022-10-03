@@ -32,6 +32,7 @@ function App() {
     id: 0,
     isLoggedIn: false,
   });
+  const [missionCreatedAlert, setMissionCreatedAlert] = useState(false);
 
   const getMissionData = async () => {
     const res = await fetch("http://localhost:8080/missions");
@@ -63,6 +64,8 @@ function App() {
     setSearchBarText,
     userCredentials,
     setUserCredentials,
+    missionCreatedAlert,
+    setMissionCreatedAlert,
   };
 
   return (

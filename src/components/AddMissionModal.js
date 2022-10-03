@@ -43,6 +43,7 @@ export function MissionModal(props) {
     setUserCredentials,
     setMissionsArray,
     missionsArray,
+    setMissionCreatedAlert,
   } = useContext(AppContext);
 
   const [missionTitle, setMissionTitle] = useState("");
@@ -195,7 +196,6 @@ export function MissionModal(props) {
       <Modal.Footer>
         <Button
           onClick={() => {
-            console.log("clicked!");
             fetch("http://localhost:8080/missions", {
               method: "POST",
               headers: {
@@ -217,7 +217,9 @@ export function MissionModal(props) {
                 supporting_players: supportingPlayers,
                 user_id: userCredentials.id,
               }),
-            }).then(() => getMissionData());
+            })
+              .then(() => getMissionData())
+              .then(() => setMissionCreatedAlert(true));
           }}
         >
           Submit

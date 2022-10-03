@@ -7,8 +7,8 @@ import Container from "react-bootstrap/Container";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Table from "react-bootstrap/Table";
 import jsPDF from "jspdf";
-import autoTable from 'jspdf-autotable';
-import html2canvas from 'html2canvas';
+import autoTable from "jspdf-autotable";
+import html2canvas from "html2canvas";
 // import 'html2pdf.js';
 
 const CardStyle = Styled.div`
@@ -34,10 +34,9 @@ column-gap: 20px;
 `;
 
 const MapDiv = Styled.div`
-diplay: flex;
+display: contents;
 justify-content: center;
 align-items: center;
-margin-top: 3%;
 `;
 
 const MissionDetailsHeader = Styled.h1`
@@ -47,7 +46,7 @@ const MissionDetailsHeader = Styled.h1`
 
 const simulateNetworkRequest = () => {
   return new Promise((resolve) => setTimeout(resolve, 2000));
-}
+};
 
 // function getFrameContents(item) {
 //   var iFrame = document.getElementById('map-image');
@@ -74,25 +73,24 @@ export const MissionDetails = () => {
   }, [isLoading]);
 
   const doc = new jsPDF();
-  autoTable(doc, { html: '#msn-table' })  
+  autoTable(doc, { html: "#msn-table" });
 
   const handleClick = () => setLoading(doc);
-  
+
   const printRef = React.useRef();
 
   const handleDownloadPdf = async () => {
     const element = printRef.current;
     const canvas = await html2canvas(element);
-    const data = canvas.toDataURL('image/png');
+    const data = canvas.toDataURL("image/png");
 
     const pdf = new jsPDF();
     const imgProperties = pdf.getImageProperties(data);
     const pdfWidth = pdf.internal.pageSize.getWidth();
-    const pdfHeight =
-      (imgProperties.height * pdfWidth) / imgProperties.width;
+    const pdfHeight = (imgProperties.height * pdfWidth) / imgProperties.width;
 
-    pdf.addImage(data, 'PNG', 0, 0, pdfWidth, pdfHeight);
-    pdf.save('print.pdf');
+    pdf.addImage(data, "PNG", 0, 0, pdfWidth, pdfHeight);
+    pdf.save("print.pdf");
   };
 
   return (
@@ -100,30 +98,29 @@ export const MissionDetails = () => {
       <br />
       <MissionDetailsDiv>
         <TableStyle>
-          <Table id='msn-table' striped bordered hover variant="dark">
           <div className="d-grid gap-2">
-          <Button style={{marginBottom: "2%", fontWeight: "bold"}} variant="success" disabled={isLoading} size="lg" onClick={!isLoading ? handleClick : doc.save('table.pdf')}>{isLoading ? 'Loading…' : 'Generate PDF Report'}</Button>  
-
-          <button onClick={()=>{
-          }}>Test button 2</button>
-
-<button onClick={()=>{
-            // let wspFrame = document.getElementById('map-image').contentWindow.postMessage('hello world', "http://localhost:3000/");
-            // console.log(document.getElementById('map-image').contentWindow.postMessage('mesage'))
-            // wspFrame.focus();
-            // wspFrame.print();
-
-           
-          }}>Test button 2</button>
-          
+            <Button
+              style={{ marginBottom: "2%", fontWeight: "bold" }}
+              variant="success"
+              disabled={isLoading}
+              size="lg"
+              onClick={!isLoading ? handleClick : doc.save("table.pdf")}
+            >
+              {isLoading ? "Loading…" : "Generate PDF Report"}
+            </Button>
           </div>
+          <Table id="msn-table" striped bordered hover variant="dark">
             <tbody>
               <tr>
                 <PropertyTd>Mission Title:</PropertyTd>
-                <td><h3>{individualMissionDetails.msn_title.toUpperCase()}</h3></td>
+                <td>
+                  <h3>{individualMissionDetails.msn_title.toUpperCase()}</h3>
+                </td>
               </tr>
               <tr>
-                <PropertyTd><strong>Mission Date:</strong> </PropertyTd>
+                <PropertyTd>
+                  <strong>Mission Date:</strong>{" "}
+                </PropertyTd>
                 <td>{individualMissionDetails.msn_date}</td>
               </tr>
               <tr>
@@ -144,9 +141,7 @@ export const MissionDetails = () => {
               </tr>
               <tr>
                 <PropertyTd>Intel: </PropertyTd>
-                <td>
-                  {individualMissionDetails.intel}
-                </td>
+                <td>{individualMissionDetails.intel}</td>
               </tr>
               <tr>
                 <PropertyTd>Key Grids: </PropertyTd>
@@ -171,7 +166,7 @@ export const MissionDetails = () => {
                   {", "}
                   {individualMissionDetails.longitude}
                 </td>
-              </tr>              
+              </tr>
               <tr>
                 <PropertyTd>User ID: </PropertyTd>
                 <td>{individualMissionDetails.user_id}</td>
@@ -180,12 +175,12 @@ export const MissionDetails = () => {
                 <PropertyTd>Location: </PropertyTd>
                 <td>{individualMissionDetails.location}</td>
               </tr>
-            </tbody>            
+            </tbody>
           </Table>
         </TableStyle>
         <MapDiv>
           <iframe
-            id='map-image'
+            id="map-image"
             ref={printRef}
             width="600"
             height="500"
@@ -196,7 +191,6 @@ export const MissionDetails = () => {
         </MapDiv>
         {/* <img src={`https://www.bing.com/maps/embed?h=500&w=600&cp=${individualMissionDetails.latitude}~${individualMissionDetails.longitude}&lvl=11&typ=d&sty=h&src=SHELL&FORM=MBEDV8`} alt='this didnt work'/> */}
       </MissionDetailsDiv>
-      
     </>
   );
 };
