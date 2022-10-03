@@ -68,11 +68,19 @@ export const UserPage = () => {
     userCredentials,
     setIndividualMissionDetails,
     missionCreatedAlert,
+    setFavoriteMissions,
+    favoriteMissions,
   } = useContext(AppContext);
   const [userMissions, setUserMissions] = useState([]);
-
   const navigate = useNavigate();
-  // console.log("userpage user state: ", userCredentials);
+
+  const getFavoriteMissions = async () => {
+    const res = await fetch(
+      `http://localhost:8080/favoritemissions/${userCredentials.id}`
+    );
+    const data = await res.json();
+    setFavoriteMissions(data);
+  };
 
   useEffect(() => {
     const specificUserMissions = missionsArray.filter((mission) => {
@@ -81,7 +89,7 @@ export const UserPage = () => {
       }
     });
     setUserMissions(specificUserMissions);
-    console.log(userMissions);
+    getFavoriteMissions();
   }, []);
 
   function ModalPop() {
