@@ -63,7 +63,7 @@ export const Login = () => {
         user.password === userCredentials.password
       ) {
         setUserCredentials({
-          ...userCredentials,
+          ...user,
           isLoggedIn: true,
         });
         navigate("/userpage");
@@ -77,7 +77,6 @@ export const Login = () => {
     });
   };
 
-  let email = "";
   return (
     <ContainerDiv>
       <SignUpModal

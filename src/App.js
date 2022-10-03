@@ -26,6 +26,10 @@ function App() {
   const [userCredentials, setUserCredentials] = useState({
     username: "",
     password: "",
+    first_name: "",
+    last_name: "",
+    email: "",
+    id: 0,
     isLoggedIn: false,
   });
 
@@ -42,8 +46,8 @@ function App() {
   };
 
   useEffect(() => {
-    getMissionData();
     getUserData();
+    getMissionData();
   }, []);
 
   const passedContext = {

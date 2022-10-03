@@ -53,7 +53,8 @@ const CreateMissionDiv = Styled.div`
 `;
 
 export const UserPage = () => {
-  const { missionsArray } = useContext(AppContext);
+  const { missionsArray, userCredentials } = useContext(AppContext);
+  console.log("userpage user state: ", userCredentials);
 
   function ModalPop() {
     const [modalShow, setModalShow] = useState(false);
@@ -72,7 +73,7 @@ export const UserPage = () => {
       <MyMissions>
         My Missions
         {missionsArray.map((mission) => {
-          return <IndividualMission>{mission.title}</IndividualMission>;
+          return <IndividualMission>{mission.msn_title}</IndividualMission>;
         })}
       </MyMissions>
       <ModalPop />

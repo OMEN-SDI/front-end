@@ -93,14 +93,14 @@ export const MissionNavBar = () => {
                       missionsArray.filter((mission) =>
                         mission.msn_title.toLowerCase().includes(searchBarText)
                       )
-                    )
+                    );
 
                     console.log(
                       missionsArray.filter((mission) =>
                         mission.msn_title.toLowerCase().includes(searchBarText)
                       )
                     );
-                    console.log('clicked submit!')
+                    console.log("clicked submit!");
 
                     navigate("/dummypath");
                     setSearchBarText("");

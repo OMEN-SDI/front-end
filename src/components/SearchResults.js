@@ -34,7 +34,6 @@ font-size: Large;
 
 export const SearchResults = () => {
   const navigate = useNavigate();
-
   const { setIndividualMissionDetails, searchResultsArray } =
     useContext(AppContext);
 
@@ -55,8 +54,6 @@ export const SearchResults = () => {
             <Card.Body className="show-grid">
               <Container>
                 <InputStyleDiv>
-                  {/* <div> */}
-                  {/* 280&w=325 */}
                   <iframe
                     width="225"
                     height="150"
@@ -64,8 +61,6 @@ export const SearchResults = () => {
                     src={`https://www.bing.com/maps/embed?h=150&w=200&cp=${mission.latitude}~${mission.longitude}&lvl=11&typ=s&sty=h&src=SHELL&FORM=MBEDV8`}
                     scrolling="no"
                   ></iframe>
-                  {/* <div style="white-space: nowrap; text-align: center; width: 325px; padding: 6px 0;"></div> */}
-                  {/* </div> */}
                   <InputColDiv>
                     <Card.Text>
                       <strong>Location:</strong> {mission.location}
