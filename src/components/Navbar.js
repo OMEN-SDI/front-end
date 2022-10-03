@@ -37,6 +37,12 @@ const Sticky = Styled.div`
 
 `;
 
+const SignedInAs = Styled.label`
+color: white;
+font-weight: 100;
+font-style: italic;
+`;
+
 export const MissionNavBar = () => {
   const navigate = useNavigate();
   const {
@@ -126,44 +132,52 @@ export const MissionNavBar = () => {
                       console.log("form submitted");
                     }}
                   />
+
                   <Button
                     variant="outline-success"
                     type="submit"
                     style={{
-                      backgroundColor: "#519bff",
+                      backgroundColor: "rgb(90 74 227)",
                       color: "black",
-                      borderColor: "#519bff",
+                      borderColor: "rgb(90 74 227)",
                     }}
                   >
                     Search
                   </Button>
                 </Form>
               </div>
-              <Navbar.Brand href="#"></Navbar.Brand>
-              <Navbar.Toggle
-                style={{ backgroundColor: "#519BFF" }}
-                aria-controls={`offcanvasNavbar-expand-${expand}`}
-              />
-              <Navbar.Offcanvas
-                id={`offcanvasNavbar-expand-${expand}`}
-                aria-labelledby={`offcanvasNavbarLabel-expand-${expand}`}
-                placement="end"
-              >
-                <Offcanvas.Header closeButton>
-                  <Offcanvas.Title id={`offcanvasNavbarLabel-expand-${expand}`}>
-                    Mission Planner
-                  </Offcanvas.Title>
-                </Offcanvas.Header>
-                <Offcanvas.Body>
-                  <Nav className="justify-content-end flex-grow-1 pe-3">
-                    <Nav.Link href="/userpage">Home</Nav.Link>
-                    <Nav.Link href="/help">Help</Nav.Link>
-                    <Nav.Link href="/about">About</Nav.Link>
-                    <Nav.Link href="#action2">Log Out</Nav.Link>
-                  </Nav>
-                  <Form className="d-flex"></Form>
-                </Offcanvas.Body>
-              </Navbar.Offcanvas>
+              <div>
+                <SignedInAs>
+                  Signed in as: {userCredentials.first_name}
+                </SignedInAs>
+                <Navbar.Brand href="#"></Navbar.Brand>
+                <Navbar.Toggle
+                  style={{ backgroundColor: "rgb(90 74 227)" }}
+                  aria-controls={`offcanvasNavbar-expand-${expand}`}
+                />
+                <Navbar.Offcanvas
+                  id={`offcanvasNavbar-expand-${expand}`}
+                  aria-labelledby={`offcanvasNavbarLabel-expand-${expand}`}
+                  placement="end"
+                >
+                  <Offcanvas.Header closeButton>
+                    <Offcanvas.Title
+                      id={`offcanvasNavbarLabel-expand-${expand}`}
+                    >
+                      Online Mission Planning Environment
+                    </Offcanvas.Title>
+                  </Offcanvas.Header>
+                  <Offcanvas.Body>
+                    <Nav className="justify-content-end flex-grow-1 pe-3">
+                      <Nav.Link href="/userpage">Home</Nav.Link>
+                      <Nav.Link href="/help">Help</Nav.Link>
+                      <Nav.Link href="/about">About</Nav.Link>
+                      <Nav.Link href="/">Log Out</Nav.Link>
+                    </Nav>
+                    <Form className="d-flex"></Form>
+                  </Offcanvas.Body>
+                </Navbar.Offcanvas>
+              </div>
             </Container>
           </Navbar>
         ))

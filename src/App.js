@@ -32,6 +32,7 @@ function App() {
     id: 0,
     isLoggedIn: false,
   });
+  const [missionCreatedAlert, setMissionCreatedAlert] = useState(false);
 
   const [userLoginInfo, setUserLoginInfo] = useState({
     username: '',
@@ -70,7 +71,9 @@ function App() {
     setUserCredentials,
 
     // specifically for logging in and checking if user is valid
-    userLoginInfo, setUserLoginInfo
+    userLoginInfo, setUserLoginInfo,
+    missionCreatedAlert,
+    setMissionCreatedAlert,
   };
 
   return (
