@@ -2,8 +2,6 @@ import React, { useEffect, useState, useContext } from "react";
 import Styled from "styled-components";
 import { AppContext } from "./AppContext";
 import Button from "react-bootstrap/Button";
-import Card from "react-bootstrap/Card";
-import Container from "react-bootstrap/Container";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Table from "react-bootstrap/Table";
 import jsPDF from "jspdf";
@@ -11,12 +9,6 @@ import autoTable from "jspdf-autotable";
 import html2canvas from "html2canvas";
 import { json } from "react-router-dom";
 // import 'html2pdf.js';
-
-const CardStyle = Styled.div`
-    width: "auto";
-    height: "auto";
-    background-color: "#696777";
-`;
 
 const TableStyle = Styled.div`
 width: 50vw;
@@ -40,14 +32,13 @@ justify-content: center;
 align-items: center;
 `;
 
-const MissionDetailsHeader = Styled.h1`
-  text-align: center;
-  color: white;
-`;
+const StyledFavorite = Styled.img`
+width: 48px;
+height: 48px;`;
 
-const simulateNetworkRequest = () => {
-  return new Promise((resolve) => setTimeout(resolve, 2000));
-};
+// const simulateNetworkRequest = () => {
+//   return new Promise((resolve) => setTimeout(resolve, 2000));
+// };
 
 // function getFrameContents(item) {
 //   var iFrame = document.getElementById('map-image');
@@ -62,41 +53,56 @@ const simulateNetworkRequest = () => {
 // }
 
 export const MissionDetails = () => {
-  const { individualMissionDetails, userCredentials, favoriteMissions } =
-    useContext(AppContext);
+  const {
+    individualMissionDetails,
+    userCredentials,
+    favoriteMissions,
+    isFavorite,
+    setIsFavorite,
+    setFavoriteMissions,
+  } = useContext(AppContext);
   const [isLoading, setLoading] = useState(false);
+  const [favoriteMissionId, setFavoriteMissionId] = useState();
 
   useEffect(() => {
-    if (isLoading) {
-      simulateNetworkRequest().then(() => {
-        setLoading(false);
-      });
-    }
-  }, [isLoading]);
+    fetch(`http://localhost:8080/favoritemissions/${userCredentials.id}`)
+      .then((res) => res.json())
+      .then((data) => setFavoriteMissions(data))
+      .then(() => favoriteCheck());
+  }, []);
+
+  const favoriteCheck = () => {
+    favoriteMissions.forEach((mission) => {
+      if (mission.msn_id == individualMissionDetails.msn_id) {
+        setFavoriteMissionId(mission.favorite_id);
+        setIsFavorite(true);
+      }
+    });
+  };
+
+  useEffect(() => {
+    favoriteCheck();
+  }, [favoriteMissions]);
 
   const doc = new jsPDF();
   autoTable(doc, { html: "#msn-table" });
-
   const handleClick = () => setLoading(doc);
-
   const printRef = React.useRef();
 
   const handleDownloadPdf = async () => {
     const element = printRef.current;
     const canvas = await html2canvas(element);
     const data = canvas.toDataURL("image/png");
-
     const pdf = new jsPDF();
     const imgProperties = pdf.getImageProperties(data);
     const pdfWidth = pdf.internal.pageSize.getWidth();
     const pdfHeight = (imgProperties.height * pdfWidth) / imgProperties.width;
-
     pdf.addImage(data, "PNG", 0, 0, pdfWidth, pdfHeight);
     pdf.save("print.pdf");
   };
 
-  const handleFavorite = () => {
-    fetch("http://localhost:8080/favoritemissions", {
+  const handleFavoritePost = async () => {
+    await fetch("http://localhost:8080/favoritemissions", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -107,7 +113,25 @@ export const MissionDetails = () => {
       }),
     })
       .then((res) => res.json())
-      .then((data) => console.log(data));
+      .then((data) => setFavoriteMissions(data))
+      .then(() => setIsFavorite(true));
+  };
+
+  const handleFavoriteDelete = () => {
+    fetch("http://localhost:8080/favoritemissions", {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        msn_id: individualMissionDetails.msn_id,
+        user_id: userCredentials.id,
+        favorite_id: favoriteMissionId,
+      }),
+    })
+      .then((res) => res.json())
+      .then((data) => setFavoriteMissions(data))
+      .then(() => setIsFavorite(false));
   };
 
   return (
@@ -138,25 +162,17 @@ export const MissionDetails = () => {
                   }}
                 >
                   <h3>{individualMissionDetails.msn_title.toUpperCase()}</h3>
-                  {/* {favoriteMissions.map((favmission) => {
-                    if (favmission.msn_id === individualMissionDetails.msn_id) {
-                      return (
-                        <img
-                          style={{ width: "48px", height: "48px" }}
-                          src="/images/bookmark.png"
-                          onClick={() => handleFavorite()}
-                        ></img>
-                      );
-                    } else {
-                      return (
-                        <img
-                          style={{ width: "48px", height: "48px" }}
-                          src="/images/bookmarkempty.png"
-                          onClick={() => handleFavorite()}
-                        ></img>
-                      );
-                    }
-                  })} */}
+                  {isFavorite ? (
+                    <StyledFavorite
+                      src="/images/bookmark.png"
+                      onClick={() => handleFavoriteDelete()}
+                    />
+                  ) : (
+                    <StyledFavorite
+                      src="/images/bookmarkempty.png"
+                      onClick={() => handleFavoritePost()}
+                    />
+                  )}
                 </td>
               </tr>
               <tr>
