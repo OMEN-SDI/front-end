@@ -10,7 +10,6 @@ export const DeleteMissionAlert = ({msn_id}) =>{
   console.log('delete mission alert msn_id:', msn_id);
   const navigate = useNavigate();
 
-
   const getMissionData = async () => {
     const res = await fetch("http://localhost:8080/missions");
     const data = await res.json();
@@ -64,3 +63,4 @@ export const DeleteMissionAlert = ({msn_id}) =>{
     </>
   );
 }
+

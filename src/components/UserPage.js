@@ -69,7 +69,6 @@ export const UserPage = () => {
     setIndividualMissionDetails,
     missionCreatedAlert,
     setFavoriteMissions,
-    favoriteMissions,
   } = useContext(AppContext);
   const [userMissions, setUserMissions] = useState([]);
   const navigate = useNavigate();
@@ -90,7 +89,8 @@ export const UserPage = () => {
     });
     setUserMissions(specificUserMissions);
     getFavoriteMissions();
-  }, []);
+    console.log("useeffect in userpage ran");
+  }, [missionsArray]);
 
   function ModalPop() {
     const [modalShow, setModalShow] = useState(false);
@@ -119,6 +119,7 @@ export const UserPage = () => {
         {userMissions.map((mission) => {
           return (
             <IndividualMission
+              key={mission.msn_id}
               onClick={() => {
                 setIndividualMissionDetails(mission);
                 navigate(`/missiondetails/${mission.msn_id}`);
