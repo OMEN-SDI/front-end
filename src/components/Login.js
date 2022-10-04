@@ -155,7 +155,7 @@ export const Login = () => {
           >
             Sign Up
           </Button>
-        </LoginButtonsDiv>
+          </LoginButtonsDiv>
       </LoginContainerDiv>
     </ContainerDiv>
   );

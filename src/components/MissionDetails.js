@@ -6,10 +6,12 @@ import Card from "react-bootstrap/Card";
 import Container from "react-bootstrap/Container";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Table from "react-bootstrap/Table";
+import { Popover } from "react-bootstrap";
 import jsPDF from "jspdf";
 import autoTable from "jspdf-autotable";
 import html2canvas from "html2canvas";
 import { json } from "react-router-dom";
+import { DeleteMissionAlert } from "./DeleteMissionAlert";
 // import 'html2pdf.js';
 
 const CardStyle = Styled.div`
@@ -50,7 +52,6 @@ const MissionDetailsHeader = Styled.h1`
 const simulateNetworkRequest = () => {
   return new Promise((resolve) => setTimeout(resolve, 2000));
 };
-
 
 
 export const MissionDetails = () => {
@@ -230,28 +231,12 @@ export const MissionDetails = () => {
           ></iframe>
 
           {
-            userCredentials.id === individualMissionDetails.user_id ? <Button
-              style={{ marginBottom: "2%", fontWeight: "bold" }}
-              variant="success"
-              disabled={isLoading}
-              size="lg"
-              onClick={() => {
-                console.log('delete button click')
-                fetch(`http://localhost:8080/missions/${individualMissionDetails.msn_id}`, {
-                  method: 'DELETE',
-                  headers: {
-                    'Content-Type': 'application/json'
-                  }
-                })
-                .then(res => res.json())
-                .then(data => console.log(data))
-                .then(() => getMissionData())
-              }
-
-              }
-            >
-              Delete Mission
-            </Button> : <></>
+            userCredentials.id === individualMissionDetails.user_id ? 
+            
+            <DeleteMissionAlert msn_id={individualMissionDetails.msn_id}/>
+            
+            : <></>
+            
           }
 
         </MapDiv>
@@ -274,3 +259,4 @@ export const MissionDetails = () => {
 //   //alert(iFrameBody.innerHTML);
 //   return iFrameBody.innerHTML
 // }
+
