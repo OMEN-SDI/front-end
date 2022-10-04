@@ -34,7 +34,7 @@ function App() {
     isLoggedIn: false,
   });
   const [missionCreatedAlert, setMissionCreatedAlert] = useState(false);
-
+  const [isFavorite, setIsFavorite] = useState(false);
   const [userLoginInfo, setUserLoginInfo] = useState({
     username: "",
     password: "",
@@ -76,6 +76,8 @@ function App() {
     setUserLoginInfo,
     missionCreatedAlert,
     setMissionCreatedAlert,
+    isFavorite,
+    setIsFavorite,
   };
 
   return (
