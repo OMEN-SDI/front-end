@@ -27,9 +27,11 @@ column-gap: 20px;
 `;
 
 const MapDiv = Styled.div`
-display: contents;
-justify-content: center;
-align-items: center;
+// display: contents;
+display: flex;
+flex-direction: column;
+// justify-content: center;
+// align-items: center;
 `;
 
 const StyledFavorite = Styled.img`
@@ -40,18 +42,6 @@ height: 48px;`;
 //   return new Promise((resolve) => setTimeout(resolve, 2000));
 // };
 
-// function getFrameContents(item) {
-//   var iFrame = document.getElementById('map-image');
-//   var iFrameBody;
-//   if (iFrame.contentDocument) { // FF
-//       iFrameBody = iFrame.contentDocument.getElementsByTagName('body')[0];
-//   } else if (iFrame.contentWindow) { // IE
-//       iFrameBody = iFrame.contentWindow.document.getElementsByTagName('body')[0];
-//   }
-//   //alert(iFrameBody.innerHTML);
-//   return iFrameBody.innerHTML
-// }
-
 export const MissionDetails = () => {
   const {
     individualMissionDetails,
@@ -60,6 +50,7 @@ export const MissionDetails = () => {
     isFavorite,
     setIsFavorite,
     setFavoriteMissions,
+    setMissionsArray,
   } = useContext(AppContext);
   const [isLoading, setLoading] = useState(false);
   const [favoriteMissionId, setFavoriteMissionId] = useState();
@@ -84,9 +75,18 @@ export const MissionDetails = () => {
     favoriteCheck();
   }, [favoriteMissions]);
 
+  const getMissionData = async () => {
+    const res = await fetch("http://localhost:8080/missions");
+    const data = await res.json();
+    console.log(data);
+    setMissionsArray(data);
+  };
+
   const doc = new jsPDF();
   autoTable(doc, { html: "#msn-table" });
-  const handleClick = () => setLoading(doc);
+
+  const handlePDFClick = () => setLoading(doc);
+
   const printRef = React.useRef();
 
   const handleDownloadPdf = async () => {
@@ -145,7 +145,7 @@ export const MissionDetails = () => {
               variant="success"
               disabled={isLoading}
               size="lg"
-              onClick={!isLoading ? handleClick : doc.save("table.pdf")}
+              onClick={!isLoading ? handlePDFClick : doc.save("table.pdf")}
             >
               {isLoading ? "Loading…" : "Generate PDF Report"}
             </Button>
@@ -246,8 +246,51 @@ export const MissionDetails = () => {
             src={`https://www.bing.com/maps/embed?h=500&w=600&cp=${individualMissionDetails.latitude}~${individualMissionDetails.longitude}&lvl=11&typ=d&sty=h&src=SHELL&FORM=MBEDV8`}
             scrolling="no"
           ></iframe>
+
+          {userCredentials.id === individualMissionDetails.user_id ? (
+            <Button
+              style={{ marginBottom: "2%", fontWeight: "bold" }}
+              variant="success"
+              disabled={isLoading}
+              size="lg"
+              onClick={() => {
+                console.log("delete button click");
+                fetch(
+                  `http://localhost:8080/missions/${individualMissionDetails.msn_id}`,
+                  {
+                    method: "DELETE",
+                    headers: {
+                      "Content-Type": "application/json",
+                    },
+                  }
+                )
+                  .then((res) => res.json())
+                  .then((data) => console.log(data))
+                  .then(() => getMissionData());
+              }}
+            >
+              Delete Mission
+            </Button>
+          ) : (
+            <></>
+          )}
         </MapDiv>
       </MissionDetailsDiv>
     </>
   );
 };
+
+// this was a attempt at printing the map to PDF. May proves
+//useful for reference -Ian
+
+// function getFrameContents(item) {
+//   var iFrame = document.getElementById('map-image');
+//   var iFrameBody;
+//   if (iFrame.contentDocument) { // FF
+//       iFrameBody = iFrame.contentDocument.getElementsByTagName('body')[0];
+//   } else if (iFrame.contentWindow) { // IE
+//       iFrameBody = iFrame.contentWindow.document.getElementsByTagName('body')[0];
+//   }
+//   //alert(iFrameBody.innerHTML);
+//   return iFrameBody.innerHTML
+// }

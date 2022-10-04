@@ -44,6 +44,7 @@ font-style: italic;
 `;
 
 export const MissionNavBar = () => {
+
   const navigate = useNavigate();
   const {
     individualMissionDetails,
@@ -100,7 +101,7 @@ export const MissionNavBar = () => {
                         mission.msn_title.toLowerCase().includes(searchBarText)
                       )
                     );
-
+                    console.log('missions Arrays: ', missionsArray);
                     console.log(
                       missionsArray.filter((mission) =>
                         mission.msn_title.toLowerCase().includes(searchBarText)
@@ -122,6 +123,7 @@ export const MissionNavBar = () => {
                     onChange={(e) => {
                       setSearchBarText(e.target.value);
                       console.log(e.target.value);
+                      console.log(searchBarText)
                     }}
                     type="search"
                     placeholder="Search for an existing mission"
