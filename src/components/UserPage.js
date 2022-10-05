@@ -6,6 +6,8 @@ import { AppContext } from "./AppContext";
 import { useNavigate } from "react-router-dom";
 import Alert from "react-bootstrap/Alert";
 import { SearchResults } from "./SearchResults";
+import { Button } from "react-bootstrap";
+import { EditMissionModalPop } from "./EditMissionModalPop";
 
 const MyMissions = Styled.div`
     height: 75vh;
@@ -75,6 +77,7 @@ export const UserPage = () => {
     userCredentials,
     setIndividualMissionDetails,
     missionCreatedAlert,
+    setMissionCreatedAlert,
     favoriteMissions,
     setFavoriteMissions,
     setSearchResultsArray
@@ -90,6 +93,15 @@ export const UserPage = () => {
     setFavoriteMissions(data);
   };
 
+
+  // useEffect(() => {
+  //   const timeout = setTimeout(() => {
+  //     console.log('This will be called after 2 seconds');
+  //   }, 2000);
+  
+  //   return () => clearTimeout(timeout);
+  // }, []);
+
   useEffect(() => {
     const specificUserMissions = missionsArray.filter((mission) => {
       if (mission.user_id === userCredentials.id) {
@@ -103,20 +115,23 @@ export const UserPage = () => {
 
   function ModalPop() {
     const [modalShow, setModalShow] = useState(false);
+    const [show, setShow] = useState(true);
+    
     return (
       <ButtonsDiv>
-        <Alert
-          key="success"
-          variant="success"
-          show={missionCreatedAlert}
+        <Alert 
+          variant="success" 
+          show={missionCreatedAlert} dismissible
+          onClose={() => setMissionCreatedAlert(false)}
           style={{ width: "20vw", textAlign: "center" }}
         >
           Mission Created!
         </Alert>
+      
         <CreateMissionDiv variant="primary" onClick={() => setModalShow(true)}>
           Create New Mission
         </CreateMissionDiv>
-        <MissionModal show={modalShow} onHide={() => setModalShow(false)} />
+        <MissionModal show={modalShow} onHide={() => setModalShow(false)} mode='create'/>
       </ButtonsDiv>
     );
   }
@@ -127,6 +142,7 @@ export const UserPage = () => {
         My Missions
         {userMissions.map((mission) => {
           return (
+            <>
             <IndividualMission
               key={mission.msn_id}
               onClick={() => {
@@ -135,7 +151,10 @@ export const UserPage = () => {
               }}
             >
               {mission.msn_title}
+             
             </IndividualMission>
+            <EditMissionModalPop mission={mission}/>
+            </>
           );
         })}
       </MyMissions>
@@ -155,11 +174,7 @@ export const UserPage = () => {
         }}>
           My Favorites
         </CreateMissionDiv>
-
       </ButtonsDiv>
-
-
-
     </ContainerDiv>
   );
 };

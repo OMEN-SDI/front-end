@@ -80,6 +80,10 @@ export const MissionDetails = () => {
     setMissionsArray(data);
   };
 
+  const simulateNetworkRequest = () => {
+    return new Promise((resolve) => setTimeout(resolve, 500));
+  }
+
   const doc = new jsPDF();
   autoTable(doc, { html: "#msn-table" });
 
@@ -98,6 +102,14 @@ export const MissionDetails = () => {
     pdf.addImage(data, "PNG", 0, 0, pdfWidth, pdfHeight);
     pdf.save("print.pdf");
   };
+
+  useEffect(() => {
+    if (isLoading) {
+      simulateNetworkRequest().then(() => {
+        setLoading(false);
+      });
+    }
+  }, [isLoading]);
 
   const handleFavoritePost = async () => {
     await fetch("http://localhost:8080/favoritemissions", {
@@ -147,6 +159,7 @@ export const MissionDetails = () => {
             >
               {isLoading ? "Loading…" : "Generate PDF Report"}
             </Button>
+          
           </div>
           <Table id="msn-table" striped bordered hover variant="dark">
             <tbody>

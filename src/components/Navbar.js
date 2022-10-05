@@ -11,6 +11,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import { Logout } from "./Logout";
+import { ButtonGroup } from "react-bootstrap";
 
 const NavBarHeader = Styled.div`
 display: flex;
@@ -68,7 +69,7 @@ export const MissionNavBar = () => {
   const Logout = () => {
     localStorage.clear();
     window.location.href = '/';
- }
+  }
 
   return (
     <>
@@ -153,6 +154,22 @@ export const MissionNavBar = () => {
                     Search
                   </Button>
                 </Form>
+                <ButtonGroup aria-label="Basic example">
+                  <Button variant="secondary" onClick={()=>{
+                    console.log(missionsArray.filter(msn => msn.msn_id === 1));
+                    setSearchResultsArray(missionsArray.filter(msn => msn.msn_type === 1));
+                    navigate('/searchresults')
+                  }}>Security Forces</Button>
+                  <Button variant="secondary" onClick={()=>{
+                    console.log(missionsArray.filter(msn => msn.msn_id === 1));
+                    setSearchResultsArray(missionsArray.filter(msn => msn.msn_type === 2));
+                    navigate('/searchresults')}}
+                    >Anti-Submarine Warfare</Button>
+                  <Button variant="secondary" onClick={()=>{
+                    console.log(missionsArray.filter(msn => msn.msn_id === 1));
+                    setSearchResultsArray(missionsArray.filter(msn => msn.msn_type === 3));
+                    navigate('/searchresults')}}>Close Air Support</Button>
+                </ButtonGroup>
               </div>
               <div>
                 <SignedInAs>
@@ -178,9 +195,14 @@ export const MissionNavBar = () => {
                   <Offcanvas.Body>
                     <Nav className="justify-content-end flex-grow-1 pe-3">
                       <Nav.Link href="/userpage">Home</Nav.Link>
+                      {/* <Nav.Link onClick={()=>{
+                    console.log(missionsArray.filter(msn => msn.msn_id === 1));
+                    setSearchResultsArray(missionsArray.filter(msn => msn.msn_type === 1));
+                    navigate('/searchresults')
+                  }}>Security Forces</Nav.Link> */}
                       <Nav.Link href="/help">Help</Nav.Link>
                       <Nav.Link href="/about">About</Nav.Link>
-                      <Nav.Link onClick={() => {Logout()}}>Log Out</Nav.Link>
+                      <Nav.Link onClick={() => { Logout() }}>Log Out</Nav.Link>
                     </Nav>
                     <Form className="d-flex"></Form>
                   </Offcanvas.Body>

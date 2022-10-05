@@ -38,13 +38,17 @@ const LargeInputArea = Styled.textarea.attrs((props) => ({
   cols: "63",
 }))`width: 100%;`;
 
-export function MissionModal(props) {
+
+// show={modalShow} onHide={() => setModalShow(false)}
+export function MissionModal({show, onHide, mode, mission}) {
+  console.log('mission modal msn:', mission);
   const {
     userCredentials,
     setUserCredentials,
     setMissionsArray,
     missionsArray,
     setMissionCreatedAlert,
+    setMissionEditedAlert
   } = useContext(AppContext);
 
   const [missionTitle, setMissionTitle] = useState("");
@@ -63,6 +67,7 @@ export function MissionModal(props) {
   const [longitude, setLongitude] = useState("");
   const [location, setLocation] = useState("");
 
+
   const getMissionData = async () => {
     const res = await fetch("http://localhost:8080/missions");
     const data = await res.json();
@@ -70,7 +75,8 @@ export function MissionModal(props) {
   };
 
   return (
-    <Modal size="xl" {...props} aria-labelledby="contained-modal-title-vcenter">
+    // <Modal size="xl" {...props} aria-labelledby="contained-modal-title-vcenter">
+    <Modal size="xl" show={show} onHide={onHide} aria-labelledby="contained-modal-title-vcenter">
       <Modal.Header closeButton>
         <Modal.Title id="contained-modal-title-vcenter">
           Add Mission
@@ -84,6 +90,7 @@ export function MissionModal(props) {
                 <Col>Mission Title</Col>
                 <SmallInputBox
                   type="text"
+                  // placeholder={mission.msn_title}
                   onChange={(e) => setMissionTitle(e.target.value)}
                 ></SmallInputBox>
               </InputColDiv>
@@ -95,8 +102,8 @@ export function MissionModal(props) {
                   
                   <option>Select Mission Type</option>
                   <option value="1">Security Forces</option>
-                  <option value="2">Submarine</option>
-                  <option value="3">CAS</option>
+                  <option value="2">Anti-Submarine Warfare</option>
+                  <option value="3">Close Air Support</option>
                 </Form.Select>
               
               </InputColDiv>
@@ -227,6 +234,7 @@ export function MissionModal(props) {
             })
               .then(() => getMissionData())
               .then(() => setMissionCreatedAlert(true));
+              // .then(() => setMissionEditedAlert(true));
           }}
         >
           Submit
