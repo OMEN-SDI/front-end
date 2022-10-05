@@ -35,7 +35,6 @@ function App() {
   });
   const [missionCreatedAlert, setMissionCreatedAlert] = useState(false);
   const [missionEditedAlert, setMissionEditedAlert] = useState(false);
-  const [isFavorite, setIsFavorite] = useState(false);
   const [userLoginInfo, setUserLoginInfo] = useState({
     username: "",
     password: "",
@@ -77,8 +76,6 @@ function App() {
     setUserLoginInfo,
     missionCreatedAlert,
     setMissionCreatedAlert,
-    isFavorite,
-    setIsFavorite,
     missionEditedAlert,
     setMissionEditedAlert
   };
@@ -90,10 +87,12 @@ function App() {
         <Routes>
           <Route path="/" element={<Login />}></Route>
           {/* <Route path="/userpage" element={<UserPage />}></Route> */}
-          <Route path="/userpage" element={userCredentials.isLoggedIn ? <UserPage /> : <Login/>}></Route>
+          <Route
+            path="/userpage"
+            element={userCredentials.isLoggedIn ? <UserPage /> : <Login />}
+          ></Route>
           <Route path="/help" element={<HelpPage />}></Route>
           <Route path="/about" element={<AboutPage />}></Route>
-          {/* This is a temp path */}
           <Route path="/searchresults" element={<SearchResults />}></Route>
           <Route path="/favorites" element={<SearchResults />}></Route>
           <Route

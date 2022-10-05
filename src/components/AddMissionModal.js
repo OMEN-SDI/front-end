@@ -9,8 +9,9 @@ import { AppContext } from "./AppContext";
 import { Form } from "react-bootstrap";
 
 const SmallInputBox = Styled.input`
-width: 20vh;
-width: 100%;`;
+height: 4vh;
+width: 100%;
+`;
 
 const InputStyleRow = Styled.div`
 display: flex;
@@ -38,10 +39,13 @@ const LargeInputArea = Styled.textarea.attrs((props) => ({
   cols: "63",
 }))`width: 100%;`;
 
+const SubmitButtonDiv = Styled.div`
+    display: flex;
+    justify-content: end;
+    margin-top: 1vh;
+`;
 
-// show={modalShow} onHide={() => setModalShow(false)}
-export function MissionModal({show, onHide, mode, mission}) {
-  console.log('mission modal msn:', mission);
+export function MissionModal(props) {
   const {
     userCredentials,
     setUserCredentials,
@@ -74,16 +78,51 @@ export function MissionModal({show, onHide, mode, mission}) {
     setMissionsArray(data);
   };
 
+  const handleVisible = () => {
+    setMissionCreatedAlert(true);
+    setTimeout(() => {
+      setMissionCreatedAlert(false);
+    }, 2000);
+  };
+
   return (
-    // <Modal size="xl" {...props} aria-labelledby="contained-modal-title-vcenter">
-    <Modal size="xl" show={show} onHide={onHide} aria-labelledby="contained-modal-title-vcenter">
+    <Modal size="xl" {...props} aria-labelledby="contained-modal-title-vcenter">
+    {/* <Modal size="xl" show={show} onHide={onHide} aria-labelledby="contained-modal-title-vcenter"> */}
       <Modal.Header closeButton>
         <Modal.Title id="contained-modal-title-vcenter">
           Add Mission
         </Modal.Title>
       </Modal.Header>
       <Modal.Body className="show-grid">
-        <Container>
+        <Form
+          onSubmit={(e) => {
+            e.preventDefault();
+            fetch("http://localhost:8080/missions", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({
+                assets: assets,
+                comms: comms,
+                fires: fires,
+                intel: intel,
+                key_grids: keyGrids,
+                latitude: latitude,
+                location: location,
+                longitude: longitude,
+                msn_obj: missionObjectives,
+                msn_title: missionTitle,
+                msn_type: missionType,
+                situation: situation,
+                supporting_players: supportingPlayers,
+                user_id: userCredentials.id,
+              }),
+            })
+              .then(() => getMissionData())
+              .then(() => handleVisible());
+          }}
+        >
           <Row>
             <InputStyleRow>
               <InputColDiv>
@@ -92,20 +131,23 @@ export function MissionModal({show, onHide, mode, mission}) {
                   type="text"
                   // placeholder={mission.msn_title}
                   onChange={(e) => setMissionTitle(e.target.value)}
+                  required
                 ></SmallInputBox>
               </InputColDiv>
               <InputColDiv>
                 <Col>Mission Type</Col>
-                <Form.Select aria-label="Default select example" onChange={(e) => {
-                  setMissionType(e.target.value);
-                }}>
-                  
-                  <option>Select Mission Type</option>
+                <Form.Select
+                  required
+                  aria-label="Default select example"
+                  onChange={(e) => {
+                    setMissionType(e.target.value);
+                  }}
+                >
+                  <option value="">Select Mission Type</option>
                   <option value="1">Security Forces</option>
                   <option value="2">Anti-Submarine Warfare</option>
                   <option value="3">Close Air Support</option>
                 </Form.Select>
-              
               </InputColDiv>
             </InputStyleRow>
           </Row>
@@ -205,41 +247,12 @@ export function MissionModal({show, onHide, mode, mission}) {
               </InputColDiv>
             </InputStyleRow>
           </Row>
-        </Container>
+          <SubmitButtonDiv>
+            <Button type="submit">Submit</Button>
+          </SubmitButtonDiv>
+        </Form>
       </Modal.Body>
-      <Modal.Footer>
-        <Button
-          onClick={() => {
-            fetch("http://localhost:8080/missions", {
-              method: "POST",
-              headers: {
-                "Content-Type": "application/json",
-              },
-              body: JSON.stringify({
-                assets: assets,
-                comms: comms,
-                fires: fires,
-                intel: intel,
-                key_grids: keyGrids,
-                latitude: latitude,
-                location: location,
-                longitude: longitude,
-                msn_obj: missionObjectives,
-                msn_title: missionTitle,
-                msn_type: missionType,
-                situation: situation,
-                supporting_players: supportingPlayers,
-                user_id: userCredentials.id,
-              }),
-            })
-              .then(() => getMissionData())
-              .then(() => setMissionCreatedAlert(true));
-              // .then(() => setMissionEditedAlert(true));
-          }}
-        >
-          Submit
-        </Button>
-      </Modal.Footer>
+      <Modal.Footer></Modal.Footer>
     </Modal>
   );
 }

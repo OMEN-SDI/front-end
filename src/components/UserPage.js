@@ -59,16 +59,10 @@ const CreateMissionDiv = Styled.div`
     cursor: pointer;
 `;
 
-const ButtonPlusAlert = Styled.div`
+const ButtonsDiv = Styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-`;
-
-const ButtonsDiv = Styled.div`
-display: flex;
-flex-direction: column;
-align-items: center;
 `;
 
 export const UserPage = () => {
@@ -80,7 +74,7 @@ export const UserPage = () => {
     setMissionCreatedAlert,
     favoriteMissions,
     setFavoriteMissions,
-    setSearchResultsArray
+    setSearchResultsArray,
   } = useContext(AppContext);
   const [userMissions, setUserMissions] = useState([]);
   const navigate = useNavigate();
@@ -121,7 +115,7 @@ export const UserPage = () => {
       <ButtonsDiv>
         <Alert 
           variant="success" 
-          show={missionCreatedAlert} dismissible
+          show={missionCreatedAlert} 
           onClose={() => setMissionCreatedAlert(false)}
           style={{ width: "20vw", textAlign: "center" }}
         >
@@ -161,17 +155,20 @@ export const UserPage = () => {
 
       <ButtonsDiv>
         <ModalPop />
-        <CreateMissionDiv variant="primary" onClick={() =>{
-          const favMissionIds = favoriteMissions.map(msn => msn.msn_id);
-          
-          const detailsOfFavMissions = missionsArray.filter(msn => favMissionIds.includes(msn.msn_id));
+        <CreateMissionDiv
+          variant="primary"
+          onClick={() => {
+            const favMissionIds = favoriteMissions.map((msn) => msn.msn_id);
 
-          setSearchResultsArray(detailsOfFavMissions);
+            const detailsOfFavMissions = missionsArray.filter((msn) =>
+              favMissionIds.includes(msn.msn_id)
+            );
 
-          navigate('/favorites');
+            setSearchResultsArray(detailsOfFavMissions);
 
-          // console.log(searchResults)
-        }}>
+            navigate("/favorites");
+          }}
+        >
           My Favorites
         </CreateMissionDiv>
       </ButtonsDiv>
