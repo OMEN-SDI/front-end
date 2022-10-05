@@ -21,12 +21,7 @@ export const DeleteMissionAlert = ({msn_id}) =>{
     <>
       <Alert show={show} variant="danger">
         <Alert.Heading>Are you sure?</Alert.Heading>
-        {/* <p>
-          Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget
-          lacinia odio sem nec elit. Cras mattis consectetur purus sit amet
-          fermentum.
-        </p>
-        <hr /> */}
+     
         <div className="d-flex justify-content-end">
           {/* <Button onClick={() => setShow(false)} variant="outline-success">
             Close

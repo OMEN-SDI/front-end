@@ -151,7 +151,6 @@ export const UserPage = () => {
 
           navigate('/favorites');
 
-          // console.log(searchResults)
         }}>
           My Favorites
         </CreateMissionDiv>

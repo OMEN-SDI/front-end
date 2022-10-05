@@ -90,7 +90,6 @@ function App() {
           <Route path="/userpage" element={userCredentials.isLoggedIn ? <UserPage /> : <Login/>}></Route>
           <Route path="/help" element={<HelpPage />}></Route>
           <Route path="/about" element={<AboutPage />}></Route>
-          {/* This is a temp path */}
           <Route path="/searchresults" element={<SearchResults />}></Route>
           <Route path="/favorites" element={<SearchResults />}></Route>
           <Route

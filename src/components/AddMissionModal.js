@@ -95,8 +95,8 @@ export function MissionModal(props) {
                   
                   <option>Select Mission Type</option>
                   <option value="1">Security Forces</option>
-                  <option value="2">Submarine</option>
-                  <option value="3">CAS</option>
+                  <option value="2">Anti-Submarine Warfare</option>
+                  <option value="3">Close Air Support</option>
                 </Form.Select>
               
               </InputColDiv>
