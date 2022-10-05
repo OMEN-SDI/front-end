@@ -5,6 +5,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { AppContext } from "./AppContext";
 import { useNavigate } from "react-router-dom";
 import Alert from "react-bootstrap/Alert";
+import { SearchResults } from "./SearchResults";
 
 const MyMissions = Styled.div`
     height: 75vh;
@@ -69,9 +70,8 @@ export const UserPage = () => {
     setIndividualMissionDetails,
     missionCreatedAlert,
     favoriteMissions,
-    searchResultsArray,
-    setSearchResultsArray,
     setFavoriteMissions,
+    setSearchResultsArray,
   } = useContext(AppContext);
   const [userMissions, setUserMissions] = useState([]);
   const navigate = useNavigate();
@@ -92,7 +92,7 @@ export const UserPage = () => {
     });
     setUserMissions(specificUserMissions);
     getFavoriteMissions();
-    console.log("useeffect in userpage ran");
+    // console.log("useeffect in userpage ran");
   }, [missionsArray]);
 
   function ModalPop() {
@@ -139,9 +139,14 @@ export const UserPage = () => {
         <CreateMissionDiv
           variant="primary"
           onClick={() => {
-            setSearchResultsArray(favoriteMissions);
-            console.log(searchResultsArray);
-            console.log(favoriteMissions);
+            const favMissionIds = favoriteMissions.map((msn) => msn.msn_id);
+
+            const detailsOfFavMissions = missionsArray.filter((msn) =>
+              favMissionIds.includes(msn.msn_id)
+            );
+
+            setSearchResultsArray(detailsOfFavMissions);
+
             navigate("/favorites");
           }}
         >

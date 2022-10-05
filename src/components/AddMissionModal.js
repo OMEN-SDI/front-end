@@ -7,6 +7,7 @@ import Modal from "react-bootstrap/Modal";
 import Row from "react-bootstrap/Row";
 import Styled from "styled-components";
 import { AppContext } from "./AppContext";
+import { Form } from "react-bootstrap";
 
 const SmallInputBox = Styled.input`
 width: 20vh;
@@ -124,10 +125,16 @@ export function MissionModal(props) {
               </InputColDiv>
               <InputColDiv>
                 <Col>Mission Type</Col>
-                <SmallInputBox
-                  type="text"
-                  onChange={(e) => setMissionType(e.target.value)}
-                ></SmallInputBox>
+                <Form.Select aria-label="Default select example" onChange={(e) => {
+                  setMissionType(e.target.value);
+                }}>
+                  
+                  <option>Select Mission Type</option>
+                  <option value="1">Security Forces</option>
+                  <option value="2">Anti-Submarine Warfare</option>
+                  <option value="3">Close Air Support</option>
+                </Form.Select>
+              
               </InputColDiv>
             </InputStyleRow>
           </Row>

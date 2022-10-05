@@ -10,6 +10,7 @@ import Offcanvas from "react-bootstrap/Offcanvas";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Styled from "styled-components";
 import { useNavigate } from "react-router-dom";
+import { Logout } from "./Logout";
 
 const NavBarHeader = Styled.div`
 display: flex;
@@ -64,6 +65,11 @@ export const MissionNavBar = () => {
   //   navigate('/');
   // },[searchResultsArray])
 
+  const Logout = () => {
+    localStorage.clear();
+    window.location.href = '/';
+ }
+
   return (
     <>
       <NavBarHeader>
@@ -109,7 +115,7 @@ export const MissionNavBar = () => {
                     );
                     console.log("clicked submit!");
 
-                    navigate("/dummypath");
+                    navigate("/searchresults");
                     setSearchBarText("");
                   }}
                   style={{
@@ -122,8 +128,8 @@ export const MissionNavBar = () => {
                     value={searchBarText}
                     onChange={(e) => {
                       setSearchBarText(e.target.value);
-                      console.log(e.target.value);
-                      console.log(searchBarText)
+                      // console.log(e.target.value);
+                      // console.log(searchBarText)
                     }}
                     type="search"
                     placeholder="Search for an existing mission"
@@ -150,7 +156,7 @@ export const MissionNavBar = () => {
               </div>
               <div>
                 <SignedInAs>
-                  Signed in as: {userCredentials.first_name}
+                  Signed in as: {userCredentials.username}
                 </SignedInAs>
                 <Navbar.Brand href="#"></Navbar.Brand>
                 <Navbar.Toggle
@@ -174,7 +180,7 @@ export const MissionNavBar = () => {
                       <Nav.Link href="/userpage">Home</Nav.Link>
                       <Nav.Link href="/help">Help</Nav.Link>
                       <Nav.Link href="/about">About</Nav.Link>
-                      <Nav.Link href="/">Log Out</Nav.Link>
+                      <Nav.Link onClick={() => {Logout()}}>Log Out</Nav.Link>
                     </Nav>
                     <Form className="d-flex"></Form>
                   </Offcanvas.Body>
