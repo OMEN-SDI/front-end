@@ -87,6 +87,12 @@ export const UserPage = () => {
     setFavoriteMissions(data);
   };
 
+  // const handleAlert = () => {
+  //   setFavoritesCreatedAlert(true);
+  //  (() => {
+  //     setFavoritesCreatedAlert(false);
+  //   }, 2000);
+  // };
 
   // useEffect(() => {
   //   const timeout = setTimeout(() => {

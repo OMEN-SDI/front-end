@@ -194,7 +194,8 @@ export const MissionNavBar = () => {
                   </Offcanvas.Header>
                   <Offcanvas.Body>
                     <Nav className="justify-content-end flex-grow-1 pe-3">
-                      <Nav.Link href="/userpage">Home</Nav.Link>
+                      {/* <Nav.Link href="/userpage">Home</Nav.Link> */}
+                    <Nav.Link onClick={() => navigate("/userpage")}>Home</Nav.Link>
                       {/* <Nav.Link onClick={()=>{
                     console.log(missionsArray.filter(msn => msn.msn_id === 1));
                     setSearchResultsArray(missionsArray.filter(msn => msn.msn_type === 1));

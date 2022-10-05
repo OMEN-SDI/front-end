@@ -9,6 +9,7 @@ import jsPDF from "jspdf";
 import autoTable from "jspdf-autotable";
 import html2canvas from "html2canvas";
 import { json } from "react-router-dom";
+import Alert from "react-bootstrap/Alert";
 import { DeleteMissionAlert } from "./DeleteMissionAlert";
 // import 'html2pdf.js';
 
@@ -47,6 +48,8 @@ export const MissionDetails = () => {
     favoriteMissions,
     setFavoriteMissions,
     setMissionsArray,
+    favoritesMissionsAlert,
+    setFavoritesMissionsAlert,
   } = useContext(AppContext);
   const [isLoading, setLoading] = useState(false);
   const [isFavorite, setIsFavorite] = useState(false);
@@ -172,6 +175,16 @@ export const MissionDetails = () => {
                   }}
                 >
                   <h3>{individualMissionDetails.msn_title.toUpperCase()}</h3>
+                  <div>
+                  {/* <Alert 
+                       variant="success" 
+                       show={favoritesMissionsAlert} 
+                       onClose={() => setFavoritesMissionsAlert(false)}
+                       style={{ width: "20vw", textAlign: "center" }}
+                       >
+                      Favorites Saved!
+                  </Alert> */}
+                  <p>Select Bookmark to add <br /> as Favorite Mission...</p>
                   {isFavorite ? (
                     <StyledFavorite
                       src="/images/bookmark.png"
@@ -183,6 +196,7 @@ export const MissionDetails = () => {
                       onClick={() => handleFavoritePost()}
                     />
                   )}
+                  </div>
                 </td>
               </tr>
               <tr>

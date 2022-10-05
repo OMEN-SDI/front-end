@@ -31,13 +31,14 @@ function App() {
     last_name: "",
     email: "",
     id: 0,
-    isLoggedIn: false,
+    isLoggedIn: false
   });
   const [missionCreatedAlert, setMissionCreatedAlert] = useState(false);
   const [missionEditedAlert, setMissionEditedAlert] = useState(false);
   const [userLoginInfo, setUserLoginInfo] = useState({
     username: "",
     password: "",
+    
   });
 
   const getMissionData = async () => {
@@ -86,10 +87,7 @@ function App() {
         <MissionNavBar />
         <Routes>
           <Route path="/" element={<Login />}></Route>
-          {/* <Route path="/userpage" element={<UserPage />}></Route> */}
-          <Route
-            path="/userpage"
-            element={userCredentials.isLoggedIn ? <UserPage /> : <Login />}
+          <Route path="/userpage" element={userCredentials.isLoggedIn ? <UserPage /> : <Login />}
           ></Route>
           <Route path="/help" element={<HelpPage />}></Route>
           <Route path="/about" element={<AboutPage />}></Route>
