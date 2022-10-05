@@ -76,6 +76,13 @@ export function MissionModal(props) {
     setMissionsArray(data);
   };
 
+  const handleVisible = () => {
+    setMissionCreatedAlert(true);
+    setTimeout(() => {
+      setMissionCreatedAlert(false);
+    }, 2000);
+  };
+
   return (
     <Modal size="xl" {...props} aria-labelledby="contained-modal-title-vcenter">
       <Modal.Header closeButton>
@@ -110,7 +117,7 @@ export function MissionModal(props) {
               }),
             })
               .then(() => getMissionData())
-              .then(() => setMissionCreatedAlert(true));
+              .then(() => handleVisible());
           }}
         >
           <Row>
