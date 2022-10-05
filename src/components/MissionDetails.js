@@ -45,12 +45,11 @@ export const MissionDetails = () => {
     individualMissionDetails,
     userCredentials,
     favoriteMissions,
-    isFavorite,
-    setIsFavorite,
     setFavoriteMissions,
     setMissionsArray,
   } = useContext(AppContext);
   const [isLoading, setLoading] = useState(false);
+  const [isFavorite, setIsFavorite] = useState(false);
   const [favoriteMissionId, setFavoriteMissionId] = useState();
 
   useEffect(() => {
@@ -245,15 +244,11 @@ export const MissionDetails = () => {
             scrolling="no"
           ></iframe>
 
-          {
-            userCredentials.id === individualMissionDetails.user_id ? 
-            
-            <DeleteMissionAlert msn_id={individualMissionDetails.msn_id}/>
-            
-            : <></>
-            
-          }
-
+          {userCredentials.id === individualMissionDetails.user_id ? (
+            <DeleteMissionAlert msn_id={individualMissionDetails.msn_id} />
+          ) : (
+            <></>
+          )}
         </MapDiv>
       </MissionDetailsDiv>
     </>
@@ -274,4 +269,3 @@ export const MissionDetails = () => {
 //   //alert(iFrameBody.innerHTML);
 //   return iFrameBody.innerHTML
 // }
-

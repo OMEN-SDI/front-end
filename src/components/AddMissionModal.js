@@ -2,6 +2,7 @@ import React, { useState, useContext } from "react";
 import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
+import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
 import Row from "react-bootstrap/Row";
 import Styled from "styled-components";
@@ -36,6 +37,12 @@ const LargeInputArea = Styled.textarea.attrs((props) => ({
   rows: "6",
   cols: "63",
 }))`width: 100%;`;
+
+const SubmitButtonDiv = Styled.div`
+    display: flex;
+    justify-content: end;
+    margin-top: 1vh;
+`;
 
 export function MissionModal(props) {
   const {
@@ -76,7 +83,35 @@ export function MissionModal(props) {
         </Modal.Title>
       </Modal.Header>
       <Modal.Body className="show-grid">
-        <Container>
+        <Form
+          onSubmit={(e) => {
+            e.preventDefault();
+            fetch("http://localhost:8080/missions", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({
+                assets: assets,
+                comms: comms,
+                fires: fires,
+                intel: intel,
+                key_grids: keyGrids,
+                latitude: latitude,
+                location: location,
+                longitude: longitude,
+                msn_obj: missionObjectives,
+                msn_title: missionTitle,
+                msn_type: missionType,
+                situation: situation,
+                supporting_players: supportingPlayers,
+                user_id: userCredentials.id,
+              }),
+            })
+              .then(() => getMissionData())
+              .then(() => setMissionCreatedAlert(true));
+          }}
+        >
           <Row>
             <InputStyleRow>
               <InputColDiv>
@@ -84,6 +119,7 @@ export function MissionModal(props) {
                 <SmallInputBox
                   type="text"
                   onChange={(e) => setMissionTitle(e.target.value)}
+                  required
                 ></SmallInputBox>
               </InputColDiv>
               <InputColDiv>
@@ -191,40 +227,12 @@ export function MissionModal(props) {
               </InputColDiv>
             </InputStyleRow>
           </Row>
-        </Container>
+          <SubmitButtonDiv>
+            <Button type="submit">Submit</Button>
+          </SubmitButtonDiv>
+        </Form>
       </Modal.Body>
-      <Modal.Footer>
-        <Button
-          onClick={() => {
-            fetch("http://localhost:8080/missions", {
-              method: "POST",
-              headers: {
-                "Content-Type": "application/json",
-              },
-              body: JSON.stringify({
-                assets: assets,
-                comms: comms,
-                fires: fires,
-                intel: intel,
-                key_grids: keyGrids,
-                latitude: latitude,
-                location: location,
-                longitude: longitude,
-                msn_obj: missionObjectives,
-                msn_title: missionTitle,
-                msn_type: missionType,
-                situation: situation,
-                supporting_players: supportingPlayers,
-                user_id: userCredentials.id,
-              }),
-            })
-              .then(() => getMissionData())
-              .then(() => setMissionCreatedAlert(true));
-          }}
-        >
-          Submit
-        </Button>
-      </Modal.Footer>
+      <Modal.Footer></Modal.Footer>
     </Modal>
   );
 }

@@ -56,7 +56,7 @@ const CreateMissionDiv = Styled.div`
     cursor: pointer;
 `;
 
-const ButtonPlusAlert = Styled.div`
+const ButtonsDiv = Styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -68,6 +68,9 @@ export const UserPage = () => {
     userCredentials,
     setIndividualMissionDetails,
     missionCreatedAlert,
+    favoriteMissions,
+    searchResultsArray,
+    setSearchResultsArray,
     setFavoriteMissions,
   } = useContext(AppContext);
   const [userMissions, setUserMissions] = useState([]);
@@ -95,7 +98,7 @@ export const UserPage = () => {
   function ModalPop() {
     const [modalShow, setModalShow] = useState(false);
     return (
-      <ButtonPlusAlert>
+      <ButtonsDiv>
         <Alert
           key="success"
           variant="success"
@@ -108,7 +111,7 @@ export const UserPage = () => {
           Create New Mission
         </CreateMissionDiv>
         <MissionModal show={modalShow} onHide={() => setModalShow(false)} />
-      </ButtonPlusAlert>
+      </ButtonsDiv>
     );
   }
 
@@ -131,7 +134,20 @@ export const UserPage = () => {
         })}
       </MyMissions>
 
-      <ModalPop />
+      <ButtonsDiv>
+        <ModalPop />
+        <CreateMissionDiv
+          variant="primary"
+          onClick={() => {
+            setSearchResultsArray(favoriteMissions);
+            console.log(searchResultsArray);
+            console.log(favoriteMissions);
+            navigate("/favorites");
+          }}
+        >
+          My Favorites
+        </CreateMissionDiv>
+      </ButtonsDiv>
     </ContainerDiv>
   );
 };
