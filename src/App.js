@@ -91,7 +91,8 @@ function App() {
           <Route path="/help" element={<HelpPage />}></Route>
           <Route path="/about" element={<AboutPage />}></Route>
           {/* This is a temp path */}
-          <Route path="/dummypath" element={<SearchResults />}></Route>
+          <Route path="/searchresults" element={<SearchResults />}></Route>
+          <Route path="/favorites" element={<SearchResults />}></Route>
           <Route
             path="/missiondetails/:id"
             element={<MissionDetails />}

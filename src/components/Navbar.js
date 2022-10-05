@@ -115,7 +115,7 @@ export const MissionNavBar = () => {
                     );
                     console.log("clicked submit!");
 
-                    navigate("/dummypath");
+                    navigate("/searchresults");
                     setSearchBarText("");
                   }}
                   style={{

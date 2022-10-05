@@ -5,6 +5,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { AppContext } from "./AppContext";
 import { useNavigate } from "react-router-dom";
 import Alert from "react-bootstrap/Alert";
+import { SearchResults } from "./SearchResults";
 
 const MyMissions = Styled.div`
     height: 75vh;
@@ -62,13 +63,21 @@ const ButtonPlusAlert = Styled.div`
     align-items: center;
 `;
 
+const ButtonsDiv = Styled.div`
+display: flex;
+flex-direction: column;
+align-items: center;
+`;
+
 export const UserPage = () => {
   const {
     missionsArray,
     userCredentials,
     setIndividualMissionDetails,
     missionCreatedAlert,
+    favoriteMissions,
     setFavoriteMissions,
+    setSearchResultsArray
   } = useContext(AppContext);
   const [userMissions, setUserMissions] = useState([]);
   const navigate = useNavigate();
@@ -89,13 +98,13 @@ export const UserPage = () => {
     });
     setUserMissions(specificUserMissions);
     getFavoriteMissions();
-    console.log("useeffect in userpage ran");
+    // console.log("useeffect in userpage ran");
   }, [missionsArray]);
 
   function ModalPop() {
     const [modalShow, setModalShow] = useState(false);
     return (
-      <ButtonPlusAlert>
+      <ButtonsDiv>
         <Alert
           key="success"
           variant="success"
@@ -108,7 +117,7 @@ export const UserPage = () => {
           Create New Mission
         </CreateMissionDiv>
         <MissionModal show={modalShow} onHide={() => setModalShow(false)} />
-      </ButtonPlusAlert>
+      </ButtonsDiv>
     );
   }
 
@@ -131,7 +140,26 @@ export const UserPage = () => {
         })}
       </MyMissions>
 
-      <ModalPop />
+      <ButtonsDiv>
+        <ModalPop />
+        <CreateMissionDiv variant="primary" onClick={() =>{
+          const favMissionIds = favoriteMissions.map(msn => msn.msn_id);
+          
+          const detailsOfFavMissions = missionsArray.filter(msn => favMissionIds.includes(msn.msn_id));
+
+          setSearchResultsArray(detailsOfFavMissions);
+
+          navigate('/favorites');
+
+          // console.log(searchResults)
+        }}>
+          My Favorites
+        </CreateMissionDiv>
+
+      </ButtonsDiv>
+
+
+
     </ContainerDiv>
   );
 };
