@@ -128,8 +128,8 @@ export const MissionNavBar = () => {
                     value={searchBarText}
                     onChange={(e) => {
                       setSearchBarText(e.target.value);
-                      console.log(e.target.value);
-                      console.log(searchBarText)
+                      // console.log(e.target.value);
+                      // console.log(searchBarText)
                     }}
                     type="search"
                     placeholder="Search for an existing mission"
