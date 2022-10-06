@@ -11,6 +11,9 @@ import Tooltip from "react-bootstrap/Tooltip";
 import html2canvas from "html2canvas";
 import { DeleteMissionAlert } from "./DeleteMissionAlert";
 
+// example jsPDF import. not sure if we'll need this -ian
+  // import { jsPDF } from "jspdf";
+
 const TableStyle = Styled.div`
 width: 50vw;
 `;
@@ -30,6 +33,7 @@ column-gap: 20px;
 const MapDiv = Styled.div`
 display: flex;
 flex-direction: column;
+row-gap: 1vh;
 `;
 
 const StyledFavorite = Styled.img`
@@ -47,6 +51,17 @@ export const MissionDetails = () => {
   const [isLoading, setLoading] = useState(false);
   const [isFavorite, setIsFavorite] = useState(false);
   const [favoriteMissionId, setFavoriteMissionId] = useState();
+
+  
+  // const divToDisplay = document.getElementById('testDiv')
+
+
+  // html2canvas(divToDisplay).then(function(canvas) {
+  //      const divImage = canvas.toDataURL("image/png");
+  //      const pdf = new jsPDF();
+  //     pdf.addImage(divImage, 'PNG', 0, 0);
+  //     pdf.save("download.pdf");
+  // })
 
   useEffect(() => {
     fetch(`http://localhost:8080/favoritemissions/${userCredentials.id}`)
@@ -128,6 +143,7 @@ export const MissionDetails = () => {
 
   return (
     <>
+    {/* <div id='testDiv'>TEST DIV</div> */}
       <br />
       <MissionDetailsDiv>
         <TableStyle>
@@ -245,7 +261,6 @@ export const MissionDetails = () => {
             src={`https://www.bing.com/maps/embed?h=500&w=600&cp=${individualMissionDetails.latitude}~${individualMissionDetails.longitude}&lvl=11&typ=d&sty=h&src=SHELL&FORM=MBEDV8`}
             scrolling="no"
           ></iframe>
-
           {userCredentials.id === individualMissionDetails.user_id ? (
             <DeleteMissionAlert msn_id={individualMissionDetails.msn_id} />
           ) : (

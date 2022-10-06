@@ -22,7 +22,7 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(Cookies.get("isLoggedIn"));
   const [missionCreatedAlert, setMissionCreatedAlert] = useState(false);
   const [userMissions, setUserMissions] = useState([]);
-  // const [missionEditedAlert, setMissionEditedAlert] = useState(false);
+  const [missionAlertMessage, setMissionAlertMessage] = useState("")
   const [userLoginInfo, setUserLoginInfo] = useState({
     username: "",
     password: "",
@@ -78,12 +78,12 @@ function App() {
     setUserLoginInfo,
     missionCreatedAlert,
     setMissionCreatedAlert,
-    // missionEditedAlert,
-    // setMissionEditedAlert,
     userMissions,
     setUserMissions,
     isLoggedIn,
     setIsLoggedIn,
+    missionAlertMessage,
+    setMissionAlertMessage
   };
 
   return (

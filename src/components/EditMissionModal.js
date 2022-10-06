@@ -1,7 +1,6 @@
 import React, { useState, useContext } from "react";
 import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
-import Container from "react-bootstrap/Container";
 import Modal from "react-bootstrap/Modal";
 import Row from "react-bootstrap/Row";
 import Styled from "styled-components";
@@ -49,11 +48,9 @@ const SubmitButtonDiv = Styled.div`
 export function EditMissionModal(props) {
   const {
     userCredentials,
-    setUserCredentials,
     setMissionsArray,
-    missionsArray,
     setMissionCreatedAlert,
-    setMissionEditedAlert
+    setMissionAlertMessage
   } = useContext(AppContext);
 
   const navigate = useNavigate();
@@ -83,15 +80,14 @@ export function EditMissionModal(props) {
   };
 
   const handleVisible = () => {
-    setMissionEditedAlert(true);
+    setMissionCreatedAlert(true);
     setTimeout(() => {
-      setMissionEditedAlert(false);
+      setMissionCreatedAlert(false);
     }, 2000);
   };
 
   return (
     <Modal size="xl" {...props} aria-labelledby="contained-modal-title-vcenter">
-      {/* <Modal size="xl" show={show} onHide={onHide} aria-labelledby="contained-modal-title-vcenter"> */}
       <Modal.Header closeButton>
         <Modal.Title id="contained-modal-title-vcenter">
           Edit Mission
@@ -124,12 +120,9 @@ export function EditMissionModal(props) {
               user_id: userCredentials.id,
             }),
           })
-          // .then(res=>res.json())
-          // .then(data=>console.log('edit msn modal fetch res', data))
             .then(() => getMissionData())
-            // .then(() = > console.log)
-            // .then(() => navigate(`/missiondetails/${props.mission.msn_id}`))
-            // .then(() => handleVisible());
+            .then(() => setMissionAlertMessage("Mission Updated!"))
+            .then(() => handleVisible());
         }}
         >
           <Row>
@@ -139,7 +132,6 @@ export function EditMissionModal(props) {
                 <SmallInputBox
                   type="text"
                   value={missionTitle}
-                  // placeholder={props.mission.msn_title}
                   onChange={(e) => {
                     setMissionTitle(e.target.value)}
                   }

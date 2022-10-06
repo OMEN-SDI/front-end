@@ -1,7 +1,6 @@
 import React, { useState, useContext } from "react";
 import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
-import Container from "react-bootstrap/Container";
 import Modal from "react-bootstrap/Modal";
 import Row from "react-bootstrap/Row";
 import Styled from "styled-components";
@@ -48,22 +47,18 @@ const SubmitButtonDiv = Styled.div`
 export function MissionModal(props) {
   const {
     userCredentials,
-    setUserCredentials,
     setMissionsArray,
-    missionsArray,
     setMissionCreatedAlert,
-    setMissionEditedAlert,
+    setMissionAlertMessage
   } = useContext(AppContext);
 
   const [missionTitle, setMissionTitle] = useState("");
-  const [missionDate, setMissionDate] = useState("");
   const [missionType, setMissionType] = useState("");
   const [fires, setFires] = useState("");
   const [missionObjectives, setMissionObjectives] = useState("");
   const [assets, setAssets] = useState("");
   const [intel, setIntel] = useState("");
   const [keyGrids, setKeyGrids] = useState("");
-  const [missionInfo, setMissionInfo] = useState("");
   const [supportingPlayers, setSupportingPlayers] = useState("");
   const [situation, setSituation] = useState("");
   const [comms, setComms] = useState("");
@@ -87,7 +82,6 @@ export function MissionModal(props) {
 
   return (
     <Modal size="xl" {...props} aria-labelledby="contained-modal-title-vcenter">
-    {/* <Modal size="xl" show={show} onHide={onHide} aria-labelledby="contained-modal-title-vcenter"> */}
       <Modal.Header closeButton>
         <Modal.Title id="contained-modal-title-vcenter">
           Add Mission
@@ -120,6 +114,7 @@ export function MissionModal(props) {
               }),
             })
               .then(() => getMissionData())
+              .then(() => setMissionAlertMessage("Mission Created!"))
               .then(() => handleVisible());
           }}
         >
@@ -129,7 +124,6 @@ export function MissionModal(props) {
                 <Col>Mission Title</Col>
                 <SmallInputBox
                   type="text"
-                  // placeholder={mission.msn_title}
                   onChange={(e) => setMissionTitle(e.target.value)}
                   required
                 ></SmallInputBox>

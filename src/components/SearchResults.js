@@ -15,12 +15,6 @@ const ContainerDiv = Styled.div`
     min-height: 100vh;
 `;
 
-const CardStyle = Styled.div`
-    width: "auto";
-    height: "auto";
-    //background-color: "#696777";
-`;
-
 const InputStyleDiv = Styled.div`
 display: flex;
 flex-direction: row;
@@ -42,7 +36,7 @@ export const SearchResults = () => {
       {searchResultsArray.map((mission) => {
         return (
           <Card
-            style={{ width: "auto", height: "auto", cursor: "pointer" }}
+            style={{ minWidth: "60vw", height: "auto", cursor: "pointer" }}
             onClick={() => {
               setIndividualMissionDetails(mission);
               navigate(`/missiondetails/${mission.msn_id}`);

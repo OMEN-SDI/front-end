@@ -1,12 +1,9 @@
-import { MissionModal } from "./AddMissionModal";
-import { useState, useContext } from "react";
+import { useState } from "react";
 import React from "react";
-import { Button } from "react-bootstrap";
 import Styled from "styled-components";
-import { Alert } from "react-bootstrap";
-import { AppContext } from "./AppContext";
 import { EditMissionModal } from "./EditMissionModal"
 import editButton from '../dots.png';
+import { Tooltip, OverlayTrigger } from "react-bootstrap";
 
 const ButtonsDiv = Styled.div`
 display: flex;
@@ -18,25 +15,25 @@ const StyledEditButton = Styled.img`
 height: 2em;
 `
 
+
 export const EditMissionModalPop = ({ mission }) => {
   const [modalShow, setModalShow] = useState(false);
-  // const { missionEditedAlert, setMissionEditedAlert } = useContext(AppContext)
-  const [missionEditedAlert, setMissionEditedAlert] = useState(false);
-  // console.log('mission modal pop mission:', mission)
+
+  const renderTooltip = (props) => (
+    <Tooltip id="button-tooltip" {...props}>
+      Edit Mission
+    </Tooltip>
+  );
 
   return (
     <ButtonsDiv>
-      <Alert
-        key="success"
-        variant="success"
-        show={missionEditedAlert}
-        style={{ width: "20vw", textAlign: "center" }}
+      <OverlayTrigger
+        placement="right"
+        delay={{ show: 300, hide: 400 }}
+        overlay={renderTooltip}
       >
-        Mission Updated!
-      </Alert>
-
-      <StyledEditButton src={editButton} onClick={() => setModalShow(true)} />
-
+        <StyledEditButton src={editButton} onClick={() => setModalShow(true)} />
+      </OverlayTrigger>
       <EditMissionModal show={modalShow} onHide={() => setModalShow(false)} mission={mission} />
     </ButtonsDiv>
   );
