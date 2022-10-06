@@ -9,16 +9,20 @@ import {
 } from "react-router-dom";
 import { AppContext } from "./AppContext";
 
-export const Logout = () => {
+export const logout = () => {
   const { setIsLoggedIn } = useContext(AppContext);
   const navigate = useNavigate();
-  Cookies.remove("isLoggedIn", {
-    domain: "http://localhost:3000",
-  });
-  Cookies.remove("userCredentials", {
-    domain: "http://localhost:3000",
-  });
-  // Cookies.remove("isLoggedIn");
+  Cookies.remove("userCredentials");
+  Cookies.remove("isLoggedIn");
+  Cookies.remove("userCredentials", { path: "/" }); // removed!
+  Cookies.remove("isLoggedIn", { path: "/" }); // removed!
+  // Cookies.remove("isLoggedIn", {
+  //   domain: "localhost",
+  // });
+  // Cookies.remove("userCredentials", {
+  //   domain: "localhost",
+  // });
+
   setIsLoggedIn(false);
   navigate("/");
 };

@@ -6,22 +6,9 @@ import { AppContext } from "./AppContext";
 import { useNavigate } from "react-router-dom";
 import Alert from "react-bootstrap/Alert";
 import { EditMissionModalPop } from "./EditMissionModalPop";
-
-const MyMissions = Styled.div`
-    height: 75vh;
-    width: 30vh;
-    border: 4px solid white;
-    margin-left: 4vh;
-    background-color: black;
-    text-align: center;
-    color: white;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    opacity: 80%;
-    overflow: auto;
-    row-gap: 10px;
-`;
+import SimpleBar from "simplebar-react";
+import "simplebar-react/dist/simplebar.min.css";
+import "../App.css";
 
 const IndividualMission = Styled.div`
     display: flex;
@@ -132,28 +119,40 @@ export const UserPage = () => {
 
   return (
     <ContainerDiv>
-      <MyMissions>
+      <SimpleBar
+        style={{
+          display: "flex",
+          height: "75vh",
+          width: "30vh",
+          border: "4px solid white",
+          marginLeft: "4vh",
+          backgroundColor: "black",
+          textAlign: "center",
+          color: "white",
+          flexDirection: "column",
+          alignItems: "center",
+          opacity: "80%",
+          rowGap: "10px",
+        }}
+      >
         My Missions
         {userMissions.map((mission) => {
           return (
-            <>
-              <IndividualMission key={mission.msn_id}>
-                <div
-                  onClick={() => {
-                    setIndividualMissionDetails(mission);
-                    navigate(`/missiondetails/${mission.msn_id}`);
-                  }}
-                  style={{ width: "90%", height: "100%" }}
-                >
-                  {mission.msn_title}
-                </div>
-                <EditMissionModalPop mission={mission} />
-              </IndividualMission>
-            </>
+            <IndividualMission key={mission.msn_id}>
+              <div
+                onClick={() => {
+                  setIndividualMissionDetails(mission);
+                  navigate(`/missiondetails/${mission.msn_id}`);
+                }}
+                style={{ width: "90%", height: "100%" }}
+              >
+                {mission.msn_title}
+              </div>
+              <EditMissionModalPop mission={mission} />
+            </IndividualMission>
           );
         })}
-      </MyMissions>
-
+      </SimpleBar>
       <ButtonsDiv>
         <ModalPop />
         <CreateMissionDiv

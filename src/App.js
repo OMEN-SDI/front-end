@@ -1,6 +1,11 @@
 import "./App.css";
 import React, { useState, useEffect } from "react";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+  useNavigate,
+} from "react-router-dom";
 import { Login } from "./components/Login";
 import { MissionNavBar } from "./components/Navbar";
 import { UserPage } from "./components/UserPage";
@@ -42,6 +47,8 @@ function App() {
 
   const cookieCheck = () => {
     const cookie = Cookies.get("userCredentials");
+    console.log("hitting cookiecheck", cookie);
+    console.log(typeof cookie);
     if (Cookies.get("userCredentials") === undefined) {
       setUserCredentials({});
     } else {
@@ -50,8 +57,13 @@ function App() {
     }
   };
 
+  // const navigate = useNavigate();
+
   useEffect(() => {
     cookieCheck();
+    // if (!isLoggedIn) {
+    // navigate("/");
+    // }
   }, [isLoggedIn]);
 
   useEffect(() => {
