@@ -75,8 +75,11 @@ export const UserPage = () => {
     favoriteMissions,
     setFavoriteMissions,
     setSearchResultsArray,
+    userMissions,
+    setUserMissions,
+    isLoggedIn,
   } = useContext(AppContext);
-  const [userMissions, setUserMissions] = useState([]);
+
   const navigate = useNavigate();
 
   const getFavoriteMissions = async () => {
@@ -87,15 +90,6 @@ export const UserPage = () => {
     setFavoriteMissions(data);
   };
 
-
-  // useEffect(() => {
-  //   const timeout = setTimeout(() => {
-  //     console.log('This will be called after 2 seconds');
-  //   }, 2000);
-  
-  //   return () => clearTimeout(timeout);
-  // }, []);
-
   useEffect(() => {
     const specificUserMissions = missionsArray.filter((mission) => {
       if (mission.user_id === userCredentials.id) {
@@ -104,31 +98,36 @@ export const UserPage = () => {
     });
     setUserMissions(specificUserMissions);
     getFavoriteMissions();
-    // console.log("useeffect in userpage ran");
-  }, [missionsArray]);
+  }, [missionsArray, userCredentials]);
 
   function ModalPop() {
     const [modalShow, setModalShow] = useState(false);
     const [show, setShow] = useState(true);
-    
+
     return (
       <ButtonsDiv>
-        <Alert 
-          variant="success" 
-          show={missionCreatedAlert} 
+        <Alert
+          variant="success"
+          show={missionCreatedAlert}
           onClose={() => setMissionCreatedAlert(false)}
           style={{ width: "20vw", textAlign: "center" }}
         >
           Mission Created!
         </Alert>
-      
+
         <CreateMissionDiv variant="primary" onClick={() => setModalShow(true)}>
           Create New Mission
         </CreateMissionDiv>
-        <MissionModal show={modalShow} onHide={() => setModalShow(false)} mode='create'/>
+        <MissionModal
+          show={modalShow}
+          onHide={() => setModalShow(false)}
+          mode="create"
+        />
       </ButtonsDiv>
     );
   }
+  console.log("cookie in app", userCredentials);
+  console.log("cookie in app", isLoggedIn);
 
   return (
     <ContainerDiv>
@@ -137,17 +136,16 @@ export const UserPage = () => {
         {userMissions.map((mission) => {
           return (
             <>
-            <IndividualMission
-              key={mission.msn_id}
-              onClick={() => {
-                setIndividualMissionDetails(mission);
-                navigate(`/missiondetails/${mission.msn_id}`);
-              }}
-            >
-              {mission.msn_title}
-             
-            </IndividualMission>
-            <EditMissionModalPop mission={mission}/>
+              <IndividualMission
+                key={mission.msn_id}
+                onClick={() => {
+                  setIndividualMissionDetails(mission);
+                  navigate(`/missiondetails/${mission.msn_id}`);
+                }}
+              >
+                {mission.msn_title}
+              </IndividualMission>
+              <EditMissionModalPop mission={mission} />
             </>
           );
         })}
