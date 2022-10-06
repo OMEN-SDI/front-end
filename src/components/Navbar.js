@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useRef } from "react";
 import { AppContext } from "./AppContext";
 import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
@@ -89,13 +89,15 @@ export const MissionNavBar = () => {
       ) : (
         [false].map((expand) => (
           <Navbar
+            // collapseOnSelect expand="false"
             key={expand}
             style={{
               backgroundColor: "#514F5A",
               display: "flex",
               flexDirection: "row",
             }}
-            expand={expand}
+            collapseOnSelect
+            expand="false"
             className="mb-3"
           >
             <Container fluid>
@@ -161,50 +163,6 @@ export const MissionNavBar = () => {
                     Search
                   </Button>
                 </Form>
-                <ButtonGroup aria-label="Basic example">
-                  <Button
-                    variant="secondary"
-                    onClick={() => {
-                      console.log(
-                        missionsArray.filter((msn) => msn.msn_id === 1)
-                      );
-                      setSearchResultsArray(
-                        missionsArray.filter((msn) => msn.msn_type === 1)
-                      );
-                      navigate("/searchresults");
-                    }}
-                  >
-                    Security Forces
-                  </Button>
-                  <Button
-                    variant="secondary"
-                    onClick={() => {
-                      console.log(
-                        missionsArray.filter((msn) => msn.msn_id === 1)
-                      );
-                      setSearchResultsArray(
-                        missionsArray.filter((msn) => msn.msn_type === 2)
-                      );
-                      navigate("/searchresults");
-                    }}
-                  >
-                    Anti-Submarine Warfare
-                  </Button>
-                  <Button
-                    variant="secondary"
-                    onClick={() => {
-                      console.log(
-                        missionsArray.filter((msn) => msn.msn_id === 1)
-                      );
-                      setSearchResultsArray(
-                        missionsArray.filter((msn) => msn.msn_type === 3)
-                      );
-                      navigate("/searchresults");
-                    }}
-                  >
-                    Close Air Support
-                  </Button>
-                </ButtonGroup>
               </div>
               <div>
                 <SignedInAs>
@@ -229,9 +187,80 @@ export const MissionNavBar = () => {
                   </Offcanvas.Header>
                   <Offcanvas.Body>
                     <Nav className="justify-content-end flex-grow-1 pe-3">
-                      <Link to="userpage">Home</Link>
-                      <Link to="help">Help</Link>
-                      <Link to="about">About</Link>
+                      <Nav.Link as={Link} to="userpage" eventKey="1">
+                        Home
+                      </Nav.Link>
+                      <NavDropdown
+                        title="Missions"
+                        id={`offcanvasNavbarDropdown-expand-${expand}`}
+                      >
+                        <NavDropdown.Item>
+                          <Nav.Link
+                            as={Link}
+                            to="/searchresults"
+                            eventKey="1"
+                            onClick={() => {
+                              console.log(
+                                missionsArray.filter((msn) => msn.msn_id === 1)
+                              );
+                              setSearchResultsArray(
+                                missionsArray.filter(
+                                  (msn) => msn.msn_type === 1
+                                )
+                              );
+                              navigate("/searchresults");
+                            }}
+                          >
+                            Security Forces
+                          </Nav.Link>
+                        </NavDropdown.Item>
+                        <NavDropdown.Item>
+                          <Nav.Link
+                            as={Link}
+                            to="/searchresults"
+                            eventKey="2"
+                            onClick={() => {
+                              console.log(
+                                missionsArray.filter((msn) => msn.msn_id === 2)
+                              );
+                              setSearchResultsArray(
+                                missionsArray.filter(
+                                  (msn) => msn.msn_type === 2
+                                )
+                              );
+                              navigate("/searchresults");
+                            }}
+                          >
+                            Anti-Submarine Warfare
+                          </Nav.Link>
+                        </NavDropdown.Item>
+                        <NavDropdown.Item>
+                          <Nav.Link
+                            as={Link}
+                            to="/searchresults"
+                            eventKey="3"
+                            onClick={() => {
+                              console.log(
+                                missionsArray.filter((msn) => msn.msn_id === 3)
+                              );
+                              setSearchResultsArray(
+                                missionsArray.filter(
+                                  (msn) => msn.msn_type === 3
+                                )
+                              );
+                              navigate("/searchresults");
+                            }}
+                          >
+                            Close Air Support
+                          </Nav.Link>
+                        </NavDropdown.Item>
+                      </NavDropdown>
+                      <Nav.Link as={Link} to="help" eventKey="2">
+                        Help
+                      </Nav.Link>
+                      <Nav.Link as={Link} to="about" eventKey="3">
+                        About
+                      </Nav.Link>
                       <Nav.Link
                         onClick={() => {
                           Logout();
