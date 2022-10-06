@@ -28,6 +28,10 @@ const MyMissions = Styled.div`
 const IndividualMission = Styled.div`
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 5%;
+
     border: 1px solid white;
     width: 85%;
     background-color: rgb(90 74 227);
@@ -124,7 +128,7 @@ export const UserPage = () => {
           show={modalShow}
           onHide={() => setModalShow(false)}
           mode="create"
-        />
+         />
       </ButtonsDiv>
     );
   }
@@ -138,23 +142,12 @@ export const UserPage = () => {
         {userMissions.map((mission) => {
           return (
             <>
-              <IndividualMission
-                key={mission.msn_id}
-                // onClick={() => {
-                //   setIndividualMissionDetails(mission);
-                //   navigate(`/missiondetails/${mission.msn_id}`);
-                // }}
-              >
-                {/* {mission.msn_title} */}
+              <IndividualMission key={mission.msn_id} >
 
-                <div
-                  onClick={() => {
-                    setIndividualMissionDetails(mission);
-                    navigate(`/missiondetails/${mission.msn_id}`);
-                  }}
-                >
-                  {mission.msn_title}
-                </div>
+                <div onClick={() => {
+                  setIndividualMissionDetails(mission);
+                  navigate(`/missiondetails/${mission.msn_id}`);
+                }} style={{width: '90%', height: '100%'}}>{mission.msn_title}</div>
                 <EditMissionModalPop mission={mission} />
               </IndividualMission>
               {/* <EditMissionModalPop mission={mission}/> */}

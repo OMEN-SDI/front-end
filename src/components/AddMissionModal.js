@@ -195,12 +195,6 @@ export function MissionModal(props) {
                 ></MediumInputArea>
               </InputColDiv>
               <InputColDiv>
-                <Col>Mission Info</Col>
-                <MediumInputArea
-                  onChange={(e) => setMissionInfo(e.target.value)}
-                ></MediumInputArea>
-              </InputColDiv>
-              <InputColDiv>
                 <Col>Supporting Players</Col>
                 <MediumInputArea
                   onChange={(e) => setSupportingPlayers(e.target.value)}
