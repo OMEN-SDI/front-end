@@ -9,8 +9,7 @@ import NavDropdown from "react-bootstrap/NavDropdown";
 import Offcanvas from "react-bootstrap/Offcanvas";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Styled from "styled-components";
-// import { useNavigate } from "react-router-dom";
-import { Logout } from "./Logout";
+import Cookies from "js-cookie";
 import { ButtonGroup } from "react-bootstrap";
 import {
   BrowserRouter as Router,
@@ -67,22 +66,20 @@ export const MissionNavBar = () => {
     setSearchBarText,
     userCredentials,
     isLoggedIn,
+    setIsLoggedIn,
   } = useContext(AppContext);
 
-  // useEffect(() => {
-  //   navigate('/');
-  // },[searchResultsArray])
-
-  const Logout = () => {
-    localStorage.clear();
-    window.location.href = "/";
+  const logout = () => {
+    Cookies.remove("userCredentials");
+    Cookies.remove("isLoggedIn");
+    setIsLoggedIn(false);
+    navigate("/");
   };
 
   return (
     <>
       <NavBarHeader>
         <BannerImage src="./images/banner-logo.png" alt="Whoops" />
-        {/* <LogoImage src="./images/dragon.png" alt="Whoops" /> */}
       </NavBarHeader>
       {!isLoggedIn ? (
         <></>
@@ -259,8 +256,11 @@ export const MissionNavBar = () => {
                         About
                       </Nav.Link>
                       <Nav.Link
+                        as={Link}
+                        to="userpage"
+                        eventKey="4"
                         onClick={() => {
-                          Logout();
+                          logout();
                         }}
                       >
                         Log Out

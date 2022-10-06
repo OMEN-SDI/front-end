@@ -36,3 +36,14 @@
     transform: rotate(360deg);
   }
 }
+
+.simplebar-content{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 0.5vh;
+}
+
+.simplebar-track.simplebar-vertical .simplebar-scrollbar:before {
+  background-color: #514f5a;
+}
