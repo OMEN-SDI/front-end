@@ -82,24 +82,24 @@ export function EditMissionModal(props) {
     setMissionsArray(data);
   };
 
-  // const handleVisible = () => {
-  //   setMissionCreatedAlert(true);
-  //   setTimeout(() => {
-  //     setMissionCreatedAlert(false);
-  //   }, 2000);
-  // };
+  const handleVisible = () => {
+    setMissionEditedAlert(true);
+    setTimeout(() => {
+      setMissionEditedAlert(false);
+    }, 2000);
+  };
 
   return (
     <Modal size="xl" {...props} aria-labelledby="contained-modal-title-vcenter">
       {/* <Modal size="xl" show={show} onHide={onHide} aria-labelledby="contained-modal-title-vcenter"> */}
       <Modal.Header closeButton>
         <Modal.Title id="contained-modal-title-vcenter">
-          Add Mission
+          Edit Mission
         </Modal.Title>
       </Modal.Header>
       <Modal.Body className="show-grid">
         <Form
-          // onSubmit={() => console.log(missionTitle)}
+      
         onSubmit={(e) => {
           e.preventDefault();
           fetch(`http://localhost:8080/missions/${props.mission.msn_id}`, {
@@ -210,13 +210,6 @@ export function EditMissionModal(props) {
                 <MediumInputArea
                 value={keyGrids}
                   onChange={(e) => setKeyGrids(e.target.value)}
-                ></MediumInputArea>
-              </InputColDiv>
-              <InputColDiv>
-                <Col>Mission Info</Col>
-                <MediumInputArea
-                value={missionInfo}
-                  onChange={(e) => setMissionInfo(e.target.value)}
                 ></MediumInputArea>
               </InputColDiv>
               <InputColDiv>

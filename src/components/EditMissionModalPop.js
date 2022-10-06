@@ -20,7 +20,8 @@ height: 2em;
 
 export const EditMissionModalPop = ({ mission }) => {
   const [modalShow, setModalShow] = useState(false);
-  const { missionEditedAlert, setMissionEditedAlert } = useContext(AppContext)
+  // const { missionEditedAlert, setMissionEditedAlert } = useContext(AppContext)
+  const [missionEditedAlert, setMissionEditedAlert] = useState(false);
   // console.log('mission modal pop mission:', mission)
 
   return (
