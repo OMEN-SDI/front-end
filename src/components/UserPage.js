@@ -28,6 +28,10 @@ const MyMissions = Styled.div`
 const IndividualMission = Styled.div`
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 5%;
+
     border: 1px solid white;
     width: 85%;
     background-color: rgb(90 74 227);
@@ -100,7 +104,7 @@ export const UserPage = () => {
   //   const timeout = setTimeout(() => {
   //     console.log('This will be called after 2 seconds');
   //   }, 2000);
-  
+
   //   return () => clearTimeout(timeout);
   // }, []);
 
@@ -118,22 +122,22 @@ export const UserPage = () => {
   function ModalPop() {
     const [modalShow, setModalShow] = useState(false);
     const [show, setShow] = useState(true);
-    
+
     return (
       <ButtonsDiv>
-        <Alert 
-          variant="success" 
-          show={missionCreatedAlert} 
+        <Alert
+          variant="success"
+          show={missionCreatedAlert}
           onClose={() => setMissionCreatedAlert(false)}
           style={{ width: "20vw", textAlign: "center" }}
         >
           Mission Created!
         </Alert>
-      
+
         <CreateMissionDiv variant="primary" onClick={() => setModalShow(true)}>
           Create New Mission
         </CreateMissionDiv>
-        <MissionModal show={modalShow} onHide={() => setModalShow(false)} mode='create'/>
+        <MissionModal show={modalShow} onHide={() => setModalShow(false)} mode='create' />
       </ButtonsDiv>
     );
   }
@@ -145,22 +149,15 @@ export const UserPage = () => {
         {userMissions.map((mission) => {
           return (
             <>
-            <IndividualMission
-              key={mission.msn_id}
-              // onClick={() => {
-              //   setIndividualMissionDetails(mission);
-              //   navigate(`/missiondetails/${mission.msn_id}`);
-              // }}
-            >
-              {/* {mission.msn_title} */}
-              
-              <div onClick={() => {
-                setIndividualMissionDetails(mission);
-                navigate(`/missiondetails/${mission.msn_id}`);
-              }}>{mission.msn_title}</div>
-              <EditMissionModalPop mission={mission}/>
-            </IndividualMission>
-            {/* <EditMissionModalPop mission={mission}/> */}
+              <IndividualMission key={mission.msn_id} >
+
+                <div onClick={() => {
+                  setIndividualMissionDetails(mission);
+                  navigate(`/missiondetails/${mission.msn_id}`);
+                }} style={{width: '90%', height: '100%'}}>{mission.msn_title}</div>
+                <EditMissionModalPop mission={mission} />
+              </IndividualMission>
+              {/* <EditMissionModalPop mission={mission}/> */}
             </>
           );
         })}
