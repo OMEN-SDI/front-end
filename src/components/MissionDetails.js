@@ -4,11 +4,14 @@ import { AppContext } from "./AppContext";
 import Button from "react-bootstrap/Button";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Table from "react-bootstrap/Table";
-import { Popover } from "react-bootstrap";
+import { OverlayTrigger, Popover } from "react-bootstrap";
+import Overlay from 'react-bootstrap/Overlay';
 import jsPDF from "jspdf";
 import autoTable from "jspdf-autotable";
+import Tooltip from 'react-bootstrap/Tooltip';
 import html2canvas from "html2canvas";
 import { json } from "react-router-dom";
+import Alert from "react-bootstrap/Alert";
 import { DeleteMissionAlert } from "./DeleteMissionAlert";
 // import 'html2pdf.js';
 
@@ -47,10 +50,13 @@ export const MissionDetails = () => {
     favoriteMissions,
     setFavoriteMissions,
     setMissionsArray,
+    favoritesMissionsAlert,
+    setFavoritesMissionsAlert,
   } = useContext(AppContext);
   const [isLoading, setLoading] = useState(false);
   const [isFavorite, setIsFavorite] = useState(false);
   const [favoriteMissionId, setFavoriteMissionId] = useState();
+  
 
   useEffect(() => {
     fetch(`http://localhost:8080/favoritemissions/${userCredentials.id}`)
@@ -87,6 +93,14 @@ export const MissionDetails = () => {
   autoTable(doc, { html: "#msn-table" });
 
   const handlePDFClick = () => setLoading(doc);
+
+
+    const renderTooltip = (props) => (
+      <Tooltip id="button-tooltip" {...props}>
+        Add As Favorite
+      </Tooltip>
+    );
+  
 
   const printRef = React.useRef();
 
@@ -172,7 +186,12 @@ export const MissionDetails = () => {
                   }}
                 >
                   <h3>{individualMissionDetails.msn_title.toUpperCase()}</h3>
-                  {isFavorite ? (
+                  
+                 <OverlayTrigger
+                   placement="top"
+                   delay={{show: 300, hide: 400 }}
+                   overlay={renderTooltip}>
+                 {isFavorite ? (
                     <StyledFavorite
                       src="/images/bookmark.png"
                       onClick={() => handleFavoriteDelete()}
@@ -182,7 +201,9 @@ export const MissionDetails = () => {
                       src="/images/bookmarkempty.png"
                       onClick={() => handleFavoritePost()}
                     />
-                  )}
+                  )} 
+
+                 </OverlayTrigger>                 
                 </td>
               </tr>
               <tr>

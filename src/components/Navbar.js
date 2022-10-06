@@ -230,11 +230,6 @@ export const MissionNavBar = () => {
                   <Offcanvas.Body>
                     <Nav className="justify-content-end flex-grow-1 pe-3">
                       <Link to="userpage">Home</Link>
-                      {/* <Nav.Link onClick={()=>{
-                    console.log(missionsArray.filter(msn => msn.msn_id === 1));
-                    setSearchResultsArray(missionsArray.filter(msn => msn.msn_type === 1));
-                    navigate('/searchresults')
-                  }}>Security Forces</Nav.Link> */}
                       <Link to="help">Help</Link>
                       <Link to="about">About</Link>
                       <Nav.Link

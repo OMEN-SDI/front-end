@@ -7,6 +7,7 @@ import Row from "react-bootstrap/Row";
 import Styled from "styled-components";
 import { AppContext } from "./AppContext";
 import { Form } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 
 const SmallInputBox = Styled.input`
 height: 4vh;
@@ -45,31 +46,34 @@ const SubmitButtonDiv = Styled.div`
     margin-top: 1vh;
 `;
 
-export function MissionModal(props) {
+export function EditMissionModal(props) {
   const {
     userCredentials,
     setUserCredentials,
     setMissionsArray,
     missionsArray,
     setMissionCreatedAlert,
-    setMissionEditedAlert,
+    setMissionEditedAlert
   } = useContext(AppContext);
 
-  const [missionTitle, setMissionTitle] = useState("");
-  const [missionDate, setMissionDate] = useState("");
-  const [missionType, setMissionType] = useState("");
-  const [fires, setFires] = useState("");
-  const [missionObjectives, setMissionObjectives] = useState("");
-  const [assets, setAssets] = useState("");
-  const [intel, setIntel] = useState("");
-  const [keyGrids, setKeyGrids] = useState("");
+  const navigate = useNavigate();
+  // console.log('edit mission modal mission', props.mission);
+
+  const [missionTitle, setMissionTitle] = useState(props.mission.msn_title);
+  const [missionDate, setMissionDate] = useState(props.mission.msn_date);
+  const [missionType, setMissionType] = useState(props.mission.msn_type);
+  const [fires, setFires] = useState(props.mission.fires);
+  const [missionObjectives, setMissionObjectives] = useState(props.mission.msn_obj);
+  const [assets, setAssets] = useState(props.mission.assets);
+  const [intel, setIntel] = useState(props.mission.intel);
+  const [keyGrids, setKeyGrids] = useState(props.mission.key_grids);
   const [missionInfo, setMissionInfo] = useState("");
-  const [supportingPlayers, setSupportingPlayers] = useState("");
-  const [situation, setSituation] = useState("");
-  const [comms, setComms] = useState("");
-  const [latitude, setLatitude] = useState("");
-  const [longitude, setLongitude] = useState("");
-  const [location, setLocation] = useState("");
+  const [supportingPlayers, setSupportingPlayers] = useState(props.mission.supporting_players);
+  const [situation, setSituation] = useState(props.mission.situation);
+  const [comms, setComms] = useState(props.mission.situation);
+  const [latitude, setLatitude] = useState(props.mission.latitude);
+  const [longitude, setLongitude] = useState(props.mission.longitude);
+  const [location, setLocation] = useState(props.mission.location);
 
 
   const getMissionData = async () => {
@@ -78,16 +82,16 @@ export function MissionModal(props) {
     setMissionsArray(data);
   };
 
-  const handleVisible = () => {
-    setMissionCreatedAlert(true);
-    setTimeout(() => {
-      setMissionCreatedAlert(false);
-    }, 2000);
-  };
+  // const handleVisible = () => {
+  //   setMissionCreatedAlert(true);
+  //   setTimeout(() => {
+  //     setMissionCreatedAlert(false);
+  //   }, 2000);
+  // };
 
   return (
     <Modal size="xl" {...props} aria-labelledby="contained-modal-title-vcenter">
-    {/* <Modal size="xl" show={show} onHide={onHide} aria-labelledby="contained-modal-title-vcenter"> */}
+      {/* <Modal size="xl" show={show} onHide={onHide} aria-labelledby="contained-modal-title-vcenter"> */}
       <Modal.Header closeButton>
         <Modal.Title id="contained-modal-title-vcenter">
           Add Mission
@@ -95,33 +99,38 @@ export function MissionModal(props) {
       </Modal.Header>
       <Modal.Body className="show-grid">
         <Form
-          onSubmit={(e) => {
-            e.preventDefault();
-            fetch("http://localhost:8080/missions", {
-              method: "POST",
-              headers: {
-                "Content-Type": "application/json",
-              },
-              body: JSON.stringify({
-                assets: assets,
-                comms: comms,
-                fires: fires,
-                intel: intel,
-                key_grids: keyGrids,
-                latitude: latitude,
-                location: location,
-                longitude: longitude,
-                msn_obj: missionObjectives,
-                msn_title: missionTitle,
-                msn_type: missionType,
-                situation: situation,
-                supporting_players: supportingPlayers,
-                user_id: userCredentials.id,
-              }),
-            })
-              .then(() => getMissionData())
-              .then(() => handleVisible());
-          }}
+          // onSubmit={() => console.log(missionTitle)}
+        onSubmit={(e) => {
+          e.preventDefault();
+          fetch(`http://localhost:8080/missions/${props.mission.msn_id}`, {
+            method: "PATCH",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              assets: assets,
+              comms: comms,
+              fires: fires,
+              intel: intel,
+              key_grids: keyGrids,
+              latitude: latitude,
+              location: location,
+              longitude: longitude,
+              msn_obj: missionObjectives,
+              msn_title: missionTitle,
+              msn_type: missionType,
+              situation: situation,
+              supporting_players: supportingPlayers,
+              user_id: userCredentials.id,
+            }),
+          })
+          // .then(res=>res.json())
+          // .then(data=>console.log('edit msn modal fetch res', data))
+            .then(() => getMissionData())
+            // .then(() = > console.log)
+            // .then(() => navigate(`/missiondetails/${props.mission.msn_id}`))
+            // .then(() => handleVisible());
+        }}
         >
           <Row>
             <InputStyleRow>
@@ -129,8 +138,11 @@ export function MissionModal(props) {
                 <Col>Mission Title</Col>
                 <SmallInputBox
                   type="text"
-                  // placeholder={mission.msn_title}
-                  onChange={(e) => setMissionTitle(e.target.value)}
+                  value={missionTitle}
+                  // placeholder={props.mission.msn_title}
+                  onChange={(e) => {
+                    setMissionTitle(e.target.value)}
+                  }
                   required
                 ></SmallInputBox>
               </InputColDiv>
@@ -139,6 +151,7 @@ export function MissionModal(props) {
                 <Form.Select
                   required
                   aria-label="Default select example"
+                  value={missionType}
                   onChange={(e) => {
                     setMissionType(e.target.value);
                   }}
@@ -157,12 +170,14 @@ export function MissionModal(props) {
               <InputColDiv>
                 <Col>Fires</Col>
                 <LargeInputArea
+                  value={fires}
                   onChange={(e) => setFires(e.target.value)}
                 ></LargeInputArea>
               </InputColDiv>
               <InputColDiv>
                 <Col>Mission Objectives</Col>
                 <LargeInputArea
+                value={missionObjectives}
                   onChange={(e) => setMissionObjectives(e.target.value)}
                 ></LargeInputArea>
               </InputColDiv>
@@ -174,12 +189,14 @@ export function MissionModal(props) {
               <InputColDiv>
                 <Col>Assets</Col>
                 <LargeInputArea
+                value={assets}
                   onChange={(e) => setAssets(e.target.value)}
                 ></LargeInputArea>
               </InputColDiv>
               <InputColDiv>
                 <Col>Intel</Col>
                 <LargeInputArea
+                value={intel}
                   onChange={(e) => setIntel(e.target.value)}
                 ></LargeInputArea>
               </InputColDiv>
@@ -191,24 +208,28 @@ export function MissionModal(props) {
               <InputColDiv>
                 <Col>Key Grids</Col>
                 <MediumInputArea
+                value={keyGrids}
                   onChange={(e) => setKeyGrids(e.target.value)}
                 ></MediumInputArea>
               </InputColDiv>
               <InputColDiv>
                 <Col>Mission Info</Col>
                 <MediumInputArea
+                value={missionInfo}
                   onChange={(e) => setMissionInfo(e.target.value)}
                 ></MediumInputArea>
               </InputColDiv>
               <InputColDiv>
                 <Col>Supporting Players</Col>
                 <MediumInputArea
+                value={supportingPlayers}
                   onChange={(e) => setSupportingPlayers(e.target.value)}
                 ></MediumInputArea>
               </InputColDiv>
               <InputColDiv>
                 <Col>Situation</Col>
                 <MediumInputArea
+                value={situation}
                   onChange={(e) => setSituation(e.target.value)}
                 ></MediumInputArea>
               </InputColDiv>
@@ -221,6 +242,7 @@ export function MissionModal(props) {
                 <Col>Comms</Col>
                 <SmallInputBox
                   type="text"
+                  value={comms}
                   onChange={(e) => setComms(e.target.value)}
                 ></SmallInputBox>
               </InputColDiv>
@@ -228,6 +250,7 @@ export function MissionModal(props) {
                 <Col>Latitude</Col>
                 <SmallInputBox
                   type="text"
+                  value={latitude}
                   onChange={(e) => setLatitude(e.target.value)}
                 ></SmallInputBox>
               </InputColDiv>
@@ -235,6 +258,7 @@ export function MissionModal(props) {
                 <Col>Longitude</Col>
                 <SmallInputBox
                   type="text"
+                  value={longitude}
                   onChange={(e) => setLongitude(e.target.value)}
                 ></SmallInputBox>
               </InputColDiv>
@@ -242,6 +266,7 @@ export function MissionModal(props) {
                 <Col>Location</Col>
                 <SmallInputBox
                   type="text"
+                  value={location}
                   onChange={(e) => setLocation(e.target.value)}
                 ></SmallInputBox>
               </InputColDiv>

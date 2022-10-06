@@ -26,6 +26,8 @@ const MyMissions = Styled.div`
 `;
 
 const IndividualMission = Styled.div`
+    display: flex;
+    flex-direction: row;
     border: 1px solid white;
     width: 85%;
     background-color: rgb(90 74 227);
@@ -138,14 +140,24 @@ export const UserPage = () => {
             <>
               <IndividualMission
                 key={mission.msn_id}
-                onClick={() => {
-                  setIndividualMissionDetails(mission);
-                  navigate(`/missiondetails/${mission.msn_id}`);
-                }}
+                // onClick={() => {
+                //   setIndividualMissionDetails(mission);
+                //   navigate(`/missiondetails/${mission.msn_id}`);
+                // }}
               >
-                {mission.msn_title}
+                {/* {mission.msn_title} */}
+
+                <div
+                  onClick={() => {
+                    setIndividualMissionDetails(mission);
+                    navigate(`/missiondetails/${mission.msn_id}`);
+                  }}
+                >
+                  {mission.msn_title}
+                </div>
+                <EditMissionModalPop mission={mission} />
               </IndividualMission>
-              <EditMissionModalPop mission={mission} />
+              {/* <EditMissionModalPop mission={mission}/> */}
             </>
           );
         })}
