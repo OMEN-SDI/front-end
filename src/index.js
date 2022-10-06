@@ -14,11 +14,11 @@ const BackgroundImage = Styled.div`
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <React.StrictMode>
-    <BackgroundImage>
-      <App />
-    </BackgroundImage>
-  </React.StrictMode>
+  // <React.StrictMode>
+  <BackgroundImage>
+    <App />
+  </BackgroundImage>
+  // </React.StrictMode>
 );
 
 // If you want to start measuring performance in your app, pass a function

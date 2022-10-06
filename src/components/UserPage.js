@@ -5,8 +5,6 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { AppContext } from "./AppContext";
 import { useNavigate } from "react-router-dom";
 import Alert from "react-bootstrap/Alert";
-import { SearchResults } from "./SearchResults";
-import { Button } from "react-bootstrap";
 import { EditMissionModalPop } from "./EditMissionModalPop";
 
 const MyMissions = Styled.div`
@@ -108,7 +106,6 @@ export const UserPage = () => {
 
   function ModalPop() {
     const [modalShow, setModalShow] = useState(false);
-    const [show, setShow] = useState(true);
 
     return (
       <ButtonsDiv>
@@ -128,12 +125,10 @@ export const UserPage = () => {
           show={modalShow}
           onHide={() => setModalShow(false)}
           mode="create"
-         />
+        />
       </ButtonsDiv>
     );
   }
-  console.log("cookie in app", userCredentials);
-  console.log("cookie in app", isLoggedIn);
 
   return (
     <ContainerDiv>
@@ -142,15 +137,18 @@ export const UserPage = () => {
         {userMissions.map((mission) => {
           return (
             <>
-              <IndividualMission key={mission.msn_id} >
-
-                <div onClick={() => {
-                  setIndividualMissionDetails(mission);
-                  navigate(`/missiondetails/${mission.msn_id}`);
-                }} style={{width: '90%', height: '100%'}}>{mission.msn_title}</div>
+              <IndividualMission key={mission.msn_id}>
+                <div
+                  onClick={() => {
+                    setIndividualMissionDetails(mission);
+                    navigate(`/missiondetails/${mission.msn_id}`);
+                  }}
+                  style={{ width: "90%", height: "100%" }}
+                >
+                  {mission.msn_title}
+                </div>
                 <EditMissionModalPop mission={mission} />
               </IndividualMission>
-              {/* <EditMissionModalPop mission={mission}/> */}
             </>
           );
         })}
@@ -162,13 +160,10 @@ export const UserPage = () => {
           variant="primary"
           onClick={() => {
             const favMissionIds = favoriteMissions.map((msn) => msn.msn_id);
-
             const detailsOfFavMissions = missionsArray.filter((msn) =>
               favMissionIds.includes(msn.msn_id)
             );
-
             setSearchResultsArray(detailsOfFavMissions);
-
             navigate("/favorites");
           }}
         >

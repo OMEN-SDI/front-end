@@ -200,9 +200,6 @@ export const MissionNavBar = () => {
                             to="/searchresults"
                             eventKey="1"
                             onClick={() => {
-                              console.log(
-                                missionsArray.filter((msn) => msn.msn_id === 1)
-                              );
                               setSearchResultsArray(
                                 missionsArray.filter(
                                   (msn) => msn.msn_type === 1

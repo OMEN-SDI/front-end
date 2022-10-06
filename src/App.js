@@ -1,12 +1,6 @@
 import "./App.css";
-import React, { useState, useEffect, useInsertionEffect } from "react";
-import {
-  BrowserRouter as Router,
-  Route,
-  Routes,
-  Link,
-  useNavigate,
-} from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { Login } from "./components/Login";
 import { MissionNavBar } from "./components/Navbar";
 import { UserPage } from "./components/UserPage";
@@ -16,7 +10,6 @@ import { MissionDetails } from "./components/MissionDetails";
 import { AboutPage } from "./components/AboutPage";
 import { HelpPage } from "./components/HelpPage";
 import Cookies from "js-cookie";
-import userEvent from "@testing-library/user-event";
 
 function App() {
   const [individualMissionDetails, setIndividualMissionDetails] = useState({});
@@ -61,9 +54,6 @@ function App() {
     cookieCheck();
   }, [isLoggedIn]);
 
-  console.log(userCredentials);
-  console.log(isLoggedIn);
-
   useEffect(() => {
     getUserData();
     getMissionData();
@@ -105,7 +95,6 @@ function App() {
             path="/"
             element={isLoggedIn ? <UserPage /> : <Login />}
           ></Route>
-          {/* <Route path="/userpage" element={<UserPage />}></Route> */}
           <Route
             path="/userpage"
             element={isLoggedIn ? <UserPage /> : <Login />}

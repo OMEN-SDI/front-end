@@ -46,16 +46,10 @@ const LoginButtonsDiv = Styled.div`
 
 export const Login = () => {
   const navigate = useNavigate();
-  const { usersArray } = useContext(AppContext);
   const [lgShow, setLgShow] = useState(false);
   const [showAlert, setShowAlert] = useState(false);
-  const {
-    userLoginInfo,
-    setUserLoginInfo,
-    userCredentials,
-    setUserCredentials,
-    setIsLoggedIn,
-  } = useContext(AppContext);
+  const { userLoginInfo, setUserLoginInfo, setIsLoggedIn } =
+    useContext(AppContext);
   const [alertSpecifications, setAlertSpecifications] = useState({
     type: "",
     alertMessage: "",
@@ -148,7 +142,6 @@ export const Login = () => {
             variant="dark"
             type="submit"
             style={{ width: "20vw" }}
-            // onClick={() => credentialsCheck()}
             onClick={() => postUser()}
           >
             Log In

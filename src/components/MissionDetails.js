@@ -4,16 +4,12 @@ import { AppContext } from "./AppContext";
 import Button from "react-bootstrap/Button";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Table from "react-bootstrap/Table";
-import { OverlayTrigger, Popover } from "react-bootstrap";
-import Overlay from 'react-bootstrap/Overlay';
+import { OverlayTrigger } from "react-bootstrap";
 import jsPDF from "jspdf";
 import autoTable from "jspdf-autotable";
-import Tooltip from 'react-bootstrap/Tooltip';
+import Tooltip from "react-bootstrap/Tooltip";
 import html2canvas from "html2canvas";
-import { json } from "react-router-dom";
-import Alert from "react-bootstrap/Alert";
 import { DeleteMissionAlert } from "./DeleteMissionAlert";
-// import 'html2pdf.js';
 
 const TableStyle = Styled.div`
 width: 50vw;
@@ -32,11 +28,8 @@ column-gap: 20px;
 `;
 
 const MapDiv = Styled.div`
-// display: contents;
 display: flex;
 flex-direction: column;
-// justify-content: center;
-// align-items: center;
 `;
 
 const StyledFavorite = Styled.img`
@@ -50,13 +43,10 @@ export const MissionDetails = () => {
     favoriteMissions,
     setFavoriteMissions,
     setMissionsArray,
-    favoritesMissionsAlert,
-    setFavoritesMissionsAlert,
   } = useContext(AppContext);
   const [isLoading, setLoading] = useState(false);
   const [isFavorite, setIsFavorite] = useState(false);
   const [favoriteMissionId, setFavoriteMissionId] = useState();
-  
 
   useEffect(() => {
     fetch(`http://localhost:8080/favoritemissions/${userCredentials.id}`)
@@ -78,43 +68,22 @@ export const MissionDetails = () => {
     favoriteCheck();
   }, [favoriteMissions]);
 
-  const getMissionData = async () => {
-    const res = await fetch("http://localhost:8080/missions");
-    const data = await res.json();
-    console.log(data);
-    setMissionsArray(data);
-  };
-
   const simulateNetworkRequest = () => {
     return new Promise((resolve) => setTimeout(resolve, 500));
-  }
+  };
 
   const doc = new jsPDF();
   autoTable(doc, { html: "#msn-table" });
 
   const handlePDFClick = () => setLoading(doc);
 
-
-    const renderTooltip = (props) => (
-      <Tooltip id="button-tooltip" {...props}>
-        Add As Favorite
-      </Tooltip>
-    );
-  
+  const renderTooltip = (props) => (
+    <Tooltip id="button-tooltip" {...props}>
+      Add As Favorite
+    </Tooltip>
+  );
 
   const printRef = React.useRef();
-
-  const handleDownloadPdf = async () => {
-    const element = printRef.current;
-    const canvas = await html2canvas(element);
-    const data = canvas.toDataURL("image/png");
-    const pdf = new jsPDF();
-    const imgProperties = pdf.getImageProperties(data);
-    const pdfWidth = pdf.internal.pageSize.getWidth();
-    const pdfHeight = (imgProperties.height * pdfWidth) / imgProperties.width;
-    pdf.addImage(data, "PNG", 0, 0, pdfWidth, pdfHeight);
-    pdf.save("print.pdf");
-  };
 
   useEffect(() => {
     if (isLoading) {
@@ -172,7 +141,6 @@ export const MissionDetails = () => {
             >
               {isLoading ? "Loading…" : "Generate PDF Report"}
             </Button>
-          
           </div>
           <Table id="msn-table" striped bordered hover variant="dark">
             <tbody>
@@ -186,24 +154,24 @@ export const MissionDetails = () => {
                   }}
                 >
                   <h3>{individualMissionDetails.msn_title.toUpperCase()}</h3>
-                  
-                 <OverlayTrigger
-                   placement="top"
-                   delay={{show: 300, hide: 400 }}
-                   overlay={renderTooltip}>
-                 {isFavorite ? (
-                    <StyledFavorite
-                      src="/images/bookmark.png"
-                      onClick={() => handleFavoriteDelete()}
-                    />
-                  ) : (
-                    <StyledFavorite
-                      src="/images/bookmarkempty.png"
-                      onClick={() => handleFavoritePost()}
-                    />
-                  )} 
 
-                 </OverlayTrigger>                 
+                  <OverlayTrigger
+                    placement="top"
+                    delay={{ show: 300, hide: 400 }}
+                    overlay={renderTooltip}
+                  >
+                    {isFavorite ? (
+                      <StyledFavorite
+                        src="/images/bookmark.png"
+                        onClick={() => handleFavoriteDelete()}
+                      />
+                    ) : (
+                      <StyledFavorite
+                        src="/images/bookmarkempty.png"
+                        onClick={() => handleFavoritePost()}
+                      />
+                    )}
+                  </OverlayTrigger>
                 </td>
               </tr>
               <tr>
@@ -288,18 +256,3 @@ export const MissionDetails = () => {
     </>
   );
 };
-
-// this was a attempt at printing the map to PDF. May proves
-//useful for reference -Ian
-
-// function getFrameContents(item) {
-//   var iFrame = document.getElementById('map-image');
-//   var iFrameBody;
-//   if (iFrame.contentDocument) { // FF
-//       iFrameBody = iFrame.contentDocument.getElementsByTagName('body')[0];
-//   } else if (iFrame.contentWindow) { // IE
-//       iFrameBody = iFrame.contentWindow.document.getElementsByTagName('body')[0];
-//   }
-//   //alert(iFrameBody.innerHTML);
-//   return iFrameBody.innerHTML
-// }
