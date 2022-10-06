@@ -8,6 +8,7 @@ import SignUpModal from "./SignUpModal";
 import Alert from "react-bootstrap/Alert";
 import FloatingLabel from "react-bootstrap/FloatingLabel";
 import { AppContext } from "./AppContext";
+import Cookies from "js-cookie";
 
 const ContainerDiv = Styled.div`
 height: 100vh;
@@ -53,6 +54,7 @@ export const Login = () => {
     setUserLoginInfo,
     userCredentials,
     setUserCredentials,
+    setIsLoggedIn,
   } = useContext(AppContext);
   const [alertSpecifications, setAlertSpecifications] = useState({
     type: "",
@@ -63,6 +65,7 @@ export const Login = () => {
     const URL = "http://localhost:8080/login";
     fetch(URL, {
       method: "POST",
+      credentials: "include",
       headers: {
         "Content-Type": "application/json",
       },
@@ -71,7 +74,10 @@ export const Login = () => {
       .then((response) => response.json())
       .then((data) => {
         if (data.success) {
-          setUserCredentials({ ...data.user, isLoggedIn: true });
+          const object = data.user;
+          const objectString = JSON.stringify(object);
+          Cookies.set("userCredentials", objectString);
+          setIsLoggedIn(Cookies.get("isLoggedIn"));
           navigate("/userpage");
         } else {
           navigate("/");
@@ -155,7 +161,7 @@ export const Login = () => {
           >
             Sign Up
           </Button>
-          </LoginButtonsDiv>
+        </LoginButtonsDiv>
       </LoginContainerDiv>
     </ContainerDiv>
   );

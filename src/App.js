@@ -15,6 +15,7 @@ import { AppContext } from "./components/AppContext";
 import { MissionDetails } from "./components/MissionDetails";
 import { AboutPage } from "./components/AboutPage";
 import { HelpPage } from "./components/HelpPage";
+import Cookies from "js-cookie";
 import userEvent from "@testing-library/user-event";
 
 function App() {
@@ -24,21 +25,14 @@ function App() {
   const [usersArray, setUsersArray] = useState([]);
   const [searchBarText, setSearchBarText] = useState("");
   const [favoriteMissions, setFavoriteMissions] = useState([]);
-  const [userCredentials, setUserCredentials] = useState({
-    username: "",
-    password: "",
-    first_name: "",
-    last_name: "",
-    email: "",
-    id: 0,
-    isLoggedIn: false
-  });
+  const [userCredentials, setUserCredentials] = useState({});
+  const [isLoggedIn, setIsLoggedIn] = useState(Cookies.get("isLoggedIn"));
   const [missionCreatedAlert, setMissionCreatedAlert] = useState(false);
+  const [userMissions, setUserMissions] = useState([]);
   const [missionEditedAlert, setMissionEditedAlert] = useState(false);
   const [userLoginInfo, setUserLoginInfo] = useState({
     username: "",
     password: "",
-    
   });
 
   const getMissionData = async () => {
@@ -52,6 +46,23 @@ function App() {
     const data = await res.json();
     setUsersArray(data);
   };
+
+  const cookieCheck = () => {
+    const cookie = Cookies.get("userCredentials");
+    if (Cookies.get("userCredentials") === undefined) {
+      setUserCredentials({});
+    } else {
+      const parsed = JSON.parse(cookie);
+      setUserCredentials(parsed);
+    }
+  };
+
+  useEffect(() => {
+    cookieCheck();
+  }, [isLoggedIn]);
+
+  console.log(userCredentials);
+  console.log(isLoggedIn);
 
   useEffect(() => {
     getUserData();
@@ -78,7 +89,11 @@ function App() {
     missionCreatedAlert,
     setMissionCreatedAlert,
     missionEditedAlert,
-    setMissionEditedAlert
+    setMissionEditedAlert,
+    userMissions,
+    setUserMissions,
+    isLoggedIn,
+    setIsLoggedIn,
   };
 
   return (
@@ -86,8 +101,14 @@ function App() {
       <Router>
         <MissionNavBar />
         <Routes>
-          <Route path="/" element={<Login />}></Route>
-          <Route path="/userpage" element={userCredentials.isLoggedIn ? <UserPage /> : <Login />}
+          <Route
+            path="/"
+            element={isLoggedIn ? <UserPage /> : <Login />}
+          ></Route>
+          {/* <Route path="/userpage" element={<UserPage />}></Route> */}
+          <Route
+            path="/userpage"
+            element={isLoggedIn ? <UserPage /> : <Login />}
           ></Route>
           <Route path="/help" element={<HelpPage />}></Route>
           <Route path="/about" element={<AboutPage />}></Route>

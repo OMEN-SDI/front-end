@@ -81,8 +81,11 @@ export const UserPage = () => {
     favoriteMissions,
     setFavoriteMissions,
     setSearchResultsArray,
+    userMissions,
+    setUserMissions,
+    isLoggedIn,
   } = useContext(AppContext);
-  const [userMissions, setUserMissions] = useState([]);
+
   const navigate = useNavigate();
 
   const getFavoriteMissions = async () => {
@@ -93,21 +96,6 @@ export const UserPage = () => {
     setFavoriteMissions(data);
   };
 
-  // const handleAlert = () => {
-  //   setFavoritesCreatedAlert(true);
-  //  (() => {
-  //     setFavoritesCreatedAlert(false);
-  //   }, 2000);
-  // };
-
-  // useEffect(() => {
-  //   const timeout = setTimeout(() => {
-  //     console.log('This will be called after 2 seconds');
-  //   }, 2000);
-
-  //   return () => clearTimeout(timeout);
-  // }, []);
-
   useEffect(() => {
     const specificUserMissions = missionsArray.filter((mission) => {
       if (mission.user_id === userCredentials.id) {
@@ -116,8 +104,7 @@ export const UserPage = () => {
     });
     setUserMissions(specificUserMissions);
     getFavoriteMissions();
-    // console.log("useeffect in userpage ran");
-  }, [missionsArray]);
+  }, [missionsArray, userCredentials]);
 
   function ModalPop() {
     const [modalShow, setModalShow] = useState(false);
@@ -137,10 +124,16 @@ export const UserPage = () => {
         <CreateMissionDiv variant="primary" onClick={() => setModalShow(true)}>
           Create New Mission
         </CreateMissionDiv>
-        <MissionModal show={modalShow} onHide={() => setModalShow(false)} mode='create' />
+        <MissionModal
+          show={modalShow}
+          onHide={() => setModalShow(false)}
+          mode="create"
+         />
       </ButtonsDiv>
     );
   }
+  console.log("cookie in app", userCredentials);
+  console.log("cookie in app", isLoggedIn);
 
   return (
     <ContainerDiv>

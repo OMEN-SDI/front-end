@@ -9,9 +9,16 @@ import NavDropdown from "react-bootstrap/NavDropdown";
 import Offcanvas from "react-bootstrap/Offcanvas";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Styled from "styled-components";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import { Logout } from "./Logout";
 import { ButtonGroup } from "react-bootstrap";
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+  Link,
+  useNavigate,
+} from "react-router-dom";
 
 const NavBarHeader = Styled.div`
 display: flex;
@@ -46,7 +53,6 @@ font-style: italic;
 `;
 
 export const MissionNavBar = () => {
-
   const navigate = useNavigate();
   const {
     individualMissionDetails,
@@ -60,6 +66,7 @@ export const MissionNavBar = () => {
     searchBarText,
     setSearchBarText,
     userCredentials,
+    isLoggedIn,
   } = useContext(AppContext);
 
   // useEffect(() => {
@@ -68,8 +75,8 @@ export const MissionNavBar = () => {
 
   const Logout = () => {
     localStorage.clear();
-    window.location.href = '/';
-  }
+    window.location.href = "/";
+  };
 
   return (
     <>
@@ -77,7 +84,7 @@ export const MissionNavBar = () => {
         <BannerImage src="./images/banner-logo.png" alt="Whoops" />
         {/* <LogoImage src="./images/dragon.png" alt="Whoops" /> */}
       </NavBarHeader>
-      {!userCredentials.isLoggedIn ? (
+      {!isLoggedIn ? (
         <></>
       ) : (
         [false].map((expand) => (
@@ -108,7 +115,7 @@ export const MissionNavBar = () => {
                         mission.msn_title.toLowerCase().includes(searchBarText)
                       )
                     );
-                    console.log('missions Arrays: ', missionsArray);
+                    console.log("missions Arrays: ", missionsArray);
                     console.log(
                       missionsArray.filter((mission) =>
                         mission.msn_title.toLowerCase().includes(searchBarText)
@@ -155,20 +162,48 @@ export const MissionNavBar = () => {
                   </Button>
                 </Form>
                 <ButtonGroup aria-label="Basic example">
-                  <Button variant="secondary" onClick={()=>{
-                    console.log(missionsArray.filter(msn => msn.msn_id === 1));
-                    setSearchResultsArray(missionsArray.filter(msn => msn.msn_type === 1));
-                    navigate('/searchresults')
-                  }}>Security Forces</Button>
-                  <Button variant="secondary" onClick={()=>{
-                    console.log(missionsArray.filter(msn => msn.msn_id === 1));
-                    setSearchResultsArray(missionsArray.filter(msn => msn.msn_type === 2));
-                    navigate('/searchresults')}}
-                    >Anti-Submarine Warfare</Button>
-                  <Button variant="secondary" onClick={()=>{
-                    console.log(missionsArray.filter(msn => msn.msn_id === 1));
-                    setSearchResultsArray(missionsArray.filter(msn => msn.msn_type === 3));
-                    navigate('/searchresults')}}>Close Air Support</Button>
+                  <Button
+                    variant="secondary"
+                    onClick={() => {
+                      console.log(
+                        missionsArray.filter((msn) => msn.msn_id === 1)
+                      );
+                      setSearchResultsArray(
+                        missionsArray.filter((msn) => msn.msn_type === 1)
+                      );
+                      navigate("/searchresults");
+                    }}
+                  >
+                    Security Forces
+                  </Button>
+                  <Button
+                    variant="secondary"
+                    onClick={() => {
+                      console.log(
+                        missionsArray.filter((msn) => msn.msn_id === 1)
+                      );
+                      setSearchResultsArray(
+                        missionsArray.filter((msn) => msn.msn_type === 2)
+                      );
+                      navigate("/searchresults");
+                    }}
+                  >
+                    Anti-Submarine Warfare
+                  </Button>
+                  <Button
+                    variant="secondary"
+                    onClick={() => {
+                      console.log(
+                        missionsArray.filter((msn) => msn.msn_id === 1)
+                      );
+                      setSearchResultsArray(
+                        missionsArray.filter((msn) => msn.msn_type === 3)
+                      );
+                      navigate("/searchresults");
+                    }}
+                  >
+                    Close Air Support
+                  </Button>
                 </ButtonGroup>
               </div>
               <div>
@@ -194,16 +229,16 @@ export const MissionNavBar = () => {
                   </Offcanvas.Header>
                   <Offcanvas.Body>
                     <Nav className="justify-content-end flex-grow-1 pe-3">
-                      {/* <Nav.Link href="/userpage">Home</Nav.Link> */}
-                    <Nav.Link onClick={() => navigate("/userpage")}>Home</Nav.Link>
-                      {/* <Nav.Link onClick={()=>{
-                    console.log(missionsArray.filter(msn => msn.msn_id === 1));
-                    setSearchResultsArray(missionsArray.filter(msn => msn.msn_type === 1));
-                    navigate('/searchresults')
-                  }}>Security Forces</Nav.Link> */}
-                      <Nav.Link href="/help">Help</Nav.Link>
-                      <Nav.Link href="/about">About</Nav.Link>
-                      <Nav.Link onClick={() => { Logout() }}>Log Out</Nav.Link>
+                      <Link to="userpage">Home</Link>
+                      <Link to="help">Help</Link>
+                      <Link to="about">About</Link>
+                      <Nav.Link
+                        onClick={() => {
+                          Logout();
+                        }}
+                      >
+                        Log Out
+                      </Nav.Link>
                     </Nav>
                     <Form className="d-flex"></Form>
                   </Offcanvas.Body>
