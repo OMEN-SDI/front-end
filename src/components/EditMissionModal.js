@@ -7,6 +7,7 @@ import Styled from "styled-components";
 import { AppContext } from "./AppContext";
 import { Form } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
+import url from "./URL";
 
 const SmallInputBox = Styled.input`
 height: 4vh;
@@ -74,7 +75,7 @@ export function EditMissionModal(props) {
 
 
   const getMissionData = async () => {
-    const res = await fetch("http://localhost:8080/missions");
+    const res = await fetch(`${url}/missions`);
     const data = await res.json();
     setMissionsArray(data);
   };
@@ -274,7 +275,7 @@ export function EditMissionModal(props) {
 
           onSubmit={(e) => {
             e.preventDefault();
-            fetch(`http://localhost:8080/missions/${props.mission.msn_id}`, {
+            fetch(`${url}/missions/${props.mission.msn_id}`, {
               method: "PATCH",
               headers: {
                 "Content-Type": "application/json",

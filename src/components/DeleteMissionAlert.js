@@ -1,8 +1,8 @@
 import React, { useState, useContext } from "react";
-import Alert from "react-bootstrap/Alert";
-import Button from "react-bootstrap/Button";
 import { AppContext } from "./AppContext";
 import { useNavigate } from "react-router-dom";
+import { Alert, Button} from "react-bootstrap";
+import url from "./URL";
 
 export const DeleteMissionAlert = ({ msn_id }) => {
   const [show, setShow] = useState(false);
@@ -10,7 +10,7 @@ export const DeleteMissionAlert = ({ msn_id }) => {
   const navigate = useNavigate();
 
   const getMissionData = async () => {
-    const res = await fetch("http://localhost:8080/missions");
+    const res = await fetch(`${url}/missions`);
     const data = await res.json();
     setMissionsArray(data);
   };
@@ -23,7 +23,7 @@ export const DeleteMissionAlert = ({ msn_id }) => {
           <Button
             variant="outline-success"
             onClick={() => {
-              fetch(`http://localhost:8080/missions/${msn_id}`, {
+              fetch(`${url}/missions/${msn_id}`, {
                 method: "DELETE",
                 headers: {
                   "Content-Type": "application/json",

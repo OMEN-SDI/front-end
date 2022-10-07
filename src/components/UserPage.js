@@ -9,6 +9,7 @@ import { EditMissionModalPop } from "./EditMissionModalPop";
 import SimpleBar from "simplebar-react";
 import "simplebar-react/dist/simplebar.min.css";
 import "../App.css";
+import url from "./URL";
 
 const IndividualMission = Styled.div`
     display: flex;
@@ -77,7 +78,7 @@ export const UserPage = () => {
 
   const getFavoriteMissions = async () => {
     const res = await fetch(
-      `http://localhost:8080/favoritemissions/${userCredentials.id}`
+      `${url}/favoritemissions/${userCredentials.id}`
     );
     const data = await res.json();
     setFavoriteMissions(data);

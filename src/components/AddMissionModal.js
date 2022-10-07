@@ -6,6 +6,7 @@ import Row from "react-bootstrap/Row";
 import Styled from "styled-components";
 import { AppContext } from "./AppContext";
 import { Form } from "react-bootstrap";
+import url from "./URL";
 
 const SmallInputBox = Styled.input`
 height: 4vh;
@@ -68,7 +69,7 @@ export function MissionModal(props) {
 
 
   const getMissionData = async () => {
-    const res = await fetch("http://localhost:8080/missions");
+    const res = await fetch(`${url}/missions`);
     const data = await res.json();
     setMissionsArray(data);
   };
@@ -92,7 +93,7 @@ export function MissionModal(props) {
         <Form
           onSubmit={(e) => {
             e.preventDefault();
-            fetch("http://localhost:8080/missions", {
+            fetch(`${url}/missions`, {
               method: "POST",
               headers: {
                 "Content-Type": "application/json",

@@ -3,6 +3,7 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
 import { AppContext } from "./AppContext";
+import url from "./URL";
 
 function SignUpModal(props) {
   const [showPassword, setShowPassword] = useState("password");
@@ -42,7 +43,7 @@ function SignUpModal(props) {
   });
 
   const postNewUser = () => {
-    const URL = "http://localhost:8080/register";
+    const URL = `${url}/register`;
     fetch(URL, {
       method: "POST",
       headers: {

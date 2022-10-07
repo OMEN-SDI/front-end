@@ -15,6 +15,7 @@ import { MissionDetails } from "./components/MissionDetails";
 import { AboutPage } from "./components/AboutPage";
 import { HelpPage } from "./components/HelpPage";
 import Cookies from "js-cookie";
+import url from './components/URL';
 
 function App() {
   const [individualMissionDetails, setIndividualMissionDetails] = useState({});
@@ -34,13 +35,13 @@ function App() {
   });
   const [isLoggedOut, setIsLoggedOut] = useState(false);
   const getMissionData = async () => {
-    const res = await fetch("http://localhost:8080/missions");
+    const res = await fetch(`${url}/missions`);
     const data = await res.json();
     setMissionsArray(data);
   };
 
   const getUserData = async () => {
-    const res = await fetch("http://localhost:8080/users");
+    const res = await fetch(`${url}/users`);
     const data = await res.json();
     setUsersArray(data);
   };

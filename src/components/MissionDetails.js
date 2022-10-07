@@ -11,7 +11,8 @@ import Tooltip from "react-bootstrap/Tooltip";
 import html2canvas from "html2canvas";
 import { DeleteMissionAlert } from "./DeleteMissionAlert";
 import bookMark from '../images/bookmark.png';
-import bookMarkEmpty from '../images/bookmarkempty.png'
+import bookMarkEmpty from '../images/bookmarkempty.png';
+import url from "./URL";
 // example jsPDF import. not sure if we'll need this -ian
   // import { jsPDF } from "jspdf";
 
@@ -65,7 +66,7 @@ export const MissionDetails = () => {
   // })
 
   useEffect(() => {
-    fetch(`http://localhost:8080/favoritemissions/${userCredentials.id}`)
+    fetch(`${url}/favoritemissions/${userCredentials.id}`)
       .then((res) => res.json())
       .then((data) => setFavoriteMissions(data))
       .then(() => favoriteCheck());
@@ -122,7 +123,7 @@ export const MissionDetails = () => {
   }, [isLoading]);
 
   const handleFavoritePost = async () => {
-    await fetch("http://localhost:8080/favoritemissions", {
+    await fetch(`${url}/favoritemissions`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -138,7 +139,7 @@ export const MissionDetails = () => {
   };
 
   const handleFavoriteDelete = () => {
-    fetch("http://localhost:8080/favoritemissions", {
+    fetch(`${url}/favoritemissions`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",

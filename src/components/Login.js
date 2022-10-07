@@ -9,6 +9,7 @@ import Alert from "react-bootstrap/Alert";
 import FloatingLabel from "react-bootstrap/FloatingLabel";
 import { AppContext } from "./AppContext";
 import Cookies from "js-cookie";
+import url from "./URL";
 
 const ContainerDiv = Styled.div`
 height: 100vh;
@@ -58,7 +59,7 @@ export const Login = () => {
   
 
   const postUser = () => {
-    const URL = "http://localhost:8080/login";
+    const URL = `${url}/login`;
     fetch(URL, {
       method: "POST",
       credentials: "include",
