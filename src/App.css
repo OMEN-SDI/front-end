@@ -13,6 +13,15 @@
   }
 }
 
+b{
+  color: red;
+}
+
+#req {
+  font-weight: 100;
+  font-size: medium;
+}
+
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
