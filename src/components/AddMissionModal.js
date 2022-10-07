@@ -85,6 +85,7 @@ export function MissionModal(props) {
       <Modal.Header closeButton>
         <Modal.Title id="contained-modal-title-vcenter">
           Add Mission
+          <div id="req"><b>*</b> - Required</div>
         </Modal.Title>
       </Modal.Header>
       <Modal.Body className="show-grid">
