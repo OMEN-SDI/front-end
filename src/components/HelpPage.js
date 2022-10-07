@@ -28,9 +28,9 @@ border-radius: 6%;
 const HeaderDiv = Styled.div`
 display: flex;
 padding: 0;
-margin: 0;
+margin-top: -1.5%;
 width: 100vw;
-height: 10%;
+height: 11%;
 justify-content: center;
 align-items: center;
 color: #5a4ae3;
