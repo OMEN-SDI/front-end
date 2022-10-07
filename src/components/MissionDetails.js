@@ -10,7 +10,8 @@ import autoTable from "jspdf-autotable";
 import Tooltip from "react-bootstrap/Tooltip";
 import html2canvas from "html2canvas";
 import { DeleteMissionAlert } from "./DeleteMissionAlert";
-
+import bookMark from '../images/bookmark.png';
+import bookMarkEmpty from '../images/bookmarkempty.png'
 // example jsPDF import. not sure if we'll need this -ian
   // import { jsPDF } from "jspdf";
 
@@ -98,6 +99,18 @@ export const MissionDetails = () => {
     </Tooltip>
   );
 
+  const renderMsnType = (type) => {
+    if (type === 1) {
+      return "Security Forces";
+    } 
+    if (type === 2) {
+      return "Anti-Submarine Warfare";
+    } 
+    if (type === 3) {
+      return "Close Air Support";
+    }
+  }
+
   const printRef = React.useRef();
 
   useEffect(() => {
@@ -178,12 +191,12 @@ export const MissionDetails = () => {
                   >
                     {isFavorite ? (
                       <StyledFavorite
-                        src="/images/bookmark.png"
+                        src= {bookMark}
                         onClick={() => handleFavoriteDelete()}
                       />
                     ) : (
                       <StyledFavorite
-                        src="/images/bookmarkempty.png"
+                        src= {bookMarkEmpty}
                         onClick={() => handleFavoritePost()}
                       />
                     )}
@@ -198,7 +211,7 @@ export const MissionDetails = () => {
               </tr>
               <tr>
                 <PropertyTd>Mission Type: </PropertyTd>
-                <td>{individualMissionDetails.msn_type}</td>
+                <td>{renderMsnType(individualMissionDetails.msn_type)}</td>
               </tr>
               <tr>
                 <PropertyTd>Fires: </PropertyTd>
@@ -241,8 +254,8 @@ export const MissionDetails = () => {
                 </td>
               </tr>
               <tr>
-                <PropertyTd>User ID: </PropertyTd>
-                <td>{individualMissionDetails.user_id}</td>
+                <PropertyTd>Created By: </PropertyTd>
+                <td>{userCredentials.username}</td>
               </tr>
               <tr>
                 <PropertyTd>Location: </PropertyTd>

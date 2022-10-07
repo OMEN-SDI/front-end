@@ -3,7 +3,7 @@ import ReactDOM from "react-dom/client";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-import map from "./map.jpg";
+import map from "./images/map.jpg";
 import Styled from "styled-components";
 
 const BackgroundImage = Styled.div`

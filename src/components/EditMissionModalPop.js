@@ -2,7 +2,7 @@ import { useState } from "react";
 import React from "react";
 import Styled from "styled-components";
 import { EditMissionModal } from "./EditMissionModal"
-import editButton from '../dots.png';
+import editButton from '../images/dots.png';
 import { Tooltip, OverlayTrigger } from "react-bootstrap";
 
 const ButtonsDiv = Styled.div`
