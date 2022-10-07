@@ -6,20 +6,36 @@ import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import Container from "react-bootstrap/Container";
 import "bootstrap/dist/css/bootstrap.min.css";
+<<<<<<< HEAD
 import joshPic from '../joshPic.png';
 import boPic from '../boPic.png';
 import markPic from '../markPic.png';
 import ianPic from '../ianPic.jpg';
 import githubLogo from '../githubLogo.png';
+=======
+import boPic from "../images/Bo.JPG";
+import joshPic from "../images/Image from iOS.jpg";
+import markPic from "../images/MS Picture.jpg";
+import ianPic from "../images/github pic.jpg"
+>>>>>>> b7d8e013cc1c558da53f9ddf9599b4aff762c229
 
 const ContainerDiv = Styled.div`
 display: flex;
 flex-wrap: wrap;
+<<<<<<< HEAD
 justify-content: space-around;
 min-height: 81vh;
 flex-direction: row;
 row-gap: 5vh;
 margin-top: 2vh;
+=======
+justify-content: center;
+height: 100vh;
+flex-direction: row;
+row-gap: 5vh;
+margin-top: 5%;
+
+>>>>>>> b7d8e013cc1c558da53f9ddf9599b4aff762c229
 `;
 
 const InputStyleDiv = Styled.div`
@@ -33,6 +49,7 @@ flex-direction: column;
 margin-left: 5%;
 `;
 
+<<<<<<< HEAD
 const CeoPic = Styled.img`
 height: 15vh;
 width: 15vh;
@@ -70,6 +87,11 @@ const FooterDiv = Styled.div`
     font-weight: 500;
     font-style: italic;
     color: white;
+=======
+const StyledImage = Styled.img`
+height: 150px;
+width: 150px;
+>>>>>>> b7d8e013cc1c558da53f9ddf9599b4aff762c229
 `;
 
 const ceos = [
@@ -101,14 +123,23 @@ export const AboutPage = () => {
         <>
         <TitleDiv>The Omen Team</TitleDiv>
         <ContainerDiv>
+<<<<<<< HEAD
            
+=======
+
+>>>>>>> b7d8e013cc1c558da53f9ddf9599b4aff762c229
             {ceos.map((ceo) => {
                 return (
                     
                     <Card
                     // Match card style to mission cards
                         className="bg-secondary text-white"
+<<<<<<< HEAD
                         style={{ width: "40vw", height: "23vh", cursor: "pointer" }}
+=======
+                        style={{ display: "flex",  cursor: "pointer"  }}
+                        // width: "40%", height: "23%",
+>>>>>>> b7d8e013cc1c558da53f9ddf9599b4aff762c229
                     >
                         <Card.Header className="bg-dark text-white">
                             {ceo.name}
@@ -116,7 +147,11 @@ export const AboutPage = () => {
                         <Card.Body className="show-grid">
                             <Container>
                                 <InputStyleDiv>
+<<<<<<< HEAD
                                 <CeoPic src={ceo.image} alt={ceo.image}/>
+=======
+                                <StyledImage src={ceo.image} alt={ceo.image}/>
+>>>>>>> b7d8e013cc1c558da53f9ddf9599b4aff762c229
                                  
                                     <InputColDiv>
                                         <Card.Title>{ceo.about}</Card.Title>
