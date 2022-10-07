@@ -21,7 +21,7 @@ import {
 
 const NavBarHeader = Styled.div`
 display: flex;
-justify-content: center;
+justify-content: right;
 align-items: center;
 height: 8vh;
 padding-right: 0.5vw;
@@ -79,7 +79,9 @@ export const MissionNavBar = () => {
   return (
     <>
       <NavBarHeader>
-        <BannerImage src="./images/banner-logo.png" alt="Whoops" />
+      <Link to="/">
+      <BannerImage src="./images/banner-logo.png" alt="Whoops" />
+      </Link>        
       </NavBarHeader>
       {!isLoggedIn ? (
         <></>
