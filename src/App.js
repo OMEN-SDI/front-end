@@ -27,12 +27,12 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(Cookies.get("isLoggedIn"));
   const [missionCreatedAlert, setMissionCreatedAlert] = useState(false);
   const [userMissions, setUserMissions] = useState([]);
-  const [missionAlertMessage, setMissionAlertMessage] = useState("")
+  const [missionAlertMessage, setMissionAlertMessage] = useState("");
   const [userLoginInfo, setUserLoginInfo] = useState({
     username: "",
     password: "",
   });
-  const [ isLoggedOut, setIsLoggedOut ] = useState(false);
+  const [isLoggedOut, setIsLoggedOut] = useState(false);
   const getMissionData = async () => {
     const res = await fetch("http://localhost:8080/missions");
     const data = await res.json();

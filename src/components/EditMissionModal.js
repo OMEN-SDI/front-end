@@ -91,6 +91,7 @@ export function EditMissionModal(props) {
       <Modal.Header closeButton>
         <Modal.Title id="contained-modal-title-vcenter">
           Edit Mission
+          <div id="req"><b>*</b> Required</div>
         </Modal.Title>
       </Modal.Header>
       <Modal.Body className="show-grid">
@@ -128,7 +129,7 @@ export function EditMissionModal(props) {
           <Row>
             <InputStyleRow>
               <InputColDiv>
-                <Col>Mission Title</Col>
+                <Col>Mission Title<b>*</b></Col>
                 <SmallInputBox
                   type="text"
                   value={missionTitle}
@@ -139,7 +140,7 @@ export function EditMissionModal(props) {
                 ></SmallInputBox>
               </InputColDiv>
               <InputColDiv>
-                <Col>Mission Type</Col>
+                <Col>Mission Type<b>*</b></Col>
                 <Form.Select
                   required
                   aria-label="Default select example"
