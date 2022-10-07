@@ -74,6 +74,7 @@ export const Login = () => {
           const object = data.user;
           const objectString = JSON.stringify(object);
           Cookies.set("userCredentials", objectString);
+          Cookies.set("isLoggedIn", true);
           setIsLoggedIn(Cookies.get("isLoggedIn"));
           navigate("/userpage");
         } else {
