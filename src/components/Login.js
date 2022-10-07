@@ -46,6 +46,7 @@ const LoginButtonsDiv = Styled.div`
 
 export const Login = () => {
   const navigate = useNavigate();
+  const [showPassword, setShowPassword] = useState("password");
   const [lgShow, setLgShow] = useState(false);
   const [showAlert, setShowAlert] = useState(false);
   const [alertSpecifications, setAlertSpecifications] = useState({
@@ -144,8 +145,8 @@ export const Login = () => {
           </FloatingLabel>
           <FloatingLabel controlId="floatingPassword" label="Password">
             <Form.Control
-              type="password"
-              placeholder="Password"
+              type={showPassword}
+              placeholder={showPassword}
               value={userLoginInfo.password}
               onChange={(e) =>
                 setUserLoginInfo({
@@ -154,8 +155,19 @@ export const Login = () => {
                 })
               }
             />
+            <Form.Check
+              style={{ paddingTop: "1vh", color: "white" }}
+              type="checkbox"
+              label="Show Password"
+              onClick={() =>
+                showPassword === "password"
+                  ? setShowPassword("text")
+                  : setShowPassword("password")
+              }
+            />
           </FloatingLabel>
         </LoginBoxes>
+
         <LoginButtonsDiv>
           <Button
             variant="dark"

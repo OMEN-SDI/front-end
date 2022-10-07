@@ -31,7 +31,6 @@ function SignUpModal(props) {
     }  else {
       props.setShowAlert(false);
     }
-    // setShowMessage("");
   }, [showMessage]);
 
   const [user, SetUser] = useState({
