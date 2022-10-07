@@ -10,7 +10,8 @@ import autoTable from "jspdf-autotable";
 import Tooltip from "react-bootstrap/Tooltip";
 import html2canvas from "html2canvas";
 import { DeleteMissionAlert } from "./DeleteMissionAlert";
-
+import bookMark from '../images/bookmark.png';
+import bookMarkEmpty from '../images/bookmarkempty.png'
 // example jsPDF import. not sure if we'll need this -ian
   // import { jsPDF } from "jspdf";
 
@@ -178,12 +179,12 @@ export const MissionDetails = () => {
                   >
                     {isFavorite ? (
                       <StyledFavorite
-                        src="/images/bookmark.png"
+                        src= {bookMark}
                         onClick={() => handleFavoriteDelete()}
                       />
                     ) : (
                       <StyledFavorite
-                        src="/images/bookmarkempty.png"
+                        src= {bookMarkEmpty}
                         onClick={() => handleFavoritePost()}
                       />
                     )}

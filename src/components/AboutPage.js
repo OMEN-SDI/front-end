@@ -18,8 +18,6 @@ justify-content: center;
 height: 100vh;
 flex-direction: row;
 row-gap: 5vh;
-margin-top: 5%;
-
 `;
 
 const InputStyleDiv = Styled.div`
