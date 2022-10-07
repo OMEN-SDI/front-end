@@ -1,12 +1,14 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
+import { AppContext } from "./AppContext";
 
 function SignUpModal(props) {
   const [showPassword, setShowPassword] = useState("password");
   const [showMessage, setShowMessage] = useState("");
   const [validated, setValidated] = useState(false);
+  const { isLoggedOut } = useContext(AppContext);
 
   const handleSubmit = (event) => {
     const form = event.currentTarget;
@@ -26,7 +28,7 @@ function SignUpModal(props) {
         alertMessage: "User successfully created!",
       });
       props.setShowAlert(true);
-    } else {
+    }  else {
       props.setShowAlert(false);
     }
   }, [showMessage]);

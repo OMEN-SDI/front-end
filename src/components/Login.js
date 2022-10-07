@@ -2,7 +2,7 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Styled from "styled-components";
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import SignUpModal from "./SignUpModal";
 import Alert from "react-bootstrap/Alert";
@@ -49,12 +49,13 @@ export const Login = () => {
   const [showPassword, setShowPassword] = useState("password");
   const [lgShow, setLgShow] = useState(false);
   const [showAlert, setShowAlert] = useState(false);
-  const { userLoginInfo, setUserLoginInfo, setIsLoggedIn } =
-    useContext(AppContext);
   const [alertSpecifications, setAlertSpecifications] = useState({
     type: "",
     alertMessage: "",
   });
+  const { userLoginInfo, setUserLoginInfo, setIsLoggedIn, isLoggedOut } =
+    useContext(AppContext);
+  
 
   const postUser = () => {
     const URL = "http://localhost:8080/login";
@@ -88,6 +89,23 @@ export const Login = () => {
       });
   };
 
+  const logOutCheck = () => {
+
+    if (isLoggedOut) {
+     setAlertSpecifications({
+       type: "success",
+       alertMessage: "Successfully Logged Out!",
+     });
+     setShowAlert(true)
+   }
+   console.log(alertSpecifications)
+  }
+
+  useEffect(() => {
+    logOutCheck()
+  }, [])
+
+
   return (
     <ContainerDiv>
       <SignUpModal
@@ -103,6 +121,7 @@ export const Login = () => {
           variant={alertSpecifications.type}
           show={showAlert}
           onHide={() => setShowAlert(false)}
+          style={{textAlign: "center"}}
         >
           {alertSpecifications.alertMessage}
         </Alert>
