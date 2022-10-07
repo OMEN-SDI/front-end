@@ -76,7 +76,7 @@ const AccordionDetails = styled(MuiAccordionDetails)(({ theme }) => ({
 }));
 
 export const HelpPage = () => {
-    const [expanded, setExpanded] = React.useState('panel1');
+    const [expanded, setExpanded] = React.useState('');
 
     const handleChange = (panel) => (event, newExpanded) => {
         setExpanded(newExpanded ? panel : false);
@@ -120,7 +120,7 @@ export const HelpPage = () => {
                     </AccordionDetails>
                 </Accordion>
                 <Accordion expanded={expanded === 'panel4'} onChange={handleChange('panel4')}>
-                    <AccordionSummary aria-controls="panel3d-content" id="panel3d-header">
+                    <AccordionSummary aria-controls="panel4d-content" id="panel4d-header">
                         <Typography>4. How do I search for a mission?</Typography>
                     </AccordionSummary>
                     <AccordionDetails>
@@ -130,7 +130,7 @@ export const HelpPage = () => {
                     </AccordionDetails>
                 </Accordion>
                 <Accordion expanded={expanded === 'panel5'} onChange={handleChange('panel5')}>
-                    <AccordionSummary aria-controls="panel3d-content" id="panel3d-header">
+                    <AccordionSummary aria-controls="panel5d-content" id="panel5d-header">
                         <Typography>5. How do I only see missions for my career field?</Typography>
                     </AccordionSummary>
                     <AccordionDetails>
@@ -140,7 +140,7 @@ export const HelpPage = () => {
                     </AccordionDetails>
                 </Accordion>
                 <Accordion expanded={expanded === 'panel6'} onChange={handleChange('panel6')}>
-                    <AccordionSummary aria-controls="panel3d-content" id="panel3d-header">
+                    <AccordionSummary aria-controls="panel6d-content" id="panel6d-header">
                         <Typography>6. How do I print mission details to take out on a mission?</Typography>
                     </AccordionSummary>
                     <AccordionDetails>
@@ -151,7 +151,7 @@ export const HelpPage = () => {
                     </AccordionDetails>
                 </Accordion>
                 <Accordion expanded={expanded === 'panel7'} onChange={handleChange('panel7')}>
-                    <AccordionSummary aria-controls="panel3d-content" id="panel3d-header">
+                    <AccordionSummary aria-controls="panel7d-content" id="panel7d-header">
                         <Typography>7. How do I print a map to take out on a mission?</Typography>
                     </AccordionSummary>
                     <AccordionDetails>
