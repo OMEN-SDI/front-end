@@ -14,10 +14,7 @@ justify-content: space-around;
 min-height: 81vh;
 flex-direction: row;
 row-gap: 5vh;
-<<<<<<< HEAD
-=======
 margin-top: 2vh;
->>>>>>> 3fed4cd70c6246726fb170d499e7204cf8009170
 `;
 
 const InputStyleDiv = Styled.div`
