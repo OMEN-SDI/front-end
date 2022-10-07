@@ -32,7 +32,7 @@ function App() {
     username: "",
     password: "",
   });
-
+  const [ isLoggedOut, setIsLoggedOut ] = useState(false);
   const getMissionData = async () => {
     const res = await fetch("http://localhost:8080/missions");
     const data = await res.json();
@@ -95,7 +95,9 @@ function App() {
     isLoggedIn,
     setIsLoggedIn,
     missionAlertMessage,
-    setMissionAlertMessage
+    setMissionAlertMessage,
+    isLoggedOut,
+    setIsLoggedOut,
   };
 
   return (

@@ -6,14 +6,19 @@ import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import Container from "react-bootstrap/Container";
 import "bootstrap/dist/css/bootstrap.min.css";
+import boPic from "../images/Bo.JPG";
+import joshPic from "../images/Image from iOS.jpg";
+import markPic from "../images/MS Picture.jpg";
+import ianPic from "../images/github pic.jpg"
 
 const ContainerDiv = Styled.div`
 display: flex;
 flex-wrap: wrap;
-justify-content: space-around;
-height: 85vh;
+justify-content: center;
+height: 100vh;
 flex-direction: row;
 row-gap: 5vh;
+margin-top: 5%;
 
 `;
 
@@ -29,26 +34,31 @@ flex-direction: column;
 margin-left: 5%;
 `;
 
+const StyledImage = Styled.img`
+height: 150px;
+width: 150px;
+`;
+
 const ceos = [
     {
         name: 'Joshua Clodfelter',
         about: 'Software Developer',
-        image: 'imagehere'
+        image: joshPic
     },
     {
         name: 'Bo Bodenbender',
         about: 'Software Developer',
-        image: 'imagehere'
+        image: boPic
     },
     {
         name: 'Mark Scarna',
         about: 'Software Developer',
-        image: 'imagehere'
+        image: markPic
     },
     {
         name: 'Ian Gardocki',
         about: 'Software Developer and Bioengineer',
-        image: 'imagehere'
+        image: ianPic
     },
 ]
 
@@ -56,12 +66,12 @@ export const AboutPage = () => {
     return (
         <ContainerDiv>
 
-            {/* <div> This is the about page. Bo has a cool mustache.</div> */}
             {ceos.map((ceo) => {
                 return (
                     <Card
                         className="bg-secondary text-white"
-                        style={{ width: "40%", height: "23%", cursor: "pointer" }}
+                        style={{ display: "flex",  cursor: "pointer"  }}
+                        // width: "40%", height: "23%",
                     >
                         <Card.Header className="bg-dark text-white">
                             {ceo.name}
@@ -69,7 +79,7 @@ export const AboutPage = () => {
                         <Card.Body className="show-grid">
                             <Container>
                                 <InputStyleDiv>
-                                <img src={ceo.image} alt={ceo.image}/>
+                                <StyledImage src={ceo.image} alt={ceo.image}/>
                                  
                                     <InputColDiv>
                                         <Card.Title>{ceo.about}</Card.Title>
