@@ -6,6 +6,9 @@ import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import Container from "react-bootstrap/Container";
 import "bootstrap/dist/css/bootstrap.min.css";
+import SimpleBar from "simplebar-react";
+import "simplebar-react/dist/simplebar.min.css";
+import "../App.css";
 
 const ContainerDiv = Styled.div`
     display: flex;
@@ -36,7 +39,7 @@ export const SearchResults = () => {
       {searchResultsArray.map((mission) => {
         return (
           <Card
-            style={{ minWidth: "60vw", height: "auto", cursor: "pointer" }}
+            style={{ width: "70vw", height: "auto", cursor: "pointer" }}
             onClick={() => {
               setIndividualMissionDetails(mission);
               navigate(`/missiondetails/${mission.msn_id}`);
