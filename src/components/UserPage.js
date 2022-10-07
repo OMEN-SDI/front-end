@@ -138,7 +138,7 @@ export const UserPage = () => {
           borderRadius: "20px",
         }}
       >
-        My Missions
+        Mission Dashboard
         {userMissions.map((mission) => {
           return (
             <IndividualMission key={mission.msn_id}>
