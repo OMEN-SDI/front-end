@@ -18,7 +18,7 @@ import {
   Link,
   useNavigate,
 } from "react-router-dom";
-import Logo from '../images/banner-logo.png'
+import Logo from "../images/banner-logo.png";
 
 const NavBarHeader = Styled.div`
 display: flex;
@@ -54,7 +54,7 @@ font-style: italic;
 
 export const MissionNavBar = () => {
   const navigate = useNavigate();
-  
+
   const {
     individualMissionDetails,
     setIndividualMissionDetails,
@@ -69,7 +69,7 @@ export const MissionNavBar = () => {
     userCredentials,
     isLoggedIn,
     setIsLoggedIn,
-    setIsLoggedOut
+    setIsLoggedOut,
   } = useContext(AppContext);
 
   const logout = () => {
@@ -82,9 +82,9 @@ export const MissionNavBar = () => {
   return (
     <>
       <NavBarHeader>
-      <Link to="/">
-      <BannerImage src={Logo} alt="Whoops" />
-      </Link>        
+        <Link to="/">
+          <BannerImage src={Logo} alt="Whoops" />
+        </Link>
       </NavBarHeader>
       {!isLoggedIn ? (
         <></>
@@ -190,7 +190,7 @@ export const MissionNavBar = () => {
                   <Offcanvas.Body>
                     <Nav className="justify-content-end flex-grow-1 pe-3">
                       <Nav.Link as={Link} to="userpage" eventKey="1">
-                        Home
+                        Dashboard
                       </Nav.Link>
                       <NavDropdown
                         title="Missions"

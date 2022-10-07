@@ -57,7 +57,6 @@ const ButtonsDiv = Styled.div`
 `;
 
 export const UserPage = () => {
-  
   const {
     missionsArray,
     userCredentials,
@@ -71,7 +70,7 @@ export const UserPage = () => {
     setUserMissions,
     isLoggedIn,
     missionAlertMessage,
-    setMissionAlertMessage
+    setMissionAlertMessage,
   } = useContext(AppContext);
 
   const navigate = useNavigate();
@@ -105,7 +104,7 @@ export const UserPage = () => {
           onClose={() => setMissionCreatedAlert(false)}
           style={{ width: "20vw", textAlign: "center" }}
         >
-         {missionAlertMessage}
+          {missionAlertMessage}
         </Alert>
 
         <CreateMissionDiv variant="primary" onClick={() => setModalShow(true)}>
@@ -136,9 +135,10 @@ export const UserPage = () => {
           alignItems: "center",
           opacity: "80%",
           rowGap: "10px",
+          borderRadius: "20px",
         }}
       >
-        My Missions
+        Mission Dashboard
         {userMissions.map((mission) => {
           return (
             <IndividualMission key={mission.msn_id}>
