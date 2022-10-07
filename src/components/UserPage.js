@@ -112,7 +112,11 @@ export const UserPage = () => {
         </CreateMissionDiv>
         <MissionModal
           show={modalShow}
-          onHide={() => setModalShow(false)}
+          onHide={() => {
+            //trying to troubleshoot the edit modal mission hide issue
+            console.log('add msn modal onhide hit')
+            setModalShow(false)
+          }}
           mode="create"
         />
       </ButtonsDiv>

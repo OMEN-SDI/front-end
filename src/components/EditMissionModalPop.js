@@ -34,7 +34,13 @@ export const EditMissionModalPop = ({ mission }) => {
       >
         <StyledEditButton src={editButton} onClick={() => setModalShow(true)} />
       </OverlayTrigger>
-      <EditMissionModal show={modalShow} onHide={() => setModalShow(false)} mission={mission} />
+      <EditMissionModal show={modalShow} onHide={() => {
+        //trying to troubleshoot hide issue -ian
+        console.log('onhide hit')
+        setModalShow(false)
+      }
+
+      } mission={mission} />
     </ButtonsDiv>
   );
 }

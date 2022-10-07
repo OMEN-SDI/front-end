@@ -86,61 +86,237 @@ export function EditMissionModal(props) {
     }, 2000);
   };
 
+  // console.log('props.show:', props);
+  // console.log('props.ognhide:', props.onHide);
   return (
+
+    // <Modal size="xl" {...props} aria-labelledby="contained-modal-title-vcenter">
+    //   <Modal.Header closeButton>
+    //     <Modal.Title id="contained-modal-title-vcenter">
+    //       Add Mission
+    //       <div id="req"><b>*</b> Required</div>
+    //     </Modal.Title>
+    //   </Modal.Header>
+    //   <Modal.Body className="show-grid">
+    //     <Form
+    //       onSubmit={(e) => {
+    //         e.preventDefault();
+    //         fetch("http://localhost:8080/missions", {
+    //           method: "POST",
+    //           headers: {
+    //             "Content-Type": "application/json",
+    //           },
+    //           body: JSON.stringify({
+    //             assets: assets,
+    //             comms: comms,
+    //             fires: fires,
+    //             intel: intel,
+    //             key_grids: keyGrids,
+    //             latitude: latitude,
+    //             location: location,
+    //             longitude: longitude,
+    //             msn_obj: missionObjectives,
+    //             msn_title: missionTitle,
+    //             msn_type: missionType,
+    //             situation: situation,
+    //             supporting_players: supportingPlayers,
+    //             user_id: userCredentials.id,
+    //           }),
+    //         })
+    //           .then(() => getMissionData())
+    //           .then(() => setMissionAlertMessage("Mission Created!"))
+    //           .then(() => handleVisible());
+    //       }}
+    //     >
+    //       <Row>
+    //         <InputStyleRow>
+    //           <InputColDiv>
+    //             <Col>Mission Title <b>*</b></Col>
+    //             <SmallInputBox
+    //               type="text"
+    //               onChange={(e) => setMissionTitle(e.target.value)}
+    //               required
+    //             ></SmallInputBox>
+    //           </InputColDiv>
+    //           <InputColDiv>
+    //             <Col>Mission Type <b>*</b></Col>
+    //             <Form.Select
+    //               required
+    //               aria-label="Default select example"
+    //               onChange={(e) => {
+    //                 setMissionType(e.target.value);
+    //               }}
+    //             >
+    //               <option value="">Select Mission Type</option>
+    //               <option value="1">Security Forces</option>
+    //               <option value="2">Anti-Submarine Warfare</option>
+    //               <option value="3">Close Air Support</option>
+    //             </Form.Select>
+    //           </InputColDiv>
+    //         </InputStyleRow>
+    //       </Row>
+    //       <br></br>
+    //       <Row>
+    //         <InputStyleRow>
+    //           <InputColDiv>
+    //             <Col>Fires</Col>
+    //             <LargeInputArea
+    //               onChange={(e) => setFires(e.target.value)}
+    //             ></LargeInputArea>
+    //           </InputColDiv>
+    //           <InputColDiv>
+    //             <Col>Mission Objectives</Col>
+    //             <LargeInputArea
+    //               onChange={(e) => setMissionObjectives(e.target.value)}
+    //             ></LargeInputArea>
+    //           </InputColDiv>
+    //         </InputStyleRow>
+    //       </Row>
+    //       <br></br>
+    //       <Row>
+    //         <InputStyleRow>
+    //           <InputColDiv>
+    //             <Col>Assets</Col>
+    //             <LargeInputArea
+    //               onChange={(e) => setAssets(e.target.value)}
+    //             ></LargeInputArea>
+    //           </InputColDiv>
+    //           <InputColDiv>
+    //             <Col>Intel</Col>
+    //             <LargeInputArea
+    //               onChange={(e) => setIntel(e.target.value)}
+    //             ></LargeInputArea>
+    //           </InputColDiv>
+    //         </InputStyleRow>
+    //       </Row>
+    //       <br></br>
+    //       <Row>
+    //         <InputStyleRow>
+    //           <InputColDiv>
+    //             <Col>Key Grids</Col>
+    //             <MediumInputArea
+    //               onChange={(e) => setKeyGrids(e.target.value)}
+    //             ></MediumInputArea>
+    //           </InputColDiv>
+    //           <InputColDiv>
+    //             <Col>Supporting Players</Col>
+    //             <MediumInputArea
+    //               onChange={(e) => setSupportingPlayers(e.target.value)}
+    //             ></MediumInputArea>
+    //           </InputColDiv>
+    //           <InputColDiv>
+    //             <Col>Situation</Col>
+    //             <MediumInputArea
+    //               onChange={(e) => setSituation(e.target.value)}
+    //             ></MediumInputArea>
+    //           </InputColDiv>
+    //         </InputStyleRow>
+    //       </Row>
+    //       <br></br>
+    //       <Row>
+    //         <InputStyleRow>
+    //           <InputColDiv>
+    //             <Col>Comms</Col>
+    //             <SmallInputBox
+    //               type="text"
+    //               onChange={(e) => setComms(e.target.value)}
+    //             ></SmallInputBox>
+    //           </InputColDiv>
+    //           <InputColDiv>
+    //             <Col>Latitude</Col>
+    //             <SmallInputBox
+    //               type="text"
+    //               onChange={(e) => setLatitude(e.target.value)}
+    //             ></SmallInputBox>
+    //           </InputColDiv>
+    //           <InputColDiv>
+    //             <Col>Longitude</Col>
+    //             <SmallInputBox
+    //               type="text"
+    //               onChange={(e) => setLongitude(e.target.value)}
+    //             ></SmallInputBox>
+    //           </InputColDiv>
+    //           <InputColDiv>
+    //             <Col>Location</Col>
+    //             <SmallInputBox
+    //               type="text"
+    //               onChange={(e) => setLocation(e.target.value)}
+    //             ></SmallInputBox>
+    //           </InputColDiv>
+    //         </InputStyleRow>
+    //       </Row>
+    //       <SubmitButtonDiv>
+    //         <Button type="submit">Submit</Button>
+    //       </SubmitButtonDiv>
+    //     </Form>
+    //   </Modal.Body>
+    //   <Modal.Footer></Modal.Footer>
+    // </Modal>
+
+
+
+
+
+
+
+
+
+
+
     <Modal size="xl" {...props} aria-labelledby="contained-modal-title-vcenter">
       <Modal.Header closeButton>
         <Modal.Title id="contained-modal-title-vcenter">
           Edit Mission
-          <div id="req"><b>*</b> Required</div>
         </Modal.Title>
       </Modal.Header>
       <Modal.Body className="show-grid">
         <Form
-      
-        onSubmit={(e) => {
-          e.preventDefault();
-          fetch(`http://localhost:8080/missions/${props.mission.msn_id}`, {
-            method: "PATCH",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-              assets: assets,
-              comms: comms,
-              fires: fires,
-              intel: intel,
-              key_grids: keyGrids,
-              latitude: latitude,
-              location: location,
-              longitude: longitude,
-              msn_obj: missionObjectives,
-              msn_title: missionTitle,
-              msn_type: missionType,
-              situation: situation,
-              supporting_players: supportingPlayers,
-              user_id: userCredentials.id,
-            }),
-          })
-            .then(() => getMissionData())
-            .then(() => setMissionAlertMessage("Mission Updated!"))
-            .then(() => handleVisible());
-        }}
+
+          onSubmit={(e) => {
+            e.preventDefault();
+            fetch(`http://localhost:8080/missions/${props.mission.msn_id}`, {
+              method: "PATCH",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({
+                assets: assets,
+                comms: comms,
+                fires: fires,
+                intel: intel,
+                key_grids: keyGrids,
+                latitude: latitude,
+                location: location,
+                longitude: longitude,
+                msn_obj: missionObjectives,
+                msn_title: missionTitle,
+                msn_type: missionType,
+                situation: situation,
+                supporting_players: supportingPlayers,
+                user_id: userCredentials.id,
+              }),
+            })
+              .then(() => getMissionData())
+              .then(() => setMissionAlertMessage("Mission Updated!"))
+              .then(() => handleVisible());
+          }}
         >
           <Row>
             <InputStyleRow>
               <InputColDiv>
-                <Col>Mission Title<b>*</b></Col>
+                <Col>Mission Title</Col>
                 <SmallInputBox
                   type="text"
                   value={missionTitle}
                   onChange={(e) => {
-                    setMissionTitle(e.target.value)}
+                    setMissionTitle(e.target.value)
+                  }
                   }
                   required
                 ></SmallInputBox>
               </InputColDiv>
               <InputColDiv>
-                <Col>Mission Type<b>*</b></Col>
+                <Col>Mission Type</Col>
                 <Form.Select
                   required
                   aria-label="Default select example"
@@ -170,7 +346,7 @@ export function EditMissionModal(props) {
               <InputColDiv>
                 <Col>Mission Objectives</Col>
                 <LargeInputArea
-                value={missionObjectives}
+                  value={missionObjectives}
                   onChange={(e) => setMissionObjectives(e.target.value)}
                 ></LargeInputArea>
               </InputColDiv>
@@ -182,14 +358,14 @@ export function EditMissionModal(props) {
               <InputColDiv>
                 <Col>Assets</Col>
                 <LargeInputArea
-                value={assets}
+                  value={assets}
                   onChange={(e) => setAssets(e.target.value)}
                 ></LargeInputArea>
               </InputColDiv>
               <InputColDiv>
                 <Col>Intel</Col>
                 <LargeInputArea
-                value={intel}
+                  value={intel}
                   onChange={(e) => setIntel(e.target.value)}
                 ></LargeInputArea>
               </InputColDiv>
@@ -201,21 +377,21 @@ export function EditMissionModal(props) {
               <InputColDiv>
                 <Col>Key Grids</Col>
                 <MediumInputArea
-                value={keyGrids}
+                  value={keyGrids}
                   onChange={(e) => setKeyGrids(e.target.value)}
                 ></MediumInputArea>
               </InputColDiv>
               <InputColDiv>
                 <Col>Supporting Players</Col>
                 <MediumInputArea
-                value={supportingPlayers}
+                  value={supportingPlayers}
                   onChange={(e) => setSupportingPlayers(e.target.value)}
                 ></MediumInputArea>
               </InputColDiv>
               <InputColDiv>
                 <Col>Situation</Col>
                 <MediumInputArea
-                value={situation}
+                  value={situation}
                   onChange={(e) => setSituation(e.target.value)}
                 ></MediumInputArea>
               </InputColDiv>
@@ -265,5 +441,17 @@ export function EditMissionModal(props) {
       </Modal.Body>
       <Modal.Footer></Modal.Footer>
     </Modal>
+
+
+
+
+
+
   );
+
+
+
+
+
+
 }
