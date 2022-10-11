@@ -10,6 +10,8 @@ import SimpleBar from "simplebar-react";
 import "simplebar-react/dist/simplebar.min.css";
 import "../App.css";
 import url from "./URL";
+import Globe from "react-globe.gl";
+import { World } from "./World";
 
 const IndividualMission = Styled.div`
     display: flex;
@@ -58,6 +60,20 @@ const ButtonsDiv = Styled.div`
 `;
 
 export const UserPage = () => {
+  // if (document.querySelector("canvas") === null) {
+  //   console.log("nope");
+  // } else {
+
+  setTimeout(() => {
+    const el = document.querySelector("canvas");
+    el.style.width = "22vw";
+    el.style.height = "12vw";
+    el.style.display = "flex";
+    el.style.marginTop = "44vh";
+    el.style.flexDirection = "column";
+    el.style.touchAction = "none";
+  }, [500]);
+
   const {
     missionsArray,
     userCredentials,
@@ -159,22 +175,40 @@ export const UserPage = () => {
           );
         })}
       </SimpleBar>
-      <ButtonsDiv>
-        <ModalPop />
-        <CreateMissionDiv
-          variant="primary"
-          onClick={() => {
-            const favMissionIds = favoriteMissions.map((msn) => msn.msn_id);
-            const detailsOfFavMissions = missionsArray.filter((msn) =>
-              favMissionIds.includes(msn.msn_id)
-            );
-            setSearchResultsArray(detailsOfFavMissions);
-            navigate("/favorites");
+      <div
+        style={{
+          overflow: "hidden",
+          display: "flex",
+          columnGap: "5vh",
+        }}
+      >
+        <ButtonsDiv>
+          <ModalPop />
+          <CreateMissionDiv
+            variant="primary"
+            onClick={() => {
+              const favMissionIds = favoriteMissions.map((msn) => msn.msn_id);
+              const detailsOfFavMissions = missionsArray.filter((msn) =>
+                favMissionIds.includes(msn.msn_id)
+              );
+              setSearchResultsArray(detailsOfFavMissions);
+              navigate("/favorites");
+            }}
+          >
+            My Favorites
+          </CreateMissionDiv>
+        </ButtonsDiv>
+        <div
+          style={{
+            width: "100vw",
+            height: "calc(100vh - 64px)",
           }}
         >
-          My Favorites
-        </CreateMissionDiv>
-      </ButtonsDiv>
+          <World
+          // pointsData={myData}
+          />
+        </div>
+      </div>
     </ContainerDiv>
   );
 };

@@ -57,3 +57,14 @@ b{
   background-color: #514f5a;
 }
 
+.accordion-item__content{
+  background-color: whitesmoke;
+}
+
+.scene-container{
+  width: 200px !important;
+  height: 250px !important;
+}
+
+body {
+  }

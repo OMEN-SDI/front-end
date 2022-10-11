@@ -113,20 +113,11 @@ export const MissionNavBar = () => {
                   onSubmit={(e) => {
                     e.preventDefault();
                     setSearchBarText(e.target.value);
-                    console.log(searchBarText);
                     setSearchResultsArray(
                       missionsArray.filter((mission) =>
                         mission.msn_title.toLowerCase().includes(searchBarText)
                       )
                     );
-                    console.log("missions Arrays: ", missionsArray);
-                    console.log(
-                      missionsArray.filter((mission) =>
-                        mission.msn_title.toLowerCase().includes(searchBarText)
-                      )
-                    );
-                    console.log("clicked submit!");
-
                     navigate("/searchresults");
                     setSearchBarText("");
                   }}
@@ -140,8 +131,6 @@ export const MissionNavBar = () => {
                     value={searchBarText}
                     onChange={(e) => {
                       setSearchBarText(e.target.value);
-                      // console.log(e.target.value);
-                      // console.log(searchBarText)
                     }}
                     type="search"
                     placeholder="Search for an existing mission"
@@ -149,10 +138,8 @@ export const MissionNavBar = () => {
                     aria-label="Search"
                     onSubmit={(e) => {
                       e.preventDefault();
-                      console.log("form submitted");
                     }}
                   />
-
                   <Button
                     variant="outline-success"
                     type="submit"
@@ -219,9 +206,6 @@ export const MissionNavBar = () => {
                             to="/searchresults"
                             eventKey="2"
                             onClick={() => {
-                              console.log(
-                                missionsArray.filter((msn) => msn.msn_id === 2)
-                              );
                               setSearchResultsArray(
                                 missionsArray.filter(
                                   (msn) => msn.msn_type === 2
@@ -239,9 +223,6 @@ export const MissionNavBar = () => {
                             to="/searchresults"
                             eventKey="3"
                             onClick={() => {
-                              console.log(
-                                missionsArray.filter((msn) => msn.msn_id === 3)
-                              );
                               setSearchResultsArray(
                                 missionsArray.filter(
                                   (msn) => msn.msn_type === 3

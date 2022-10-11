@@ -26,7 +26,7 @@ export const Footer = () => {
             </span>
           </a>
         </CDBBox>
-        <CDBBox>
+        <CDBBox style={{ color: "whitesmoke" }}>
           <small className="ml-2">
             &copy; Galvanize, 2022. All rights reserved.
           </small>

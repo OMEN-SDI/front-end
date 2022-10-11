@@ -7,9 +7,7 @@ import map from "./images/map.jpg";
 import Styled from "styled-components";
 
 const BackgroundImage = Styled.div`
-  background: url(${map});
-  background-repeat: repeat-y;
-  background-size: cover;
+  background-color: #000011;
 `;
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
