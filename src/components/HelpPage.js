@@ -7,15 +7,16 @@ const ContainerDiv = Styled.div`
 display: flex;
 flex-wrap: wrap;
 justify-content: center;
-height: 76vh;
+min-height: 76vh;
 flex-direction: row;
 `;
 
 const AccordionDiv = Styled.div`
 height: fit-content;
-margin: 20%;
+width: 70vw;
+margin-left: 20%;
+margin-right: 20%;
 margin-top: 5%;
-margin-bottom: 30%;
 padding: 5%;
 background-color: rgb(81 79 90 / 86%);
 border-radius: 2%;

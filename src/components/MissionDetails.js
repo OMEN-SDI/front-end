@@ -95,7 +95,7 @@ export const MissionDetails = () => {
 
   const renderTooltip = (props) => (
     <Tooltip id="button-tooltip" {...props}>
-      Add As Favorite
+      Save Mission
     </Tooltip>
   );
 

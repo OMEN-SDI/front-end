@@ -3,8 +3,6 @@ import * as satellite from "satellite.js";
 import Globe from "react-globe.gl";
 import * as THREE from "three";
 
-// const { useState, useEffect, useRef, useMemo } = React;
-
 const EARTH_RADIUS_KM = 6371; // km
 const SAT_SIZE = 80; // km
 const TIME_STEP = 3 * 1000; // per frame
@@ -97,7 +95,9 @@ export const World = () => {
         objectThreeObject={satObject}
         set
       />
-      <div id="time-log">{time.toString()}</div>
+      <div style={{ color: "dimgrey" }} id="time-log">
+        {time.toString()}
+      </div>
     </div>
   );
 };

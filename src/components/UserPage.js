@@ -195,7 +195,7 @@ export const UserPage = () => {
               navigate("/favorites");
             }}
           >
-            My Favorites
+            Saved Missions
           </CreateMissionDiv>
         </ButtonsDiv>
         <div

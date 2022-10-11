@@ -18,7 +18,11 @@ export const Footer = () => {
         className="mx-auto py-4 flex-wrap"
         style={{ width: "80%" }}
       >
-        <CDBBox display="flex" alignItems="center">
+        <CDBBox
+          style={{ color: "dimgray" }}
+          sdisplay="flex"
+          alignItems="center"
+        >
           <a href="/" className="d-flex align-items-center p-0 text-dark">
             <img alt="logo" src="reaper.png" width="30px" />
             <span className="ml-4 h5 mb-0 font-weight-bold">
@@ -26,7 +30,7 @@ export const Footer = () => {
             </span>
           </a>
         </CDBBox>
-        <CDBBox style={{ color: "whitesmoke" }}>
+        <CDBBox style={{ color: "dimgray" }}>
           <small className="ml-2">
             &copy; Galvanize, 2022. All rights reserved.
           </small>
