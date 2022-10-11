@@ -12,13 +12,13 @@ import Cookies from "js-cookie";
 import url from "./URL";
 
 const ContainerDiv = Styled.div`
-height: 100vh;
+height: 83.7vh;
 display: flex;
 align-items: center;
 justify-content: center;
 flex-direction: column;
 row-gap: 15vh;
-padding-bottom: 28vh;
+/* padding-bottom: 28vh; */
 
 `;
 
@@ -56,7 +56,6 @@ export const Login = () => {
   });
   const { userLoginInfo, setUserLoginInfo, setIsLoggedIn, isLoggedOut } =
     useContext(AppContext);
-  
 
   const postUser = () => {
     const URL = `${url}/login`;
@@ -92,21 +91,18 @@ export const Login = () => {
   };
 
   const logOutCheck = () => {
-
     if (isLoggedOut) {
-     setAlertSpecifications({
-       type: "success",
-       alertMessage: "Successfully Logged Out!",
-     });
-     setShowAlert(true)
-   }
-   console.log(alertSpecifications)
-  }
+      setAlertSpecifications({
+        type: "success",
+        alertMessage: "Successfully Logged Out!",
+      });
+      setShowAlert(true);
+    }
+  };
 
   useEffect(() => {
-    logOutCheck()
-  }, [])
-
+    logOutCheck();
+  }, []);
 
   return (
     <ContainerDiv>
@@ -123,7 +119,7 @@ export const Login = () => {
           variant={alertSpecifications.type}
           show={showAlert}
           onHide={() => setShowAlert(false)}
-          style={{textAlign: "center"}}
+          style={{ textAlign: "center" }}
         >
           {alertSpecifications.alertMessage}
         </Alert>
@@ -134,7 +130,7 @@ export const Login = () => {
             className="mb-3"
           >
             <Form.Control
-              type="email"
+              type="text"
               placeholder="name@example.com"
               value={userLoginInfo.username}
               onChange={(e) =>

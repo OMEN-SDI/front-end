@@ -1,7 +1,7 @@
 import React, { useState, useContext } from "react";
 import { AppContext } from "./AppContext";
 import { useNavigate } from "react-router-dom";
-import { Alert, Button} from "react-bootstrap";
+import { Alert, Button } from "react-bootstrap";
 import url from "./URL";
 
 export const DeleteMissionAlert = ({ msn_id }) => {
@@ -21,7 +21,7 @@ export const DeleteMissionAlert = ({ msn_id }) => {
         <Alert.Heading>Are you sure?</Alert.Heading>
         <div className="d-flex justify-content-end">
           <Button
-            variant="outline-success"
+            variant="outline-danger"
             onClick={() => {
               fetch(`${url}/missions/${msn_id}`, {
                 method: "DELETE",

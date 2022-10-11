@@ -10,11 +10,12 @@ import autoTable from "jspdf-autotable";
 import Tooltip from "react-bootstrap/Tooltip";
 import html2canvas from "html2canvas";
 import { DeleteMissionAlert } from "./DeleteMissionAlert";
-import bookMark from '../images/bookmark.png';
-import bookMarkEmpty from '../images/bookmarkempty.png';
+import bookMark from "../images/bookmark.png";
+import bookMarkEmpty from "../images/bookmarkempty.png";
 import url from "./URL";
+import { EmailAlert } from "./SendEmail";
 // example jsPDF import. not sure if we'll need this -ian
-  // import { jsPDF } from "jspdf";
+// import { jsPDF } from "jspdf";
 
 const TableStyle = Styled.div`
 width: 50vw;
@@ -54,9 +55,7 @@ export const MissionDetails = () => {
   const [isFavorite, setIsFavorite] = useState(false);
   const [favoriteMissionId, setFavoriteMissionId] = useState();
 
-  
   // const divToDisplay = document.getElementById('testDiv')
-
 
   // html2canvas(divToDisplay).then(function(canvas) {
   //      const divImage = canvas.toDataURL("image/png");
@@ -103,14 +102,14 @@ export const MissionDetails = () => {
   const renderMsnType = (type) => {
     if (type === 1) {
       return "Security Forces";
-    } 
+    }
     if (type === 2) {
       return "Anti-Submarine Warfare";
-    } 
+    }
     if (type === 3) {
       return "Close Air Support";
     }
-  }
+  };
 
   const printRef = React.useRef();
 
@@ -157,7 +156,7 @@ export const MissionDetails = () => {
 
   return (
     <>
-    {/* <div id='testDiv'>TEST DIV</div> */}
+      {/* <div id='testDiv'>TEST DIV</div> */}
       <br />
       <MissionDetailsDiv>
         <TableStyle>
@@ -192,12 +191,12 @@ export const MissionDetails = () => {
                   >
                     {isFavorite ? (
                       <StyledFavorite
-                        src= {bookMark}
+                        src={bookMark}
                         onClick={() => handleFavoriteDelete()}
                       />
                     ) : (
                       <StyledFavorite
-                        src= {bookMarkEmpty}
+                        src={bookMarkEmpty}
                         onClick={() => handleFavoritePost()}
                       />
                     )}
@@ -280,6 +279,7 @@ export const MissionDetails = () => {
           ) : (
             <></>
           )}
+          <EmailAlert />
         </MapDiv>
       </MissionDetailsDiv>
     </>

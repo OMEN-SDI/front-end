@@ -1,8 +1,8 @@
 import { useState } from "react";
 import React from "react";
 import Styled from "styled-components";
-import { EditMissionModal } from "./EditMissionModal"
-import editButton from '../images/dots.png';
+import { EditMissionModal } from "./EditMissionModal";
+import editButton from "../images/dots.png";
 import { Tooltip, OverlayTrigger } from "react-bootstrap";
 
 const ButtonsDiv = Styled.div`
@@ -13,8 +13,7 @@ align-items: center;
 
 const StyledEditButton = Styled.img`
 height: 2em;
-`
-
+`;
 
 export const EditMissionModalPop = ({ mission }) => {
   const [modalShow, setModalShow] = useState(false);
@@ -34,13 +33,13 @@ export const EditMissionModalPop = ({ mission }) => {
       >
         <StyledEditButton src={editButton} onClick={() => setModalShow(true)} />
       </OverlayTrigger>
-      <EditMissionModal show={modalShow} onHide={() => {
-        //trying to troubleshoot hide issue -ian
-        console.log('onhide hit')
-        setModalShow(false)
-      }
-
-      } mission={mission} />
+      <EditMissionModal
+        show={modalShow}
+        onHide={() => {
+          setModalShow(false);
+        }}
+        mission={mission}
+      />
     </ButtonsDiv>
   );
-}
+};

@@ -27,7 +27,7 @@ const IndividualMission = Styled.div`
 `;
 
 const ContainerDiv = Styled.div`
-    height: 100vh;
+    height: 76vh;
     display: flex;
     flex-direction: row;
     column-gap: 30vh;
@@ -77,11 +77,11 @@ export const UserPage = () => {
   const navigate = useNavigate();
 
   const getFavoriteMissions = async () => {
-    const res = await fetch(
-      `${url}/favoritemissions/${userCredentials.id}`
-    );
-    const data = await res.json();
-    setFavoriteMissions(data);
+    if (!userCredentials.id === undefined) {
+      const res = await fetch(`${url}/favoritemissions/${userCredentials.id}`);
+      const data = await res.json();
+      setFavoriteMissions(data);
+    }
   };
 
   useEffect(() => {
@@ -114,9 +114,7 @@ export const UserPage = () => {
         <MissionModal
           show={modalShow}
           onHide={() => {
-            //trying to troubleshoot the edit modal mission hide issue
-            console.log('add msn modal onhide hit')
-            setModalShow(false)
+            setModalShow(false);
           }}
           mode="create"
         />

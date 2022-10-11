@@ -75,7 +75,7 @@ const ceos = [
     name: "Mark Scarna",
     jobTitle: "Agile Software Developer",
     about:
-      "Mark works at HMBC/AFLCMC as a software developer. He is currently stationed at Scott AFB, Illinois.",
+      "As a member of AFLCMC Mark works at HMBC as a software developer. He is currently stationed at Scott AFB, Illinois.",
     image: markPic,
     githubLink: "https://github.com/markscarna",
   },

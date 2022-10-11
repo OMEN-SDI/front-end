@@ -8,7 +8,7 @@ import Styled from "styled-components";
 
 const BackgroundImage = Styled.div`
   background: url(${map});
-  background-repeat: repeat;
+  background-repeat: repeat-y;
   background-size: cover;
 `;
 

@@ -15,7 +15,8 @@ import { MissionDetails } from "./components/MissionDetails";
 import { AboutPage } from "./components/AboutPage";
 import { HelpPage } from "./components/HelpPage";
 import Cookies from "js-cookie";
-import url from './components/URL';
+import url from "./components/URL";
+import { Footer } from "./components/Footer";
 
 function App() {
   const [individualMissionDetails, setIndividualMissionDetails] = useState({});
@@ -48,8 +49,6 @@ function App() {
 
   const cookieCheck = () => {
     const cookie = Cookies.get("userCredentials");
-    console.log("hitting cookiecheck", cookie);
-    console.log(typeof cookie);
     if (Cookies.get("userCredentials") === undefined) {
       setUserCredentials({});
     } else {
@@ -58,13 +57,8 @@ function App() {
     }
   };
 
-  // const navigate = useNavigate();
-
   useEffect(() => {
     cookieCheck();
-    // if (!isLoggedIn) {
-    // navigate("/");
-    // }
   }, [isLoggedIn]);
 
   useEffect(() => {
@@ -123,6 +117,7 @@ function App() {
             element={<MissionDetails />}
           ></Route>
         </Routes>
+        <Footer />
       </Router>
     </AppContext.Provider>
   );
