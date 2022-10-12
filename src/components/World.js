@@ -85,6 +85,7 @@ export const World = () => {
   return (
     <div style={{ display: "flex", flexDirection: "column" }}>
       <Globe
+        backgroundColor="rgba(255, 0, 0, 0.0)"
         ref={globeEl}
         globeImageUrl="//unpkg.com/three-globe/example/img/earth-blue-marble.jpg"
         objectsData={objectsData}

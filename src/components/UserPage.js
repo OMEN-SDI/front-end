@@ -203,9 +203,7 @@ export const UserPage = () => {
             height: "calc(100vh - 64px)",
           }}
         >
-          <World
-          // pointsData={myData}
-          />
+          <World />
         </div>
       </div>
     </ContainerDiv>

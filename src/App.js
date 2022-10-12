@@ -17,9 +17,16 @@ import { HelpPage } from "./components/HelpPage";
 import Cookies from "js-cookie";
 import url from "./components/URL";
 import { Footer } from "./components/Footer";
+import Styled from "styled-components";
+
+const BackgroundImage = Styled.div`
+background-repeat: repeat-y;
+background-size: cover;
+`;
 
 function App() {
   const [individualMissionDetails, setIndividualMissionDetails] = useState({});
+  const [darkMode, setDarkMode] = useState("linear-gradient(#57606f, #d3d3d3)");
   const [missionsArray, setMissionsArray] = useState([]);
   const [searchResultsArray, setSearchResultsArray] = useState([]);
   const [usersArray, setUsersArray] = useState([]);
@@ -35,6 +42,7 @@ function App() {
     password: "",
   });
   const [isLoggedOut, setIsLoggedOut] = useState(false);
+
   const getMissionData = async () => {
     const res = await fetch(`${url}/missions`);
     const data = await res.json();
@@ -93,32 +101,36 @@ function App() {
     setMissionAlertMessage,
     isLoggedOut,
     setIsLoggedOut,
+    darkMode,
+    setDarkMode,
   };
 
   return (
     <AppContext.Provider value={passedContext}>
-      <Router>
-        <MissionNavBar />
-        <Routes>
-          <Route
-            path="/"
-            element={isLoggedIn ? <UserPage /> : <Login />}
-          ></Route>
-          <Route
-            path="/userpage"
-            element={isLoggedIn ? <UserPage /> : <Login />}
-          ></Route>
-          <Route path="/help" element={<HelpPage />}></Route>
-          <Route path="/about" element={<AboutPage />}></Route>
-          <Route path="/searchresults" element={<SearchResults />}></Route>
-          <Route path="/favorites" element={<SearchResults />}></Route>
-          <Route
-            path="/missiondetails/:id"
-            element={<MissionDetails />}
-          ></Route>
-        </Routes>
-        <Footer />
-      </Router>
+      <BackgroundImage style={{ background: darkMode }}>
+        <Router>
+          <MissionNavBar />
+          <Routes>
+            <Route
+              path="/"
+              element={isLoggedIn ? <UserPage /> : <Login />}
+            ></Route>
+            <Route
+              path="/userpage"
+              element={isLoggedIn ? <UserPage /> : <Login />}
+            ></Route>
+            <Route path="/help" element={<HelpPage />}></Route>
+            <Route path="/about" element={<AboutPage />}></Route>
+            <Route path="/searchresults" element={<SearchResults />}></Route>
+            <Route path="/favorites" element={<SearchResults />}></Route>
+            <Route
+              path="/missiondetails/:id"
+              element={<MissionDetails />}
+            ></Route>
+          </Routes>
+          <Footer />
+        </Router>
+      </BackgroundImage>
     </AppContext.Provider>
   );
 }

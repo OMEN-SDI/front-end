@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useRef } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import { AppContext } from "./AppContext";
 import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
@@ -19,6 +19,7 @@ import {
   useNavigate,
 } from "react-router-dom";
 import Logo from "../images/banner-logo.png";
+import DarkModeToggle from "react-dark-mode-toggle";
 
 const NavBarHeader = Styled.div`
 display: flex;
@@ -54,6 +55,7 @@ font-style: italic;
 
 export const MissionNavBar = () => {
   const navigate = useNavigate();
+  const [isDarkMode, setIsDarkMode] = useState(() => false);
 
   const {
     individualMissionDetails,
@@ -70,6 +72,8 @@ export const MissionNavBar = () => {
     isLoggedIn,
     setIsLoggedIn,
     setIsLoggedOut,
+    darkMode,
+    setDarkMode,
   } = useContext(AppContext);
 
   const logout = () => {
@@ -91,7 +95,6 @@ export const MissionNavBar = () => {
       ) : (
         [false].map((expand) => (
           <Navbar
-            // collapseOnSelect expand="false"
             key={expand}
             style={{
               backgroundColor: "#514F5A",
@@ -159,7 +162,23 @@ export const MissionNavBar = () => {
                   </Button>
                 </Form>
               </div>
-              <div>
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  gap: "1vh",
+                }}
+              >
+                <DarkModeToggle
+                  onChange={() => {
+                    darkMode === "linear-gradient(#57606f, #d3d3d3)"
+                      ? setDarkMode("linear-gradient(#262a30, #000011)")
+                      : setDarkMode("linear-gradient(#57606f, #d3d3d3)");
+                  }}
+                  checked={darkMode === "linear-gradient(#262a30, #000011)"}
+                  size={60}
+                />
                 <SignedInAs>
                   Signed in as: {userCredentials.username}
                 </SignedInAs>

@@ -1,24 +1,28 @@
 import "bootstrap/dist/css/bootstrap.min.css";
-import React from "react";
+import React, { useContext } from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import map from "./images/map.jpg";
 import Styled from "styled-components";
+import { AppContext } from "./components/AppContext";
 
-const BackgroundImage = Styled.div`
-  background-color: #000011;
-  background-repeat: repeat-y;
-  background-size: cover;
-`;
+// DarkMode();
+
+// const BackgroundImage = Styled.div`
+//   background-color: ${darkMode};
+//   background-repeat: repeat-y;
+//   background-size: cover;
+// `;
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   // <React.StrictMode>
-  <BackgroundImage>
-    <App />
-  </BackgroundImage>
+  // <BackgroundImage>
+  <App />
+  // </BackgroundImage>
+
   // </React.StrictMode>
 );
 
