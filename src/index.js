@@ -1,3 +1,4 @@
+import "bootstrap/dist/css/bootstrap.min.css";
 import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
@@ -8,6 +9,8 @@ import Styled from "styled-components";
 
 const BackgroundImage = Styled.div`
   background-color: #000011;
+  background-repeat: repeat-y;
+  background-size: cover;
 `;
 
 const root = ReactDOM.createRoot(document.getElementById("root"));

@@ -17,7 +17,6 @@ function SignUpModal(props) {
       event.preventDefault();
       event.stopPropagation();
     }
-
     setValidated(true);
   };
 
@@ -29,7 +28,7 @@ function SignUpModal(props) {
         alertMessage: "User successfully created!",
       });
       props.setShowAlert(true);
-    }  else {
+    } else {
       props.setShowAlert(false);
     }
   }, [showMessage]);
@@ -42,23 +41,58 @@ function SignUpModal(props) {
     password: "",
   });
 
-  const postNewUser = () => {
-    const URL = `${url}/register`;
-    fetch(URL, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(user),
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        setShowMessage(data.message);
-      })
-      .catch((error) => {
-        console.error("Error:", error);
-      });
+  const passwordRegex =
+    /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/g;
+
+  const checkPassword = (password) => {
+    if (!passwordRegex.test(password)) {
+      return false;
+    } else {
+      return true;
+    }
   };
+
+  const postNewUser = () => {
+    let bol = checkPassword(user.password);
+    if (bol === true) {
+      const URL = `${url}/register`;
+      fetch(URL, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(user),
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          setShowMessage(data.message);
+        })
+        .catch((error) => {
+          console.error("Error:", error);
+        });
+    } else {
+      setShowMessage("Could not create user!");
+    }
+  };
+
+  const [meter, setMeter] = React.useState(false);
+  const atLeastOneUppercase = /[A-Z]/g; // capital letters from A to Z
+  const atLeastOneLowercase = /[a-z]/g; // small letters from a to z
+  const atLeastOneNumeric = /[0-9]/g; // numbers from 0 to 9
+  const atLeastOneSpecialChar = /[#?!@$%^&*-]/g; // any of the special characters within the square brackets
+  const eightCharsOrMore = /.{8,}/g; // eight characters or more
+
+  const passwordTracker = {
+    uppercase: user.password.match(atLeastOneUppercase),
+    lowercase: user.password.match(atLeastOneLowercase),
+    number: user.password.match(atLeastOneNumeric),
+    specialChar: user.password.match(atLeastOneSpecialChar),
+    eightCharsOrGreater: user.password.match(eightCharsOrMore),
+  };
+
+  const passwordStrength = Object.values(passwordTracker).filter(
+    (value) => value
+  ).length;
 
   return (
     <>
@@ -129,13 +163,27 @@ function SignUpModal(props) {
             <Form.Group className="mb-3" controlId="formBasicPassword">
               <Form.Label>Password</Form.Label>
               <Form.Control
-                required
+                onFocus={() => setMeter(true)}
                 type={showPassword}
                 placeholder="Password"
                 value={user.password}
                 onChange={(e) => SetUser({ ...user, password: e.target.value })}
               />
             </Form.Group>
+            {meter && (
+              <div>
+                <div className="password-strength-meter"></div>
+                <div>
+                  {passwordStrength < 5 && "Must contain "}
+                  {!passwordTracker.uppercase && "uppercase, "}
+                  {!passwordTracker.lowercase && "lowercase, "}
+                  {!passwordTracker.specialChar && "special character, "}
+                  {!passwordTracker.number && "number, "}
+                  {!passwordTracker.eightCharsOrGreater &&
+                    "eight characters or more"}
+                </div>
+              </div>
+            )}
             <Form.Group className="mb-3" controlId="formBasicCheckbox">
               <Form.Check
                 type="checkbox"
@@ -152,11 +200,8 @@ function SignUpModal(props) {
             </Form.Group>
             <Button
               variant="primary"
-              // type="submit"
               onClick={() => {
-                if (validated === true) {
-                  postNewUser();
-                }
+                postNewUser();
               }}
             >
               Submit
@@ -164,6 +209,32 @@ function SignUpModal(props) {
           </Form>
         </Modal.Body>
       </Modal>
+      <style jsx>
+        {`
+          .password-strength-meter {
+            height: 0.3rem;
+            background-color: lightgrey;
+            border-radius: 3px;
+            margin: 0.5rem 0;
+          }
+
+          .password-strength-meter::before {
+            content: "";
+            background-color: ${[
+              "red",
+              "orange",
+              "#03a2cc",
+              "#03a2cc",
+              "#0ce052",
+            ][passwordStrength - 1] || ""};
+            height: 100%;
+            width: ${(passwordStrength / 5) * 100}%;
+            display: block;
+            border-radius: 3px;
+            transition: width 0.2s;
+          }
+        `}
+      </style>
     </>
   );
 }
