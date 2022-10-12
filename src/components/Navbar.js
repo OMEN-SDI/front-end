@@ -114,8 +114,14 @@ export const MissionNavBar = () => {
                     e.preventDefault();
                     setSearchBarText(e.target.value);
                     setSearchResultsArray(
-                      missionsArray.filter((mission) =>
-                        mission.msn_title.toLowerCase().includes(searchBarText)
+                      missionsArray.filter(
+                        (mission) =>
+                          mission.msn_title
+                            .toLowerCase()
+                            .includes(searchBarText.toLowerCase()) ||
+                          mission.location
+                            .toLowerCase()
+                            .includes(searchBarText.toLowerCase())
                       )
                     );
                     navigate("/searchresults");

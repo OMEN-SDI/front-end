@@ -7,6 +7,7 @@ import Card from "react-bootstrap/Card";
 import Container from "react-bootstrap/Container";
 import "bootstrap/dist/css/bootstrap.min.css";
 import SimpleBar from "simplebar-react";
+import { renderMsnType } from "./MissionDetails";
 import "simplebar-react/dist/simplebar.min.css";
 import "../App.css";
 
@@ -67,6 +68,9 @@ export const SearchResults = () => {
             >
               <Card.Header className="bg-dark text-white">
                 <h2 style={{ fontSize: "larger" }}>{mission.msn_title}</h2>
+                <h2 style={{ fontSize: "larger" }}>
+                  {renderMsnType(mission.msn_type)}
+                </h2>
               </Card.Header>
               <Card.Body className="show-grid">
                 <Container>

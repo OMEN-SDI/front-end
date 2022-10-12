@@ -43,6 +43,18 @@ const StyledFavorite = Styled.img`
 width: 48px;
 height: 48px;`;
 
+export const renderMsnType = (type) => {
+  if (type === 1) {
+    return "Security Forces";
+  }
+  if (type === 2) {
+    return "Anti-Submarine Warfare";
+  }
+  if (type === 3) {
+    return "Close Air Support";
+  }
+};
+
 export const MissionDetails = () => {
   const {
     individualMissionDetails,
@@ -98,18 +110,6 @@ export const MissionDetails = () => {
       Save Mission
     </Tooltip>
   );
-
-  const renderMsnType = (type) => {
-    if (type === 1) {
-      return "Security Forces";
-    }
-    if (type === 2) {
-      return "Anti-Submarine Warfare";
-    }
-    if (type === 3) {
-      return "Close Air Support";
-    }
-  };
 
   const printRef = React.useRef();
 

@@ -48,3 +48,6 @@ b{
   height: 250px !important;
 }
 
+.bg-dark{display: flex;
+  flex-direction: row;
+  justify-content: space-between;}

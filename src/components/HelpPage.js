@@ -9,17 +9,19 @@ flex-wrap: wrap;
 justify-content: center;
 min-height: 76vh;
 flex-direction: row;
+padding: 6%;
 `;
 
 const AccordionDiv = Styled.div`
-height: fit-content;
-width: 70vw;
-margin-left: 20%;
-margin-right: 20%;
-margin-top: 5%;
-padding: 5%;
-background-color: rgb(81 79 90 / 86%);
-border-radius: 2%;
+font-family: 'Kanit',sans-serif;
+    height: -moz-fit-content;
+    background-color: rgb(81 79 90 / 86%);
+    border-radius: 2%;
+    display: flexc;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5%;
 `;
 
 export const HelpPage = () => {

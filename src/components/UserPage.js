@@ -36,6 +36,7 @@ const ContainerDiv = Styled.div`
 `;
 
 const CreateMissionDiv = Styled.div`
+    font-family: 'Kanit', sans-serif;
     width: 40vw;
     height: 15vh;
     border: 4px solid white;
@@ -46,7 +47,7 @@ const CreateMissionDiv = Styled.div`
     align-items: center;
     background-color: black;
     opacity: 80%;
-    font-size: 3vh;
+    font-size: 4vh;
     font-weight: 500;
     font-style: italic;
     color: white;
@@ -60,10 +61,6 @@ const ButtonsDiv = Styled.div`
 `;
 
 export const UserPage = () => {
-  // if (document.querySelector("canvas") === null) {
-  //   console.log("nope");
-  // } else {
-
   setTimeout(() => {
     const el = document.querySelector("canvas");
     el.style.width = "22vw";
@@ -157,7 +154,9 @@ export const UserPage = () => {
           borderRadius: "20px",
         }}
       >
-        Mission Dashboard
+        <h3 style={{ fontFamily: "Kanit", fontSize: "inherit" }}>
+          Mission Dashboard
+        </h3>
         {userMissions.map((mission) => {
           return (
             <IndividualMission key={mission.msn_id}>

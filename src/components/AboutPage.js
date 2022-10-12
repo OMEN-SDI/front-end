@@ -52,6 +52,7 @@ const TitleDiv = Styled.div`
     font-weight: 500;
     font-style: italic;
     color: white;
+    font-family: 'Kanit', sans-serif;
 `;
 
 const ceos = [
@@ -59,7 +60,7 @@ const ceos = [
     name: "Joshua Clodfelter",
     jobTitle: "Agile Software Developer",
     about:
-      "Josh works at HMBC/AFLCMC as a software developer. He is currently stationed at Scott AFB, Illinois.",
+      "Josh works for HMBC/AFLCMC as a software developer at Scott AFB, Illinois.",
     image: joshPic,
     githubLink: "https://github.com/clod7699",
   },
