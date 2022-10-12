@@ -6,16 +6,13 @@ Trello Board: https://trello.com/b/tyHBZr5K/capstone-group-2
 
 Google Docs: https://docs.google.com/document/d/13Q4tbENfxAfCO9qVy6zerPJf-4Yj7Ka9myY-6CkfdLc/edit
 
-![schema](https://user-images.githubusercontent.com/75449881/193075030-f8aa55e6-3a3e-43f6-98a5-0b136409f3d4.png)
+![banner-logo updated](https://user-images.githubusercontent.com/75449881/195404393-e7b62223-817b-4124-b723-3e5127f70b8c.png)
 
 ---
 
 **If you have any suggestions for improvements to this readme, find mistakes, or even just notice a spelling or grammar error, please feel free to submit a pull request!**
 
-![banner-logo png](https://user-images.githubusercontent.com/75449881/195404171-2de059ea-4a84-4d06-a6c8-22fc2bdebdac.png)
-
 OMEN is a revolutionary online mission planning environment which harnesses the power of collaboration of military members throughout the globe. Instead of duplicating mission planning efforts, easily sift through previously made products across many mission types and geographic areas saved in a centralized repository. Give back to your community by uploading your own missions for others to reference and utilize. Additionally, OMEN showcases PDF printing services containing mission information for mobile use in the field or emailing missions to preferred recipients. 
-
 
 OMEN: Mission plan together.
 
