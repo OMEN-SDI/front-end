@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useRef, useState } from "react";
+import React, { useContext } from "react";
 import { AppContext } from "./AppContext";
 import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
@@ -10,14 +10,7 @@ import Offcanvas from "react-bootstrap/Offcanvas";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Styled from "styled-components";
 import Cookies from "js-cookie";
-import { ButtonGroup } from "react-bootstrap";
-import {
-  BrowserRouter as Router,
-  Route,
-  Routes,
-  Link,
-  useNavigate,
-} from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Logo from "../images/banner-logo.png";
 import DarkModeToggle from "react-dark-mode-toggle";
 
@@ -36,17 +29,6 @@ display: block;
 margin-left: auto;
 `;
 
-const LogoImage = Styled.img`
-height: 7vh;
-display: block;
-margin-left: auto;
-`;
-
-const Sticky = Styled.div`
- position: sticky; top:0px;
-
-`;
-
 const SignedInAs = Styled.label`
 color: white;
 font-weight: 100;
@@ -55,16 +37,9 @@ font-style: italic;
 
 export const MissionNavBar = () => {
   const navigate = useNavigate();
-  const [isDarkMode, setIsDarkMode] = useState(() => false);
 
   const {
-    individualMissionDetails,
-    setIndividualMissionDetails,
     missionsArray,
-    setMissionsArray,
-    usersArray,
-    setUsersArray,
-    searchResultsArray,
     setSearchResultsArray,
     searchBarText,
     setSearchBarText,
@@ -79,6 +54,7 @@ export const MissionNavBar = () => {
   const logout = () => {
     Cookies.remove("userCredentials");
     Cookies.remove("isLoggedIn");
+    Cookies.remove("userTheme");
     setIsLoggedIn(false);
     navigate("/");
   };
@@ -172,9 +148,17 @@ export const MissionNavBar = () => {
               >
                 <DarkModeToggle
                   onChange={() => {
-                    darkMode === "linear-gradient(#57606f, #d3d3d3)"
-                      ? setDarkMode("linear-gradient(#262a30, #000011)")
-                      : setDarkMode("linear-gradient(#57606f, #d3d3d3)");
+                    return darkMode === "linear-gradient(#57606f, #d3d3d3)"
+                      ? (setDarkMode("linear-gradient(#262a30, #000011)"),
+                        Cookies.set(
+                          "userTheme",
+                          "linear-gradient(#262a30, #000011)"
+                        ))
+                      : (setDarkMode("linear-gradient(#57606f, #d3d3d3)"),
+                        Cookies.set(
+                          "userTheme",
+                          "linear-gradient(#57606f, #d3d3d3)"
+                        ));
                   }}
                   checked={darkMode === "linear-gradient(#262a30, #000011)"}
                   size={60}

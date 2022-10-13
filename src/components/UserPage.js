@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext, Render } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import Styled from "styled-components";
 import { MissionModal } from "./AddMissionModal";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -10,7 +10,6 @@ import SimpleBar from "simplebar-react";
 import "simplebar-react/dist/simplebar.min.css";
 import "../App.css";
 import url from "./URL";
-import Globe from "react-globe.gl";
 import { World } from "./World";
 
 const IndividualMission = Styled.div`
@@ -82,9 +81,7 @@ export const UserPage = () => {
     setSearchResultsArray,
     userMissions,
     setUserMissions,
-    isLoggedIn,
     missionAlertMessage,
-    setMissionAlertMessage,
   } = useContext(AppContext);
 
   const navigate = useNavigate();

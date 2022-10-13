@@ -18,8 +18,6 @@ align-items: center;
 justify-content: center;
 flex-direction: column;
 row-gap: 15vh;
-/* padding-bottom: 28vh; */
-
 `;
 
 const LoginContainerDiv = Styled.div`
@@ -54,8 +52,13 @@ export const Login = () => {
     type: "",
     alertMessage: "",
   });
-  const { userLoginInfo, setUserLoginInfo, setIsLoggedIn, isLoggedOut } =
-    useContext(AppContext);
+  const {
+    userLoginInfo,
+    setUserLoginInfo,
+    setIsLoggedIn,
+    isLoggedOut,
+    setDarkMode,
+  } = useContext(AppContext);
 
   const postUser = () => {
     const URL = `${url}/login`;
@@ -73,8 +76,10 @@ export const Login = () => {
           const object = data.user;
           const objectString = JSON.stringify(object);
           Cookies.set("userCredentials", objectString);
+          Cookies.set("userTheme", "linear-gradient(#57606f, #d3d3d3)");
           Cookies.set("isLoggedIn", true);
           setIsLoggedIn(Cookies.get("isLoggedIn"));
+          setDarkMode(Cookies.get("userTheme"));
           navigate("/userpage");
         } else {
           navigate("/");

@@ -6,7 +6,6 @@ import Row from "react-bootstrap/Row";
 import Styled from "styled-components";
 import { AppContext } from "./AppContext";
 import { Form } from "react-bootstrap";
-import { useNavigate } from "react-router-dom";
 import url from "./URL";
 
 const SmallInputBox = Styled.input`
@@ -54,10 +53,7 @@ export function EditMissionModal(props) {
     setMissionAlertMessage,
   } = useContext(AppContext);
 
-  const navigate = useNavigate();
-
   const [missionTitle, setMissionTitle] = useState(props.mission.msn_title);
-  const [missionDate, setMissionDate] = useState(props.mission.msn_date);
   const [missionType, setMissionType] = useState(props.mission.msn_type);
   const [fires, setFires] = useState(props.mission.fires);
   const [missionObjectives, setMissionObjectives] = useState(
@@ -66,7 +62,6 @@ export function EditMissionModal(props) {
   const [assets, setAssets] = useState(props.mission.assets);
   const [intel, setIntel] = useState(props.mission.intel);
   const [keyGrids, setKeyGrids] = useState(props.mission.key_grids);
-  const [missionInfo, setMissionInfo] = useState("");
   const [supportingPlayers, setSupportingPlayers] = useState(
     props.mission.supporting_players
   );

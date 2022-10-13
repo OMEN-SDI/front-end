@@ -1,6 +1,6 @@
 import * as React from "react";
 import Styled from "styled-components";
-import { CDBAccordion, CDBContainer } from "cdbreact";
+import { CDBAccordion } from "cdbreact";
 import "../App.css";
 
 const ContainerDiv = Styled.div`
@@ -9,7 +9,9 @@ flex-wrap: wrap;
 justify-content: center;
 min-height: 76vh;
 flex-direction: row;
-padding: 6%;
+padding: 5%;
+margin-left: 10.5vw;
+margin-right: 10.5vw;
 `;
 
 const AccordionDiv = Styled.div`
@@ -17,7 +19,6 @@ font-family: 'Kanit',sans-serif;
     height: -moz-fit-content;
     background-color: rgb(81 79 90 / 86%);
     border-radius: 2%;
-    display: flexc;
     display: flex;
     justify-content: center;
     align-items: center;

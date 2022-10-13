@@ -14,8 +14,6 @@ import bookMark from "../images/bookmark.png";
 import bookMarkEmpty from "../images/bookmarkempty.png";
 import url from "./URL";
 import { EmailAlert } from "./SendEmail";
-// example jsPDF import. not sure if we'll need this -ian
-// import { jsPDF } from "jspdf";
 
 const TableStyle = Styled.div`
 width: 50vw;
@@ -61,20 +59,10 @@ export const MissionDetails = () => {
     userCredentials,
     favoriteMissions,
     setFavoriteMissions,
-    setMissionsArray,
   } = useContext(AppContext);
   const [isLoading, setLoading] = useState(false);
   const [isFavorite, setIsFavorite] = useState(false);
   const [favoriteMissionId, setFavoriteMissionId] = useState();
-
-  // const divToDisplay = document.getElementById('testDiv')
-
-  // html2canvas(divToDisplay).then(function(canvas) {
-  //      const divImage = canvas.toDataURL("image/png");
-  //      const pdf = new jsPDF();
-  //     pdf.addImage(divImage, 'PNG', 0, 0);
-  //     pdf.save("download.pdf");
-  // })
 
   useEffect(() => {
     fetch(`${url}/favoritemissions/${userCredentials.id}`)
@@ -156,7 +144,6 @@ export const MissionDetails = () => {
 
   return (
     <>
-      {/* <div id='testDiv'>TEST DIV</div> */}
       <br />
       <MissionDetailsDiv>
         <TableStyle>
@@ -254,7 +241,7 @@ export const MissionDetails = () => {
                 </td>
               </tr>
               <tr>
-                <PropertyTd>Created By: </PropertyTd>
+                <PropertyTd>User: </PropertyTd>
                 <td>{userCredentials.username}</td>
               </tr>
               <tr>

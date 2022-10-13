@@ -2,10 +2,10 @@ import Styled from "styled-components";
 import Card from "react-bootstrap/Card";
 import Container from "react-bootstrap/Container";
 import "bootstrap/dist/css/bootstrap.min.css";
-import joshPic from "../joshPic.png";
-import boPic from "../boPic.png";
-import markPic from "../markPic.png";
-import ianPic from "../ianPic.jpg";
+import joshPic from "../images/joshPic.png";
+import boPic from "../images/boPic.png";
+import markPic from "../images/markPic.png";
+import ianPic from "../images/ianPic.jpg";
 
 const ContainerDiv = Styled.div`
 display: flex;
@@ -52,7 +52,7 @@ const TitleDiv = Styled.div`
     font-weight: 500;
     font-style: italic;
     color: white;
-    font-family: 'Kanit', sans-serif;
+    
 `;
 
 const ceos = [

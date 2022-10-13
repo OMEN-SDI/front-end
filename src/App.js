@@ -1,11 +1,6 @@
 import "./App.css";
 import React, { useState, useEffect } from "react";
-import {
-  BrowserRouter as Router,
-  Route,
-  Routes,
-  useNavigate,
-} from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { Login } from "./components/Login";
 import { MissionNavBar } from "./components/Navbar";
 import { UserPage } from "./components/UserPage";
@@ -57,11 +52,17 @@ function App() {
 
   const cookieCheck = () => {
     const cookie = Cookies.get("userCredentials");
+    const cookieTheme = Cookies.get("userTheme");
     if (Cookies.get("userCredentials") === undefined) {
       setUserCredentials({});
     } else {
       const parsed = JSON.parse(cookie);
       setUserCredentials(parsed);
+    }
+    if (Cookies.get("userTheme") === undefined) {
+      setDarkMode("linear-gradient(#57606f, #d3d3d3)");
+    } else {
+      setDarkMode(cookieTheme);
     }
   };
 
