@@ -17,9 +17,9 @@ OMEN is a revolutionary online mission planning environment which harnesses the 
 OMEN: Mission plan together.
 
 ---
-# Heroku Hosting:
-front-end: https://omen-database.herokuapp.com/
-backend: https://omen-front-end.herokuapp.com/
+# Heroku Hosting: 
+front-end: https://omen-front-end.herokuapp.com/
+backend: https://omen-database.herokuapp.com/
 
 ## Installation:
 
