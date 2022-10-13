@@ -120,10 +120,22 @@ function App() {
               path="/userpage"
               element={isLoggedIn ? <UserPage /> : <Login />}
             ></Route>
-            <Route path="/help" element={<HelpPage />}></Route>
-            <Route path="/about" element={<AboutPage />}></Route>
-            <Route path="/searchresults" element={<SearchResults />}></Route>
-            <Route path="/favorites" element={<SearchResults />}></Route>
+            <Route
+              path="/help"
+              element={isLoggedIn ? <HelpPage /> : <Login />}
+            ></Route>
+            <Route
+              path="/about"
+              element={isLoggedIn ? <AboutPage /> : <Login />}
+            ></Route>
+            <Route
+              path="/searchresults"
+              element={isLoggedIn ? <SearchResults /> : <Login />}
+            ></Route>
+            <Route
+              path="/favorites"
+              element={isLoggedIn ? <SearchResults /> : <Login />}
+            ></Route>
             <Route
               path="/missiondetails/:id"
               element={<MissionDetails />}
